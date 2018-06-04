@@ -1,0 +1,119 @@
+.main-nav li .glyphicon {
+    margin-right: 10px;
+}
+
+/* Highlighting rules for nav menu items */
+.main-nav li a.router-link-active,
+.main-nav li a.router-link-active:hover,
+.main-nav li a.router-link-active:focus {
+    background-color: #8A6552;
+    color: white;
+    width: 122px;
+}
+
+/* Keep the nav menu independent of scrolling and on top of other items */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+@media (min-width: 768px) {
+    /* On small screens, convert the nav menu to a vertical sidebar */
+    .main-nav {
+        height: 100%; 
+        width: 100px;
+    }
+    .main-nav .navbar {
+        border-radius: 0px;
+        border-width: 0px;
+        height: 100%;
+    }
+
+    .main-nav .navbar-inverse{        
+        background-color: #636363;
+    }
+
+    .main-nav .navbar-brand{
+        height:90px;
+    }
+
+    .main-nav .navbar-header {
+        float: none;
+    }
+    .main-nav .navbar-collapse {
+        border-top: 1px solid #444;
+        padding: 0px;
+    }
+    .main-nav .navbar ul {
+        float: none;
+    }
+    .main-nav .navbar li {
+        float: none;
+        font-size: 50px;
+        margin: 6px;
+    }
+    .main-nav .navbar li a {
+        padding: 10px 36px;        
+        margin-left: -20px;
+        border-radius: 20%;
+    }
+    .main-nav .navbar a {
+        /* If a menu item's text is too long, truncate it */
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .main-nav .social-network {
+        padding-top : 430px;        
+    }
+
+.main-nav .social-network li:nth-child(1) a,
+.main-nav .social-network li:nth-child(1) a.router-link-active,
+.main-nav .social-network li:nth-child(1) a.router-link-active:hover,
+.main-nav .social-network li:nth-child(1) a.router-link-active:focus {    
+    border-radius: 20%;
+    padding: 10px 36px;        
+    margin-left: -20px;
+    line-height: 20px;
+    display: block;
+    background-color:#1dcaff;
+    width: 122px;
+}
+
+.main-nav .social-network li:nth-child(2) a,
+.main-nav .social-network li:nth-child(2) a.router-link-active,
+.main-nav .social-network li:nth-child(2) a.router-link-active:hover,
+.main-nav .social-network li:nth-child(2) a.router-link-active:focus {    
+    border-radius: 20%;
+    padding: 10px 36px;        
+    margin-left: -20px;
+    line-height: 20px;
+    display: block;
+    background-color:#cd486b;
+    width: 122px;
+}
+
+.main-nav .social-network li:nth-child(3) a,
+.main-nav .social-network li:nth-child(3) a.router-link-active,
+.main-nav .social-network li:nth-child(3) a.router-link-active:hover,
+.main-nav .social-network li:nth-child(3) a.router-link-active:focus {    
+    border-radius: 20%;
+    padding: 10px 36px;        
+    margin-left: -20px;
+    line-height: 20px;
+    display: block;
+    background-color:#3b5998;
+    width: 122px;
+}
+    .main-nav .social-network a{
+        color : #9d9d9d;
+    }
+
+    .main-nav .social-network a:hover{
+        color : white;
+    }
+}

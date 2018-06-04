@@ -1,0 +1,49 @@
+<template>
+    <div class="main-nav">
+        <div class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">L'instant en commun</img></a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <router-link to="/" :exact="true">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/counter">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </router-link>
+                    </li>
+                    <div class="social-network">
+                        <li>
+                            <router-link to="/twitter">
+                                <span class="glyphicon glyphicon-plane"></span>
+                            </router-link>
+                        </li>                       
+                        <li>
+                                <router-link to="/instagram">
+                                    <span class="glyphicon glyphicon-picture"></span>
+                                </router-link>
+                        </li>
+                        <li>
+                                <router-link to="/facebook">
+                                    <span class="glyphicon glyphicon-book"></span>
+                                </router-link>
+                            </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style src="./navmenu.css" />
