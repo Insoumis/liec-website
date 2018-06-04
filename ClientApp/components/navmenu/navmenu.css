@@ -7,7 +7,7 @@
 .main-nav li a.router-link-active:hover,
 .main-nav li a.router-link-active:focus {
     background-color: #8A6552;
-    color: white;
+    color: #FFE0B5;
     width: 122px;
 }
 
@@ -58,7 +58,7 @@
     .main-nav .navbar li a {
         padding: 10px 36px;        
         margin-left: -20px;
-        border-radius: 20%;
+        border-radius: 20%; 
     }
     .main-nav .navbar a {
         /* If a menu item's text is too long, truncate it */
@@ -81,6 +81,7 @@
     line-height: 20px;
     display: block;
     background-color:#1dcaff;
+    color: white;
     width: 122px;
 }
 
@@ -93,7 +94,8 @@
     margin-left: -20px;
     line-height: 20px;
     display: block;
-    background-color:#cd486b;
+    background-color:#cd486b;    
+    color: white;
     width: 122px;
 }
 
@@ -106,11 +108,12 @@
     margin-left: -20px;
     line-height: 20px;
     display: block;
-    background-color:#3b5998;
+    background-color:#3b5998;    
+    color: white;
     width: 122px;
 }
     .main-nav .social-network a{
-        color : #9d9d9d;
+        color : white;
     }
 
     .main-nav .social-network a:hover{
