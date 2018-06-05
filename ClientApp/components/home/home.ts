@@ -7,6 +7,7 @@ interface InfoLiec {
     image: string;
     sources: string[];
     tags: string[];
+    theme: string;
 }
 
 @Component
@@ -20,4 +21,14 @@ export default class HomeComponent extends Vue {
                 this.infos = data;
             });
     }
+
+    openModal(){
+        var modal = document.getElementById("modalwindow") || null;
+        modal!.style.display = "block";
+      }
+
+    closeModal(){
+          var modal = document.getElementById("modalwindow");
+        modal!.style.display = "none";
+      }
 }

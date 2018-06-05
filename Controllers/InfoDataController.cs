@@ -22,6 +22,11 @@ namespace LIEC_Website.Controllers
             "Arrêt sur images", "RTL", "Le Figaro", "Libération", "Le Monde", "La Tribune", "Dauphiné Libéré", "Le Parisien"
         };
 
+        private static string[] _themes = new[]
+        {
+             "#6bb592", "#fa9a46", "#6faaed", "#ffe347", "#f26257", "#bf80cf"
+        };
+
         private static List<string> _imageSources = new List<string>();
 
         public InfoDataController(IHostingEnvironment hostingEnvironment){
@@ -47,6 +52,7 @@ namespace LIEC_Website.Controllers
                 Image = _imageSources.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
                 Sources  = _sources.OrderBy(x => Guid.NewGuid()).Take(2).ToList().ToArray(),
                 Tags = _tags.OrderBy(x => Guid.NewGuid()).Take(3).ToList().ToArray(),
+                Theme = _themes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
             });
             return info;
         }
@@ -58,6 +64,7 @@ namespace LIEC_Website.Controllers
             public string Image { get; set; }
             public string[] Sources { get; set; }
             public string[] Tags { get; set; }
+            public string Theme { get; set; }
         }
     }
 }

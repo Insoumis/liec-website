@@ -1,33 +1,83 @@
 <template>
-<div class="home">
-        <div v-for="info in infos" class="cover-index">
-                <img v-bind:src="info.image" v-bind:alt="info.title" />
-                <div v-bind:title="info.title">
-                    <span class="name">
-                        <span style="vertical-align: middle;  display: table-cell;">
-                            <p>
-                                {{ info.context }}
-                            </p>                            
+    <div class="home">
+        <div v-for="info in infos" class="cover-index" v-on:click="openModal()">
+            <img v-bind:src="info.image" v-bind:alt="info.title" />
+            <div v-bind:title="info.title">
+                <span class="name">
+                    <span style="vertical-align: middle;  display: table-cell;">
+                        <p>
+                            {{ info.context }}
+                        </p>
 
-                            <br/>Sources<br/>
-                            <div v-for="item in info.sources"><a class="link" href="item">{{item}}</a><br/></div>
-                            <br/>Tags<br/>
-                            <div v-for="item in info.tags" class="tag">
-                                {{ item }}
-                            </div>
-                            <br/><br/>
+                        <br/>Sources
+                        <br/>
+                        <div v-for="item in info.sources">
+                            <a class="link" href="item" v-bind:style="{ color: info.theme}">{{item}}</a>
+                            <br/>
+                        </div>
+                        <br/>Tags
+                        <br/>
+                        <div v-for="item in info.tags" class="tag" v-bind:style="{ 'background-color': info.theme}">
+                            {{ item }}
+                        </div>
+                        <br/>
+                        <br/>
 
-                          
-<a href="https://twitter.com/InstantEnCommun"><img src="https://image.flaticon.com/icons/svg/54/54879.svg"/></a>  
-                          <a href="https://www.facebook.com/Linstantencommun/?ref=br_rs"><img src="https://image.flaticon.com/icons/svg/54/54422.svg"/></a>  
-                          <a href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThWvTlZfWps9VujEWhDQp4T5x6lathdOW2a-ol5SQGiybo7B0Y"/></a>  
-<a href="#" onclick="openModal()">
-<img src="https://i.stack.imgur.com/To3El.png"/></a>
-                        </span>
+
+                        <a href="https://twitter.com/InstantEnCommun">
+                            <img src="https://image.flaticon.com/icons/svg/54/54879.svg" />
+                        </a>
+                        <a href="https://www.facebook.com/Linstantencommun/?ref=br_rs">
+                            <img src="https://image.flaticon.com/icons/svg/54/54422.svg" />
+                        </a>
+                        <a href="#">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThWvTlZfWps9VujEWhDQp4T5x6lathdOW2a-ol5SQGiybo7B0Y" />
+                        </a>
+                        <a href="#" onclick="openModal()">
+                            <img src="https://i.stack.imgur.com/To3El.png" />
+                        </a>
                     </span>
-                    </div>
-</div>
-</div>
+                </span>
+            </div>
+        </div>
+
+
+        <div id="modalwindow">
+            <i id="modalcross" class="glyphicon glyphicon-remove" v-on:click="closeModal()"></i>
+            <div class="modal-container">
+                <div class="liec-modal">
+                    <img src="https://pbs.twimg.com/media/DdQaOTfWsAIv3yK.png" />
+                </div>
+                <div class="liec-infos">
+                    <h2>Titre du super liec</h2>
+                    <p>Le pass culture, co-financé par les #GAFAM, est-il une bonne solution pour promouvoir la culture chez
+                        les jeunes ?
+                    </p>
+                    <p>Boutons FB Twitter et Instagram
+                    </p>
+                    <p>Tags
+                        <div class="tag">
+                            Culture
+                        </div>
+                        <div class="tag">
+                            Jeune
+                        </div>
+                        <div class="tag">
+                            GAFAM
+                        </div>
+                        <div class="tag">
+                            Italie
+                        </div>
+                        <div class="tag">
+                            Enseignement
+                        </div>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 </template>
 
 <!-- <script>
