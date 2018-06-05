@@ -140,3 +140,23 @@
 .home .liec-infos .tag {
   background-color: black;
 }
+
+.home .scrollToTop{
+  border-radius: 50%;
+  background-color: #8A6552;
+  color: #FFE0B5;
+  position: fixed;
+  border : 1px solid #636363;
+  width: 50px;
+  height: 50px;
+  top : 90%;
+  left : 95%;
+  z-index: 2000;
+  font-size: 30px;
+  padding-left : 6.5px;
+  padding-top : 6px;
+}
+
+.home .scrollToTop:hover{
+  cursor: pointer;
+}

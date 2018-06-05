@@ -1,5 +1,8 @@
 <template>
     <div class="home">
+        <a class="scrollToTop" v-on:click="scrollToTop()">
+            <span class="glyphicon glyphicon-arrow-up"></span>
+        </a>
         <div v-for="info in infos" class="cover-index" v-on:click="openModal()">
             <img v-bind:src="info.image" v-bind:alt="info.title" />
             <div v-bind:title="info.title">
@@ -7,8 +10,7 @@
                     <span style="vertical-align: middle;  display: table-cell;">
                         <p>
                             {{ info.context }}
-                        </p>
-
+                        </p>                        
                         <br/>Sources
                         <br/>
                         <div v-for="item in info.sources">
