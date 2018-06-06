@@ -137,8 +137,8 @@
   height: 550px;
 }
 
-.home .liec-infos .tag {
-  background-color: black;
+.home .tag {
+  color: #363f41;
 }
 
 .home .scrollToTop{
