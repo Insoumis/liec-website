@@ -1,0 +1,43 @@
+.home #modalwindow {
+    height: 100%;
+    width: 100%;
+    background-color: #363f41;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    display: none;
+    z-index: 2000;
+  }
+  
+  .home #modalcross {
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    color: #fff;
+  }
+  
+  .home #modalcross:hover {
+    cursor: pointer;
+  }
+  
+  .home .modal-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+  }
+  
+  .home .liec-modal {
+    width: 500px;
+    height: 500px;
+    background-color: #fff;
+  }
+  
+  .home .liec-modal img {
+    width: 550px;
+    height: 550px;
+  }
+  
+  .home .tag {
+    background-color: #363f41;
+  }

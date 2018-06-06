@@ -1,6 +1,7 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import $ from "jquery";
+import eventHub from '../eventhub/eventhub'
 
 interface InfoLiec {
   title: string;
@@ -11,14 +12,19 @@ interface InfoLiec {
   theme: string;
 }
 
-@Component
+@Component({
+    components: {
+        ModalComponent: require('../home_modal/home_modal.vue.html')
+    }
+})
+
 export default class HomeComponent extends Vue {
   infos: InfoLiec[] = [];
 
   destroy() {
     window.removeEventListener("scroll", this.handleScroll);
   }
-
+  
   mounted() {
     fetch("api/InfoData/InfoLiec")
       .then(response => response.json() as Promise<InfoLiec[]>)
@@ -26,6 +32,7 @@ export default class HomeComponent extends Vue {
         this.infos = data;
       });
     window.addEventListener("scroll", this.handleScroll);
+    eventHub.$on('onOpenModal', this.onOpenModal);
   }
 
   handleScroll() {
@@ -41,18 +48,17 @@ export default class HomeComponent extends Vue {
     });
   }
 
+  openModal(info : InfoLiec){
+      console.log("emitting...")
+      eventHub.$emit('onOpenModal', info);
+  }
+
+  onOpenModal(info : InfoLiec){
+    console.log("get it...")
+}
+
   scrollToTop(){
     $(".scrollToTop").fadeOut();
     window.scrollTo(0, 0);    
-  }
-
-  openModal() {
-    var modal = document.getElementById("modalwindow");
-    modal!.style.display = "block";
-  }
-
-  closeModal() {
-    var modal = document.getElementById("modalwindow");
-    modal!.style.display = "none";
   }
 }

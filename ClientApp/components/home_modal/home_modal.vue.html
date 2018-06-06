@@ -1,0 +1,30 @@
+<template>
+    <div id="modalwindow" v-bind:style="{ 'background-color': info.theme, display : isDisplayed}" v-on:onOpenModal="closeModal()">
+        <span id="modalcross" class="glyphicon glyphicon-remove" v-on:click="closeModal()" style="font-size: 40px"></span>
+        <div class="modal-container">
+            <div class="liec-modal">
+                <img v-bind:src="info.image" v-bind:alt="info.title" />
+            </div>
+            <div class="liec-infos">
+                <h2>{{ info.title}}</h2>
+                <p>
+                    {{ info.context }}
+                </p>
+                <br/>Sources
+                <br/>
+                <div v-for="item in info.sources">
+                    <a class="link" href="item" >{{item}}</a>
+                    <br/>
+                </div>
+                <br/>Tags
+                <br/>
+                <div v-for="item in info.tags" class="tag" v-bind:style="{ 'color': info.theme}">
+                    {{ item }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</template>
+<script src="./home_modal.ts"></script>
+<style src="./home_modal.css" />

@@ -89,56 +89,8 @@
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  background-color: #fa9a46;
+  background-color: #363f41;
   border-radius: 10px;
-}
-
-.link {
-  color: #fa9a46
-}
-
-.home #modalwindow {
-  height: 100%;
-  width: 100%;
-  background-color: #fa9a46;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 20px;
-  display: none;
-  z-index: 3;
-}
-
-.home #modalcross {
-  position: absolute;
-  right: 10px;
-  top: 0px;
-  color: #fff;
-}
-
-.home #modalcross:hover {
-  cursor: pointer;
-}
-
-.home .modal-container {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
-}
-
-.home .liec-modal {
-  width: 500px;
-  height: 500px;
-  background-color: #fff;
-}
-
-.home .liec-modal img {
-  width: 550px;
-  height: 550px;
-}
-
-.home .tag {
-  color: #363f41;
 }
 
 .home .scrollToTop{
@@ -151,7 +103,7 @@
   height: 50px;
   top : 90%;
   left : 95%;
-  z-index: 2000;
+  z-index: 1999;
   font-size: 30px;
   padding-left : 6.5px;
   padding-top : 6px;
