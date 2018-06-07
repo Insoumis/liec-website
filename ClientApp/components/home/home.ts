@@ -16,7 +16,7 @@ interface InfoLiec {
 
 @Component({
     components: {
-        ModalComponent: require('../home_modal/home_modal.vue.html')
+        ModalComponent: require('../home-modal/home-modal.vue.html')
     }
 })
 
