@@ -1,5 +1,5 @@
 <template>
-    <div id="modalwindow" v-bind:style="{ 'background-color': info.theme, display : isDisplayed}" v-on:onOpenModal="closeModal()">
+    <div id="modalwindow" v-bind:style="{ 'background-color': info.lightTheme, display : isDisplayed}" v-on:onOpenModal="closeModal()">
         <span id="modalcross" class="glyphicon glyphicon-remove" v-on:click="closeModal()" style="font-size: 40px"></span>
         <div class="modal-container">
             <div class="liec-modal">
@@ -10,15 +10,15 @@
                 <p>
                     {{ info.context }}
                 </p>
-                <br/>Sources
+                <br/><u>Sources</u>
                 <br/>
                 <div v-for="item in info.sources">
-                    <a class="link" href="item" >{{item}}</a>
+                    <a class="link" href="item" v-bind:style="{ color: info.darkTheme}" >{{item}}</a>
                     <br/>
                 </div>
-                <br/>Tags
+                <br/><u>Tags</u>
                 <br/>
-                <div v-for="item in info.tags" class="tag" v-bind:style="{ 'color': info.theme}">
+                <div v-for="item in info.tags" class="tag" v-bind:style="{ 'background-color': info.darkTheme}">
                     {{ item }}
                 </div>
             </div>

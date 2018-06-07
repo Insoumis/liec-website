@@ -9,7 +9,9 @@ interface InfoLiec {
   image: string;
   sources: string[];
   tags: string[];
-  theme: string;
+  lightTheme: string;
+  normalTheme: string;
+  darkTheme: string;
 }
 
 @Component
@@ -20,7 +22,9 @@ export default class ModalComponent extends Vue {
       image: "",
       sources: [],
       tags : [],
-      theme: ""
+      lightTheme: "",
+      normalTheme: "",
+      darkTheme: ""
     };
     isDisplayed : string = "none";
 

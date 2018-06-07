@@ -9,7 +9,9 @@ interface InfoLiec {
   image: string;
   sources: string[];
   tags: string[];
-  theme: string;
+  lightTheme: string;
+  normalTheme: string;
+  darkTheme: string;
 }
 
 @Component({

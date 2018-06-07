@@ -11,15 +11,15 @@
                         <p>
                             {{ info.context }}
                         </p>
-                        <br/>Sources
+                        <br/><u>Sources</u>
                         <br/>
                         <div v-for="item in info.sources">
-                            <a class="link" href="item" v-bind:style="{ color: info.theme}">{{item}}</a>
+                            <a class="link" href="item" v-bind:style="{ color: info.darkTheme}">{{item}}</a>
                             <br/>
                         </div>
-                        <br/>Tags
+                        <br/><u>Tags</u>
                         <br/>
-                        <div v-for="item in info.tags" class="tag" v-bind:style="{ 'background-color': info.theme}">
+                        <div v-for="item in info.tags" class="tag" v-bind:style="{ 'background-color': info.darkTheme}">
                             {{ item }}
                         </div>
                         <br/>

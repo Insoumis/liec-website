@@ -22,9 +22,22 @@ namespace LIEC_Website.Controllers
             "Arrêt sur images", "RTL", "Le Figaro", "Libération", "Le Monde", "La Tribune", "Dauphiné Libéré", "Le Parisien"
         };
 
-        private static string[] _themes = new[]
+        //violet, blue, green, yellow, orange, red
+        private static string[] _lightThemes = new[]
         {
-             "#6bb592", "#fa9a46", "#6faaed", "#ffe347", "#f26257", "#bf80cf"
+             "#bf80cf", "#6faaed", "#8dd6b4", "#ffe347", "#fa9a46", "#f26257"
+        };
+
+        //violet, blue, green, yellow, orange, red
+        private static string[] __normalThemes = new[]
+        {
+             "#9e6dab", "#5a8dcc", "#79c7a4", "#fad13e", "#ed8e3b", "#d9483b"
+        };
+
+        //violet, blue, green, yellow, orange, red
+        private static string[] _darkThemes = new[]
+        {
+             "#865e91", "#4575b5", "#6bb592", "#edbd45", "#d9873f", "#cc4033"
         };
 
         private static List<string> _imageSources = new List<string>();
@@ -52,7 +65,9 @@ namespace LIEC_Website.Controllers
                 Image = _imageSources.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
                 Sources  = _sources.OrderBy(x => Guid.NewGuid()).Take(2).ToList().ToArray(),
                 Tags = _tags.OrderBy(x => Guid.NewGuid()).Take(3).ToList().ToArray(),
-                Theme = _themes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
+                NormalTheme = __normalThemes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
+                DarkTheme = _darkThemes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
+                LightTheme = _lightThemes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
             });
             return info;
         }
@@ -64,7 +79,9 @@ namespace LIEC_Website.Controllers
             public string Image { get; set; }
             public string[] Sources { get; set; }
             public string[] Tags { get; set; }
-            public string Theme { get; set; }
+            public string LightTheme { get; set; }
+            public string NormalTheme { get; set; }
+            public string DarkTheme { get; set; }
         }
     }
 }
