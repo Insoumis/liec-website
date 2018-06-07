@@ -33,13 +33,11 @@ export default class ModalComponent extends Vue {
     }
   
     openModal (infoLiec : InfoLiec) {
-      console.log("opening......")
       this.info = infoLiec;
       this.isDisplayed = 'block';
     }
 
     closeModal() {
-      console.log("closing...")
         this.isDisplayed = 'none';
       }
 }

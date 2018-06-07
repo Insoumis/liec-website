@@ -1,0 +1,24 @@
+<template>
+    <div class="search" v-bind:style="{display : isDisplayed}">
+        <h1>Rechercher des instants en commun</h1>
+        <br/>
+        <h2>Tags</h2>
+        <input type="search" />
+        <br/>
+        <h2>Période</h2>
+        <select>
+            <option value="6mois">Les 6 derniers mois</option>
+            <option value="3mois">Les 3 derniers mois</option>
+            <option value="1mois">Le dernier mois</option>
+            <option value="1semaine">La semaine dernière</option>
+        </select>
+
+        <br/>
+        <h2>Thèmes</h2>
+        <button>Rechercher</button>
+        <div class="outer" v-on:click="closeSearch()"></div>
+    </div>
+</template>
+
+<style src="./sidebar-search.css" />
+<script src="./sidebar-search.ts" />

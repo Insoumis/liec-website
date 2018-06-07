@@ -13,12 +13,12 @@
             <div class="clearfix"></div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <router-link to="/" :exact="true">
+                    <li v-on:click="openSearch()">
+                        <router-link to="/" :exact="true" >
                             <span class="glyphicon glyphicon-search"></span>
                         </router-link>
                     </li>
-                    <li>
+                    <li v-on:click="openConnexion()">
                         <router-link to="/connexion">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </router-link>
@@ -41,9 +41,12 @@
                             </li>
                     </div>
                 </ul>
-            </div>
+            </div>            
+        <search-component />        
+        <connexion-component />
         </div>
     </div>
 </template>
 
 <style src="./sidebar.css" />
+<script src="./sidebar.ts" />

@@ -6,9 +6,10 @@
 .main-nav li a.router-link-active,
 .main-nav li a.router-link-active:hover,
 .main-nav li a.router-link-active:focus {
-    background-color: #8A6552;
-    color: #FFE0B5;
+    background-color: #FFE0B5;
+    color: #8A6552;
     width: 122px;
+    z-index: 4;
 }
 
 /* Keep the nav menu independent of scrolling and on top of other items */
@@ -17,7 +18,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 4;
 }
 
 @media (min-width: 768px) {

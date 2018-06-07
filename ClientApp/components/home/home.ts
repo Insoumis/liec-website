@@ -1,7 +1,7 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import $ from "jquery";
-import eventHub from '../eventhub/eventhub'
+import eventHub from "../eventhub/eventhub";
 
 interface InfoLiec {
   title: string;
@@ -15,18 +15,17 @@ interface InfoLiec {
 }
 
 @Component({
-    components: {
-        ModalComponent: require('../home-modal/home-modal.vue.html')
-    }
+  components: {
+    ModalComponent: require("../home-modal/home-modal.vue.html")
+  }
 })
-
 export default class HomeComponent extends Vue {
   infos: InfoLiec[] = [];
 
   destroy() {
     window.removeEventListener("scroll", this.handleScroll);
   }
-  
+
   mounted() {
     fetch("api/InfoData/InfoLiec")
       .then(response => response.json() as Promise<InfoLiec[]>)
@@ -34,33 +33,37 @@ export default class HomeComponent extends Vue {
         this.infos = data;
       });
     window.addEventListener("scroll", this.handleScroll);
-    eventHub.$on('onOpenModal', this.onOpenModal);
+    eventHub.$on("hideTopBar", this.hideTopBar);
+    eventHub.$on("showTopBar", this.showTopBar);
+  }
+
+  hideTopBar() {
+    $(".top-nav").fadeOut();
+  }
+
+  showTopBar() {
+    $(".top-nav").fadeIn();
   }
 
   handleScroll() {
     console.log("scrolling...");
     $(window).scroll(function() {
       if ($(window)!.scrollTop() || 0 > 0) {
-        $(".top-nav").fadeOut();
+        eventHub.$emit("hideTopBar");
         $(".scrollToTop").fadeIn();
       } else {
-        $(".top-nav").fadeIn();
+        eventHub.$emit("showTopBar");
         $(".scrollToTop").fadeOut();
       }
     });
   }
 
-  openModal(info : InfoLiec){
-      console.log("emitting...")
-      eventHub.$emit('onOpenModal', info);
+  openModal(info: InfoLiec) {
+    eventHub.$emit("onOpenModal", info);
   }
 
-  onOpenModal(info : InfoLiec){
-    console.log("get it...")
-}
-
-  scrollToTop(){
+  scrollToTop() {
     $(".scrollToTop").fadeOut();
-    window.scrollTo(0, 0);    
+    window.scrollTo(0, 0);
   }
 }
