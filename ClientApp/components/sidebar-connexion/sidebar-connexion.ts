@@ -9,6 +9,7 @@ export default class ConnexionComponent extends Vue {
 
   mounted() {
     eventHub.$on("onOpenConnexion", this.onOpenConnexion);
+    eventHub.$on("closeConnexion", this.closeConnexion);
   }
 
   onOpenConnexion() {

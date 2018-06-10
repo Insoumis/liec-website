@@ -1,5 +1,5 @@
 <template>
-    <div class="home" >
+    <div class="home">
         <a class="scrollToTop" v-on:click="scrollToTop()">
             <span class="glyphicon glyphicon-arrow-up"></span>
         </a>
@@ -41,7 +41,8 @@
                     </span>
                 </span>
             </div>
-        </div>
+        </div>        
+        <div class="side-panel-background" v-on:click="closePanel()"></div>      
         <modal-component />
     </div>
 </template>

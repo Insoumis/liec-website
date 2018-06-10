@@ -1,23 +1,96 @@
-.search{
-    width: 20%;
+.search {
+    width: 400px;
     height: 100%;
     z-index: 3;
     position: fixed;
-    top:0;
-    left : 100px;
+    top: 0;
+    left: 100px;
     background-color: #8A6552;
     color: white;
-    font-family: 'Montserrat-Black', sans-serif; 
+    font-family: 'Montserrat-Black', sans-serif;
     font-weight: 900;
-    padding : 30px;
+    padding: 30px;
 }
 
-.search .outer{
-    width: 80%;
-    height: 100%;
-    z-index: 3;
-    position: fixed;
-    top:0;
-    left : 25.2%;
-    background-color: rgba(0, 0, 0, .8);
+.search input, .search select{
+    width: 100%;
+    height : 30px;
+}
+
+.search .btn-search {
+    border: 5px solid white;
+    color: white;
+    height: 30px;
+    width: 200px;
+    margin-top: 370px;
+    text-align: center;
+    margin-left : auto;
+    margin-right : auto;
+}
+
+.search .btn-search:hover {
+    border-color: #705242;
+    background-color : #705242;
+    color :  #FFE0B5;;
+    cursor: pointer;
+}
+
+.search .theme {
+    border: 5px solid white;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    height: 100px;
+    width: 150px;
+    float: left;
+    background-color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    padding-top: 8%;
+}
+
+.search .theme span {
+    position: relative;
+    border: 1px solid white;
+    margin-left: 132px;
+    margin-top: 14px;
+    padding: 2px;
+    border-radius: 50%;
+    background-color: inherit;
+    visibility: hidden;
+    background-size: contain;
+}
+
+.search .theme:hover span {
+    background-color: inherit;
+    border-color: inherit;
+    visibility: visible;
+}
+
+.search .red:hover {
+    border-color: #cc4033;
+    background-color: #cc4033;
+}
+
+.search .orange:hover {
+    border-color: #d9873f;
+    background-color: #d9873f;
+}
+
+.search .yellow:hover {
+    border-color: #edbd45;
+    background-color: #edbd45;
+}
+
+.search .green:hover {
+    border-color: #6bb592;
+    background-color: #6bb592;
+}
+
+.search .blue:hover {
+    border-color: #4575b5;
+    background-color: #4575b5;
+}
+
+.search .violet:hover {
+    border-color: #865e91;
+    background-color: #865e91;
 }

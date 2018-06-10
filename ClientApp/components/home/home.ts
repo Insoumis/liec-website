@@ -33,15 +33,16 @@ export default class HomeComponent extends Vue {
         this.infos = data;
       });
     window.addEventListener("scroll", this.handleScroll);
-    eventHub.$on("hideTopBar", this.hideTopBar);
-    eventHub.$on("showTopBar", this.showTopBar);
+    eventHub.$on("hideTopBar", this.onHideTopBar);
+    eventHub.$on("showTopBar", this.onShowTopBar);
+    eventHub.$on("switchSidePanelBackground", this.onSwitchSidePanelBackground);
   }
 
-  hideTopBar() {
+  onHideTopBar() {
     $(".top-nav").fadeOut();
   }
 
-  showTopBar() {
+  onShowTopBar() {
     $(".top-nav").fadeIn();
   }
 
@@ -65,5 +66,18 @@ export default class HomeComponent extends Vue {
   scrollToTop() {
     $(".scrollToTop").fadeOut();
     window.scrollTo(0, 0);
+  }
+
+  onSwitchSidePanelBackground() {
+    //console.log("Switching background..." + $(".side-panel-background").css("display"));
+    if ($(".side-panel-background").css("display") == "none") {
+      $(".side-panel-background").fadeIn();
+    } else {
+      $(".side-panel-background").fadeOut();
+    }
+  }
+
+  closePanel() {
+    eventHub.$emit("onCloseSearch");
   }
 }

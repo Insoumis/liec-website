@@ -1,25 +1,26 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import $ from "jquery";
-import eventHub from '../eventhub/eventhub'
+import eventHub from "../eventhub/eventhub";
 
 @Component({
-    components: {
-        SearchComponent: require('../sidebar-search/sidebar-search.vue.html'),
-        ConnexionComponent: require('../sidebar-connexion/sidebar-connexion.vue.html'),
-    }
+  components: {
+    SearchComponent: require("../sidebar-search/sidebar-search.vue.html"),
+    ConnexionComponent: require("../sidebar-connexion/sidebar-connexion.vue.html")
+  }
 })
-
 export default class SidebarComponent extends Vue {
+  mounted() {}
 
-    mounted() {       
-      }
-    
-      openSearch(){          
-          eventHub.$emit('onOpenSearch');
-      }
+  openSearch() {
+    if ($(".search").css("display") == "none") {
+      eventHub.$emit("onOpenSearch");
+    } else {
+      eventHub.$emit("onCloseSearch");
+    }
+  }
 
-      openConnexion(){          
-          eventHub.$emit('onOpenConnexion');
-      }
+  openConnexion() {
+    eventHub.$emit("onOpenConnexion");
+  }
 }

@@ -1,22 +1,27 @@
 <template>
     <div class="search" v-bind:style="{display : isDisplayed}">
-        <h1>Rechercher des instants en commun</h1>
+        <center><h1>Rechercher des instants en commun</h1></center>
         <br/>
-        <h2>Tags</h2>
+        <h3>Tags</h3>
         <input type="search" />
         <br/>
-        <h2>Période</h2>
+        <h3>Période</h3>
         <select>
             <option value="6mois">Les 6 derniers mois</option>
             <option value="3mois">Les 3 derniers mois</option>
             <option value="1mois">Le dernier mois</option>
             <option value="1semaine">La semaine dernière</option>
         </select>
-
+        
         <br/>
-        <h2>Thèmes</h2>
-        <button>Rechercher</button>
-        <div class="outer" v-on:click="closeSearch()"></div>
+        <h3>Thèmes</h3>
+        <div class="theme red" v-bind:style="{ backgroundImage: 'url(' + imageRed + ')' }"><div>Urgence <br/> Sociale</div><span class="glyphicon glyphicon-ok red"></span></div>
+        <div class="theme orange"><div>Progrès <br/> Humain</div><span class="glyphicon glyphicon-ok orange"></span></div>
+        <div class="theme yellow"><div>Urgence <br/> Démocratique</div><span class="glyphicon glyphicon-ok yellow"></span></div>
+        <div class="theme green"><div>Urgence <br/> Ecologique</div><span class="glyphicon glyphicon-ok green"></span></div>
+        <div class="theme blue"><div>Union <br/> Européenne</div><span class="glyphicon glyphicon-ok blue"></span></div>
+        <div class="theme violet"><div>Paix & <br/> International</div><span class="glyphicon glyphicon-ok violet"></span></div>
+        <div class="btn-search">Rechercher</div>
     </div>
 </template>
 
