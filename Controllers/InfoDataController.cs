@@ -46,7 +46,7 @@ namespace LIEC_Website.Controllers
             _hostingEnvironment = hostingEnvironment;
 
             // Get all visual paths
-            var rootpath = $"{hostingEnvironment.WebRootPath}\\static\\";
+            var rootpath = $"{hostingEnvironment.WebRootPath}/static/";
             DirectoryInfo d = new DirectoryInfo(rootpath);
             FileInfo[] Files = d.GetFiles("*.png"); 
             foreach (FileInfo file in Files)

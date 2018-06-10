@@ -1,16 +1,11 @@
-.main-nav li .glyphicon {
-    margin-right: 10px;
-}
+/*
+Color Used :
 
-/* Highlighting rules for nav menu items */
-.main-nav li a.router-link-active,
-.main-nav li a.router-link-active:hover,
-.main-nav li a.router-link-active:focus {
-    background-color: #FFE0B5;
-    color: #8A6552;
-    width: 122px;
-    z-index: 4;
-}
+Beige : #FFE0B5
+
+*/
+
+
 
 /* Keep the nav menu independent of scrolling and on top of other items */
 .main-nav {
@@ -31,40 +26,56 @@
         border-radius: 0px;
         border-width: 0px;
         height: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+
     }
+
 
     .main-nav .navbar-inverse{        
         background-color: #636363;
     }
 
+    /* Logo */
     .main-nav .navbar-brand{
-        height:90px;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .main-nav  .navbar-brand img {
-        height: 90px;
-        margin-left: -10px;
-        margin-top: -15px;
+        height: 60px;
     }
 
-    .main-nav .navbar-header {
-        float: none;
-    }
     .main-nav .navbar-collapse {
         padding: 0px;
     }
-    .main-nav .navbar ul {
-        float: none;
+
+    .main-nav .navbar-nav {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        height: calc(100vh - 100px);
     }
-    .main-nav .navbar li {
-        float: none;
-        font-size: 50px;
-        margin: 6px;
+    .main-nav .navbar-nav div li {
+        /* Menu Item Property */
+        height: 100px;
+        width: 100px;
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.2s;
+ 
     }
-    .main-nav .navbar li a {
-        padding: 10px 36px;        
-        margin-left: -20px;
-        border-radius: 20%; 
+    .main-nav .navbar-nav div li a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        margin-left: 20px;
     }
     .main-nav .navbar a {
         /* If a menu item's text is too long, truncate it */
@@ -73,56 +84,64 @@
         overflow: hidden;
     }
 
-    .main-nav .social-network {
-        padding-top : 430px;        
+
+    /* Buttons Specification */
+    .main-nav .navbar-nav li::after{
+        content: '';
+        display: block;
+        height: 100px;
+        width: 40px;
+        background: #FFE0B5;
+        position: relative;
+        top: 0;
+        right: -14px;
+        border-radius: 50%;
+        opacity: 0;
+        transition: all 0.3s;
     }
 
-.main-nav .social-network li:nth-child(1) a,
-.main-nav .social-network li:nth-child(1) a.router-link-active,
-.main-nav .social-network li:nth-child(1) a.router-link-active:hover,
-.main-nav .social-network li:nth-child(1) a.router-link-active:focus {    
-    border-radius: 20%;
-    padding: 10px 36px;        
-    margin-left: -20px;
-    line-height: 20px;
-    display: block;
-    background-color:#1dcaff;
-    color: white;
-    width: 122px;
-}
-
-.main-nav .social-network li:nth-child(2) a,
-.main-nav .social-network li:nth-child(2) a.router-link-active,
-.main-nav .social-network li:nth-child(2) a.router-link-active:hover,
-.main-nav .social-network li:nth-child(2) a.router-link-active:focus {    
-    border-radius: 20%;
-    padding: 10px 36px;        
-    margin-left: -20px;
-    line-height: 20px;
-    display: block;
-    background-color:#cd486b;    
-    color: white;
-    width: 122px;
-}
-
-.main-nav .social-network li:nth-child(3) a,
-.main-nav .social-network li:nth-child(3) a.router-link-active,
-.main-nav .social-network li:nth-child(3) a.router-link-active:hover,
-.main-nav .social-network li:nth-child(3) a.router-link-active:focus {    
-    border-radius: 20%;
-    padding: 10px 36px;        
-    margin-left: -20px;
-    line-height: 20px;
-    display: block;
-    background-color:#3b5998;    
-    color: white;
-    width: 122px;
-}
-    .main-nav .social-network a{
-        color : white;
+    .main-nav .navbar-nav li:hover::after{
+        opacity: 1;
+        transition: all 0.2s;
     }
 
-    .main-nav .social-network a:hover{
-        color : white;
+    .main-nav .navbar-nav div li:hover, .main-nav .navbar-nav div li:focus, .main-nav .navbar-nav div li:active {
+        cursor: pointer;
+        transition: all 0.3s;
+    } 
+
+    /* Utilities Buttons*/
+    .utilities-menu li:hover{
+        background: #FFE0B5;
     }
+
+
+
+    /*Social Buttons*/
+
+    .social-network li:hover:first-of-type{
+        background: #6FAAED;
+    }
+
+    .social-network li:hover:first-of-type::after{
+        background: #6FAAED;
+    }
+
+
+    .social-network li:hover:nth-of-type(2){
+        background: #D9483B;
+    }
+    .social-network li:hover:nth-of-type(2)::after{
+        background: #D9483B;
+    }
+
+    .social-network li:hover:nth-of-type(3){
+        background: #4575B5;
+    }
+    .social-network li:hover:nth-of-type(3)::after{
+        background: #4575B5;
+    }
+
+
+
 }
