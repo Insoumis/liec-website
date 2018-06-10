@@ -11,6 +11,9 @@ export default class SearchComponent extends Vue {
   mounted() {
     eventHub.$on("onOpenSearch", this.onOpenSearch);
     eventHub.$on("onCloseSearch", this.closeSearch);
+    $(".theme").on("click", function(e){
+      $(this).toggleClass( "active", !$(this).hasClass("active") );
+  });
   }
 
   onOpenSearch() {      
