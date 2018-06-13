@@ -12,6 +12,7 @@ interface InfoLiec {
   lightTheme: string;
   normalTheme: string;
   darkTheme: string;
+  creationDate: string;
 }
 
 @Component
@@ -24,7 +25,8 @@ export default class ModalComponent extends Vue {
       tags : [],
       lightTheme: "",
       normalTheme: "",
-      darkTheme: ""
+      darkTheme: "",
+      creationDate: "",
     };
     isDisplayed : string = "none";
 

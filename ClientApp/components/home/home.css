@@ -51,31 +51,37 @@
   z-index: 2;
 }
 
-.home .cover-index:hover .name {
-  position: absolute;
-  bottom: 0;
+.home .cover-index:hover .tail {
+  position: relative;
   background-color: rgba(0, 0, 0, .8);
   display: table;
   color: #fff;
   width: 100%;
+  height: 100%;
   text-align: center;
-  height: 500px;
   overflow: hidden;
   font-family: 'Montserrat', sans-serif;
-  display: table;
   z-index: 3;
 }
 
-.home .cover-index:hover .name img {
-  height: 30px;
-  width: 30px;
-  filter: invert(100%);
+.home .cover-index:hover .sources{
   display: inline;
-  position: relative;
 }
 
-.home .cover-index .name img {
-  display: none;
+.home .cover-index:hover .shortcuts a {
+  color: inherit !important;
+  text-decoration: none;
+}
+
+.home .cover-index:hover .shortcuts a:hover {
+  color: white !important;
+}
+
+.home .cover-index:hover .shortcuts span {
+  color: inherit !important;
+  display: inline;
+  font-size: 25px;
+  margin-left : 10px;
 }
 
 .home .tag {
@@ -91,6 +97,12 @@
   vertical-align: middle;
   background-color: #363f41;
   border-radius: 10px;
+  cursor : pointer;
+  margin-left : 5px;
+}
+
+.home .tag:hover {
+  color : white;
 }
 
 .home .scrollToTop{

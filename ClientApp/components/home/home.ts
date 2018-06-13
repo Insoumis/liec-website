@@ -12,6 +12,7 @@ interface InfoLiec {
   lightTheme: string;
   normalTheme: string;
   darkTheme: string;
+  creationDate: string;
 }
 
 @Component({
@@ -27,15 +28,29 @@ export default class HomeComponent extends Vue {
   }
 
   mounted() {
-    fetch("api/InfoData/InfoLiec")
-      .then(response => response.json() as Promise<InfoLiec[]>)
-      .then(data => {
-        this.infos = data;
-      });
     window.addEventListener("scroll", this.handleScroll);
     eventHub.$on("hideTopBar", this.onHideTopBar);
+    eventHub.$on("updateInfo", this.onUpdateInfo);
     eventHub.$on("showTopBar", this.onShowTopBar);
     eventHub.$on("switchSidePanelBackground", this.onSwitchSidePanelBackground);
+    eventHub.$emit("updateInfo");
+  }
+
+  onUpdateInfo(infos: InfoLiec[]) {
+    console.log(infos);
+    if (infos === undefined) {
+      fetch("api/InfoData/InfoLiec")
+        .then(response => response.json() as Promise<InfoLiec[]>)
+        .then(datas => {
+          datas.forEach(data => {
+            data.creationDate = data.creationDate.substring(0,10)
+          });
+          this.infos = datas;
+        });
+    }
+    else{
+      this.infos = infos;
+    }
   }
 
   onHideTopBar() {
@@ -47,7 +62,6 @@ export default class HomeComponent extends Vue {
   }
 
   handleScroll() {
-    console.log("scrolling...");
     $(window).scroll(function() {
       if ($(window)!.scrollTop() || 0 > 0) {
         eventHub.$emit("hideTopBar");
