@@ -71,7 +71,8 @@ namespace LIEC_Website.Controllers
                 NormalTheme = __normalThemes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
                 DarkTheme = _darkThemes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
                 LightTheme = _lightThemes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
-                CreationDate = DateTime.Now.AddDays(- random.Next(0,100)),
+                CreationDate = DateTime.Now.AddDays(-random.Next(0, 100)),
+                Theme = (Theme)random.Next(0,6)
             });
         }
 
@@ -81,20 +82,66 @@ namespace LIEC_Website.Controllers
             return _info.OrderByDescending(x => x.CreationDate);
         }
 
-        [HttpGet("[action]")]
-        public JsonResult Search(SearchViewModel searchVm)
+        [HttpPost("[action]")]
+        public JsonResult Search([FromBody] SearchViewModel searchVm)
         {
-            if(searchVm.Date == null && searchVm.FreeSearchText == null && searchVm.Tags == null && searchVm.Themes == null)
+            if (searchVm?.Date == null && searchVm?.FreeSearchText == null && searchVm?.Tags == null && searchVm?.Themes == null)
             {
                 return Json(_info.OrderByDescending(x => x.CreationDate));
             }
-            var response = _info
-            .Where(x => x.CreationDate > DateTime.ParseExact(searchVm.Date, "yyyy/dd/MM", CultureInfo.InvariantCulture))
-            .Where(x => x.Tags.Intersect(searchVm.Tags).Count() > 0)
-            .Where(x => searchVm.Themes.Contains(x.NormalTheme))
-            .Where(x => x.Context.Contains(searchVm.FreeSearchText) || x.Text.Contains(searchVm.FreeSearchText))
-            .OrderByDescending(x => x.CreationDate);
-            return Json(response);
+            var response = _info;
+            DateThreshold parsedDate;
+            if (Enum.TryParse(searchVm.Date, out parsedDate))
+            {
+                DateTime date = DateTime.Now;
+                switch (parsedDate)
+                {
+                    case (DateThreshold.week):
+                        date = DateTime.Now.Add(new TimeSpan(-7, 0, 0, 0));
+                        break;
+                    case (DateThreshold.month):
+                        date = DateTime.Now.Add(new TimeSpan(-30, 0, 0, 0));
+                        break;
+                    case (DateThreshold.tri):
+                        date = DateTime.Now.Add(new TimeSpan(-91, 0, 0, 0));
+                        break;
+                    case (DateThreshold.half):
+                        date = DateTime.Now.Add(new TimeSpan(-182, 0, 0, 0));
+                        break;
+                    case (DateThreshold.full):
+                        date = DateTime.Now.Add(new TimeSpan(-365, 0, 0, 0));
+                        break;
+                    default:
+                        break;
+                }
+                response = response.Where(x => x.CreationDate > date);
+            }
+
+            if (searchVm.Tags.Where(x => !string.IsNullOrWhiteSpace(x)).Count() > 0)
+            {
+                List<string> tags = new List<string>();
+                foreach (var tag in searchVm.Tags)
+                {
+                    var temp = tag.Replace(" ", "");
+                    tags.Add(temp[0].ToString().ToUpper() + temp.Substring(1).ToLower());
+                }
+                response = response.Where(x => x.Tags.Intersect(tags).Count() > 0);
+            }
+
+            if (searchVm.Themes.Count() > 0)
+            {
+                List<Theme> themes = new List<Theme>();
+                foreach (var theme in searchVm.Themes)
+                {
+                    themes.Add(Enum.Parse<Theme>(theme));
+                }
+                response = response.Where(x => themes.Contains(x.Theme));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchVm.FreeSearchText))
+                response = response.Where(x => x.Context.Contains(searchVm.FreeSearchText) || x.Text.Contains(searchVm.FreeSearchText));
+
+            return Json(response.OrderByDescending(x => x.CreationDate));
         }
 
         public class InfoLiecViewModel
@@ -109,10 +156,10 @@ namespace LIEC_Website.Controllers
             public string NormalTheme { get; set; }
             public string DarkTheme { get; set; }
             public DateTime CreationDate { get; set; }
-            public Themes Themes { get; set; }
+            public Theme Theme { get; set; }
         }
 
-          public class SearchViewModel
+        public class SearchViewModel
         {
             public string FreeSearchText { get; set; }
             public string[] Tags { get; set; }
@@ -120,14 +167,23 @@ namespace LIEC_Website.Controllers
             public string[] Themes { get; set; }
         }
 
-        public enum Themes{
+        public enum Theme
+        {
             red,
             blue,
             green,
             yellow,
             orange,
             violet
-            
+        }
+
+        public enum DateThreshold
+        {
+            week,
+            month,
+            tri,
+            half,
+            full,
         }
     }
 }

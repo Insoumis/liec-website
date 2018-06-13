@@ -32,6 +32,7 @@ export default class SearchComponent extends Vue {
     themes: [],
     freeSearchText: ""
   };
+  unsplitTags: string = "";
   imageRed: string = "../../../wwwroot/content/logo-vert-1.png";
 
   mounted() {
@@ -59,46 +60,47 @@ export default class SearchComponent extends Vue {
   handleSubmit(e: Event) {
     this.errors = [];
     e.preventDefault();
+    
+    this.searchVm.tags = this.unsplitTags.split(",");
+    var baseUri = "/api/InfoData/Search";
 
-    this.searchVm.date = "2018-06-13";
-
-    var baseUri = "http://localhost:5000/api/InfoData/Search";
-    var esc = encodeURIComponent;
-    var query = Object.keys(this.searchVm)
-      .map(k => esc(k) + "=" + esc(this.searchVm[k]))
-      .join("&");
-
-    var url = baseUri + "&" + query;
-    console.log(JSON.stringify(this.searchVm));
     console.log(baseUri);
 
-  
-    $.ajax({
-      contentType: "application/json; charset=utf-8",
-      dataType: "json",
-      url: baseUri,
-      type: "get",
-      data : JSON.stringify(this.searchVm),
-      success: function (response) {
-          console.log(response);
-          eventHub.$emit("updateInfo", this.$data);
-          eventHub.$emit("onCloseSearch");
-      },
-      error: function () {
-          console.log("Oops");
-      }
-  });
-
-    // fetch(baseUri, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json"
+    // $.ajax({
+    //   contentType: "application/json; charset=utf-8",
+    //   dataType: "json",
+    //   url: baseUri,
+    //   type: "POST",
+    //   data: {
+    //     tags: ["hot"],
+    //     date: "",
+    //     themes: ["red","blue"],
+    //     freeSearchText: "txt"
     //   },
-    //   body: JSON.stringify(this.searchVm)
-    // })
-    //   .then(response => response.json() as Promise<InfoLiec[]>)
-    //   .then(data => {
-    //     eventHub.$emit("updateInfo", data);
-    //   });
+    //   success: function(response) {
+    //     console.log(response);
+    //     eventHub.$emit("updateInfo", this.$data);
+    //     eventHub.$emit("onCloseSearch");
+    //   },
+    //   error: function() {
+    //     console.log("Oops");
+    //   }
+    // });
+
+    fetch(baseUri, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.searchVm)
+    })
+      .then(response => response.json() as Promise<InfoLiec[]>)
+      .then(datas => {
+        datas.forEach(data => {
+          data.creationDate = data.creationDate.substring(0,10);
+        });
+        eventHub.$emit("updateInfo", datas);
+        eventHub.$emit("onCloseSearch");
+      });
   }
 }

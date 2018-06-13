@@ -43,7 +43,7 @@ export default class HomeComponent extends Vue {
         .then(response => response.json() as Promise<InfoLiec[]>)
         .then(datas => {
           datas.forEach(data => {
-            data.creationDate = data.creationDate.substring(0,10)
+            data.creationDate = data.creationDate.substring(0,10);
           });
           this.infos = datas;
         });

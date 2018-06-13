@@ -8,7 +8,8 @@
     background-color: #8A6552;
     color: white;
     font-family: 'Montserrat', sans-serif;
-    padding: 30px;
+    padding: 30px;    
+    text-align: center;
 }
 
 .search h1{
@@ -33,12 +34,25 @@
    /* background-image: url(""); */
 }
 
-.search input, .search select {
+.search .glyphicon-chevron-down{
+    display: none;
+}
+
+.search select:hover .search .glyphicon-chevron-down{
+    display: block;       
+    font-size: 20px;
+    position: relative;
+    left : 150px;
+    top :-25px; 
+}
+
+.search input,
+ .search select {
     width: 100%;
     height: 35px;
 }
 
-.search .btn-search {
+.search button {
     border: 3px solid white;
     color: white;
     background-color: #705242;
@@ -55,7 +69,7 @@
     padding-left : 10px;
 }
 
-.search .btn-search:hover {
+.search button:hover {
     border-color: #705242;
     background-color: #705242;
     color: #FFE0B5;
@@ -87,7 +101,8 @@
     background-size: contain;
 }
 
-.search .theme:hover span, .search .theme.active span{
+.search .theme:hover span,
+ .search .theme.active span{
     background-color: inherit;
     border-color: inherit;
     visibility: visible;
