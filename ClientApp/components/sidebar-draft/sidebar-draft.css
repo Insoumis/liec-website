@@ -1,0 +1,43 @@
+.draft {
+    width: 400px;
+    height: 100%;
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 100px;
+    background-color: #8A6552;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    padding: 30px;    
+    text-align: center;
+}
+
+.draft h1{
+    font-family: 'Roboto-Slab', sans-serif;
+    font-weight: 1500;
+}
+
+.draft button {
+    width : 100%;
+    border: 3px solid white;
+    color: white;
+    background-color: #705242;
+    height: 30px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top : 25px;
+}
+
+.draft input {
+    background-color: #705242;
+    border : none;
+    padding-left : 10px;
+}
+
+.draft button:hover {
+    border-color: #705242;
+    background-color: #705242;
+    color: #FFE0B5;
+    cursor: pointer;
+}

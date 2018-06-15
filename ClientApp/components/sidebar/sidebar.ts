@@ -6,6 +6,7 @@ import eventHub from "../eventhub/eventhub";
 @Component({
   components: {
     SearchComponent: require("../sidebar-search/sidebar-search.vue.html"),
+    DraftComponent: require("../sidebar-draft/sidebar-draft.vue.html"),
     ConnexionComponent: require("../sidebar-connexion/sidebar-connexion.vue.html")
   }
 })
@@ -21,6 +22,6 @@ export default class SidebarComponent extends Vue {
   }
 
   openConnexion() {
-    eventHub.$emit("onOpenConnexion");
+    eventHub.$emit("openDraft");
   }
 }
