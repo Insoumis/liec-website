@@ -15,14 +15,10 @@ export default class SearchComponent extends Vue {
 
   onOpenDraft() {
     this.isDisplayed = "block";
-    eventHub.$emit("hideTopBar");
-    eventHub.$emit("switchSidePanelBackground");
   }
 
   onCloseDraft() {
     this.isDisplayed = "none";
-    eventHub.$emit("showTopBar");
-    eventHub.$emit("switchSidePanelBackground");
   }
 
   connectOrSubscribe() {

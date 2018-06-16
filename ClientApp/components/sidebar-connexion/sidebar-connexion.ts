@@ -14,11 +14,9 @@ export default class ConnexionComponent extends Vue {
 
   onOpenConnexion() {
     this.isDisplayed = "block";
-    eventHub.$emit('hideTopBar');
   }
 
   closeConnexion() {
     this.isDisplayed = "none";
-    eventHub.$emit('showTopBar');
   }
 }

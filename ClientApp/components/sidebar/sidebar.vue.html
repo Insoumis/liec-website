@@ -20,12 +20,12 @@
                             </router-link>
                         </li>
                         <li v-on:click="openConnexion()">
-                            <router-link to="/connexion">
+                            <router-link to="/">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </router-link>
                         </li>
                     </div>
-                    <div class="social-network">
+                    <div class="social-network" v-on:click="openSocialNetwork">
                         <li>
                             <router-link to="/twitter">
                                 <span class="glyphicon glyphicon-plane"></span>

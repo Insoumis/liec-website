@@ -14,14 +14,41 @@ export default class SidebarComponent extends Vue {
   mounted() {}
 
   openSearch() {
+    eventHub.$emit("closeDraft");
     if ($(".search").css("display") == "none") {
-      eventHub.$emit("onOpenSearch");
+      eventHub.$emit("onOpenSearch");      
+      eventHub.$emit("openSidePanelBackground");      
+      eventHub.$emit('hideTopBar');
     } else {
       eventHub.$emit("onCloseSearch");
+      eventHub.$emit("closeSidePanelBackground");      
+      eventHub.$emit('showTopBar');
+    }
+    if ($(".side-panel-background").css("display") == "none") {
     }
   }
 
   openConnexion() {
-    eventHub.$emit("openDraft");
+    eventHub.$emit("onCloseSearch");
+    if ($(".draft").css("display") == "none") {
+      eventHub.$emit("openDraft");      
+      eventHub.$emit("openSidePanelBackground");      
+      eventHub.$emit('hideTopBar');
+    } else {
+      eventHub.$emit("closeDraft");
+      eventHub.$emit("closeSidePanelBackground");
+      eventHub.$emit('showTopBar');
+    }
+    if ($(".side-panel-background").css("display") == "none") {
+      
+    }
+  }
+
+  openSocialNetwork()
+  {
+    eventHub.$emit("closeDraft");
+    eventHub.$emit("onCloseSearch");
+    eventHub.$emit("closeSidePanelBackground");    
+    eventHub.$emit('hideTopBar');
   }
 }

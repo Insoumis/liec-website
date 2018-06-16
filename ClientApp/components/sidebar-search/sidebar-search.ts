@@ -47,14 +47,10 @@ export default class SearchComponent extends Vue {
 
   onOpenSearch() {
     this.isDisplayed = "block";
-    eventHub.$emit("hideTopBar");
-    eventHub.$emit("switchSidePanelBackground");
   }
 
   closeSearch() {
     this.isDisplayed = "none";
-    eventHub.$emit("showTopBar");
-    eventHub.$emit("switchSidePanelBackground");
   }
 
   handleSubmit(e: Event) {

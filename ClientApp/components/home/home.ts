@@ -32,7 +32,8 @@ export default class HomeComponent extends Vue {
     eventHub.$on("hideTopBar", this.onHideTopBar);
     eventHub.$on("updateInfo", this.onUpdateInfo);
     eventHub.$on("showTopBar", this.onShowTopBar);
-    eventHub.$on("switchSidePanelBackground", this.onSwitchSidePanelBackground);
+    eventHub.$on("openSidePanelBackground", this.onOpenSidePanelBackground);
+    eventHub.$on("closeSidePanelBackground", this.onCloseSidePanelBackground);
     eventHub.$emit("updateInfo");
   }
 
@@ -54,11 +55,15 @@ export default class HomeComponent extends Vue {
   }
 
   onHideTopBar() {
+    if ($(".top-nav").css("display") == "block") {
     $(".top-nav").fadeOut();
+    }
   }
 
   onShowTopBar() {
+    if ($(".top-nav").css("display") == "none") {
     $(".top-nav").fadeIn();
+    }
   }
 
   handleScroll() {
@@ -82,16 +87,22 @@ export default class HomeComponent extends Vue {
     window.scrollTo(0, 0);
   }
 
-  onSwitchSidePanelBackground() {
+  onOpenSidePanelBackground() {
     //console.log("Switching background..." + $(".side-panel-background").css("display"));
     if ($(".side-panel-background").css("display") == "none") {
       $(".side-panel-background").fadeIn();
-    } else {
+    } 
+  }
+
+  onCloseSidePanelBackground() {
+    //console.log("Switching background..." + $(".side-panel-background").css("display"));
+    if ($(".side-panel-background").css("display") == "block") {
       $(".side-panel-background").fadeOut();
     }
   }
 
   closePanel() {
     eventHub.$emit("onCloseSearch");
+    eventHub.$emit("closeDraft");
   }
 }
