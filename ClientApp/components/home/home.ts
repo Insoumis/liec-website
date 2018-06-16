@@ -104,5 +104,6 @@ export default class HomeComponent extends Vue {
   closePanel() {
     eventHub.$emit("onCloseSearch");
     eventHub.$emit("closeDraft");
+    this.onCloseSidePanelBackground();
   }
 }
