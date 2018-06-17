@@ -16,12 +16,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <div class="utilities-menu">
-                        <li v-on:click="openSearch()">
+                        <li v-on:click="openSearch()"
+                            v-bind:class="{active: isSearchActive}">
                             <router-link to="/" :exact="true">
                                 <span class="glyphicon glyphicon-search"></span>
                             </router-link>
                         </li>
-                        <li v-on:click="openConnexion()">
+                        <li v-on:click="openConnexion()"
+                            v-bind:class="{active: isDraftActive}">
                             <router-link to="/">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </router-link>

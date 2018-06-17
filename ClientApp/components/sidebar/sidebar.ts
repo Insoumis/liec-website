@@ -11,18 +11,25 @@ import eventHub from "../eventhub/eventhub";
   }
 })
 export default class SidebarComponent extends Vue {
-  mounted() {}
+  isSearchActive: boolean = false;
+  isDraftActive: boolean = false;
+  mounted() {
+    eventHub.$on("onModalClose", this.hideButtonHover);
+  }
 
   openSearch() {
-    eventHub.$emit("closeDraft");
+    eventHub.$emit("onCloseDraft");
     if ($(".search").css("display") == "none") {
       eventHub.$emit("onOpenSearch");      
       eventHub.$emit("openSidePanelBackground");      
       eventHub.$emit('hideTopBar');
+      this.isSearchActive = true;
+      this.isDraftActive = false;
     } else {
       eventHub.$emit("onCloseSearch");
       eventHub.$emit("closeSidePanelBackground");      
       eventHub.$emit('showTopBar');
+      this.isSearchActive = false;
     }
     if ($(".side-panel-background").css("display") == "none") {
     }
@@ -34,10 +41,13 @@ export default class SidebarComponent extends Vue {
       eventHub.$emit("openDraft");      
       eventHub.$emit("openSidePanelBackground");      
       eventHub.$emit('hideTopBar');
+      this.isDraftActive = true;
+      this.isSearchActive = false;
     } else {
-      eventHub.$emit("closeDraft");
+      eventHub.$emit("onCloseDraft");
       eventHub.$emit("closeSidePanelBackground");
       eventHub.$emit('showTopBar');
+      this.isDraftActive = false;
     }
     if ($(".side-panel-background").css("display") == "none") {
       
@@ -50,5 +60,10 @@ export default class SidebarComponent extends Vue {
     eventHub.$emit("onCloseSearch");
     eventHub.$emit("closeSidePanelBackground");    
     eventHub.$emit('hideTopBar');
+  }
+
+  hideButtonHover(){
+    this.isDraftActive = false;
+    this.isSearchActive = false;
   }
 }

@@ -10,7 +10,7 @@ export default class SearchComponent extends Vue {
 
   mounted() {
     eventHub.$on("openDraft", this.onOpenDraft);
-    eventHub.$on("closeDraft", this.onCloseDraft);
+    eventHub.$on("onCloseDraft", this.onCloseDraft);
   }
 
   onOpenDraft() {
