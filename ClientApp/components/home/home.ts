@@ -55,7 +55,7 @@ export default class HomeComponent extends Vue {
   }
 
   onHideTopBar() {
-    if ($(".top-nav").css("display") == "block") {
+    if ($(".top-nav").css("display") != "none") {
     $(".top-nav").fadeOut();
     }
   }
