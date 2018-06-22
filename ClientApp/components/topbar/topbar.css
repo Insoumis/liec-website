@@ -31,7 +31,7 @@
         font-family: 'Roboto', sans-serif;
         padding-left: 140px;
     }
-    .top-nav .row .title {
+    .top-nav .row .main-title {
         color: white;
         font-size: 35px;
         font-family: 'Montserrat Bold', sans-serif;
@@ -52,5 +52,17 @@
     }
     .top-nav #user-icon a:hover {
         color: white;
+    }
+
+    .top-nav .beans{
+        position : absolute;
+        z-index : 4;
+        top: 5px;
+        left: 650px;
+        height: 80px;
+    }
+
+    .top-nav .titles{
+        margin-left: 20px;
     }
 }
