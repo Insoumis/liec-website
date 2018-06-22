@@ -41,5 +41,6 @@ export default class ModalComponent extends Vue {
 
     closeModal() {
         this.isDisplayed = 'none';
+        
       }
 }

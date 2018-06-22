@@ -3,6 +3,9 @@
         <a class="scrollToTop" v-on:click="scrollToTop()">
             <span class="glyphicon glyphicon-arrow-up"></span>
         </a>
+        <!-- <iframe class="cover-index" id="ytplayer" type="text/html" width="640" height="360"
+  src="https://www.youtube.com/embed/PyDDg8G_nEg?autoplay=0&origin=http://liec.fr"
+  frameborder="0"/> -->
         <div v-for="info in infos" class="cover-index">
             <img v-bind:src="info.image" v-bind:alt="info.title" />
             <div class="tail" v-bind:title="info.title">
