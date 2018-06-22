@@ -19,7 +19,8 @@
 }
 
 .home .liec-container {
-  width: 100%;
+  width: calc(100% - 100px);
+  margin-left: 100px;
   height: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -29,11 +30,8 @@
 .home .cover-index {
   width: 300px;
   height: 300px;
-  position: relative;
   background-color: #000;
-  overflow: hidden;
-  float: left;
-  margin: 3px;
+  margin: 50px;
   border: 1px #ccc solid;
   transition: .3s;
   box-shadow: 0 0 10px #eee;

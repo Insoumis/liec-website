@@ -3,40 +3,42 @@
         <a class="scrollToTop" v-on:click="scrollToTop()">
             <span class="glyphicon glyphicon-arrow-up"></span>
         </a>
-        <div v-for="info in infos" class="cover-index">
-            <img v-bind:src="info.image" v-bind:alt="info.title" />
-            <div class="tail" v-bind:title="info.title">
-                <div style="vertical-align: middle;  display: table-cell;">
-                    <p>
-                        {{ info.context }}
-                    </p>
-                    <div class="sources" v-for="item in info.sources">
-                        <a class="link" v-bind:href="item" v-bind:style="{ color: info.darkTheme}">{{item}} </a> &nbsp;
-                    </div>
-                    <br/>
-                    <br/>
-                    <div v-for="item in info.tags" class="tag" v-bind:style="{ 'background-color': info.darkTheme}">
-                        {{ item }} 
-                    </div>
-                    <br/>
-                    <br/>
-                    <p>{{ info.creationDate }}</p>
-                    <br/>
+        <div class="liec-container">
+            <div v-for="info in infos" class="cover-index">
+                <img v-bind:src="info.image" v-bind:alt="info.title" />
+                <div class="tail" v-bind:title="info.title">
+                    <div style="vertical-align: middle;  display: table-cell;">
+                        <p>
+                            {{ info.context }}
+                        </p>
+                        <div class="sources" v-for="item in info.sources">
+                            <a class="link" v-bind:href="item" v-bind:style="{ color: info.darkTheme}">{{item}} </a> &nbsp;
+                        </div>
+                        <br/>
+                        <br/>
+                        <div v-for="item in info.tags" class="tag" v-bind:style="{ 'background-color': info.darkTheme}">
+                            {{ item }} 
+                        </div>
+                        <br/>
+                        <br/>
+                        <p>{{ info.creationDate }}</p>
+                        <br/>
 
-                    <div class="shortcuts" v-bind:style="{ color: info.darkTheme}">
-                    <a href="https://twitter.com/InstantEnCommun">
-                        <span class="glyphicon glyphicon-plane"></span>
-                    </a>
-                    <a href="https://www.facebook.com/Linstantencommun/?ref=br_rs">
-                        <span class="glyphicon glyphicon-book"></span>
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-camera"></span>
-                    </a>
-                    <a href="#" v-on:click="openModal(info)">
-                        <span class="glyphicon glyphicon glyphicon-new-window"></span>
-                    </a>
-                </div>
+                        <div class="shortcuts" v-bind:style="{ color: info.darkTheme}">
+                        <a href="https://twitter.com/InstantEnCommun">
+                            <span class="glyphicon glyphicon-plane"></span>
+                        </a>
+                        <a href="https://www.facebook.com/Linstantencommun/?ref=br_rs">
+                            <span class="glyphicon glyphicon-book"></span>
+                        </a>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-camera"></span>
+                        </a>
+                        <a href="#" v-on:click="openModal(info)">
+                            <span class="glyphicon glyphicon glyphicon-new-window"></span>
+                        </a>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
