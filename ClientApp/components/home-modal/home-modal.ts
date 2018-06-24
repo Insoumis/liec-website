@@ -28,19 +28,25 @@ export default class ModalComponent extends Vue {
       darkTheme: "",
       creationDate: "",
     };
-    isDisplayed : string = "none";
+    modalOffset = document.body.scrollTop;
+    isDisplayed: string = "none";
 
     mounted() {
       eventHub.$on('onOpenModal', this.openModal);
     }
   
-    openModal (infoLiec : InfoLiec) {
+    openModal (infoLiec : InfoLiec, ) {
       this.info = infoLiec;
       this.isDisplayed = 'block';
+      this.modalOffset = document.body.scrollTop;
+      $("body").addClass("modal-open");
+      
     }
 
     closeModal() {
         this.isDisplayed = 'none';
+        $("body").removeClass("modal-open");
+        $("body").scrollTop(this.modalOffset);
         
       }
 }

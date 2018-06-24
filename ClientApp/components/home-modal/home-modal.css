@@ -8,6 +8,7 @@
     padding: 20px;
     display: none;
     z-index: 2000;
+    overflow: hidden;
   }
   
   .home #modalcross {
@@ -40,4 +41,9 @@
   
   .home .tag {
     background-color: #363f41;
+  }
+
+  body.modal-open{
+    overflow: hidden;
+    position: absolute;
   }

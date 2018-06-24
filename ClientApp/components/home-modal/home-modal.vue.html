@@ -1,5 +1,7 @@
 <template>
-    <div id="modalwindow" v-bind:style="{ 'background-color': info.lightTheme, display : isDisplayed}" v-on:onOpenModal="closeModal()">
+    <div id="modalwindow" 
+         v-bind:style="{ 'background-color': info.lightTheme, display : isDisplayed}" 
+         v-on:onOpenModal="closeModal()">
         <span id="modalcross" class="glyphicon glyphicon-remove" v-on:click="closeModal()" style="font-size: 40px"></span>
         <div class="modal-container">
             <div class="liec-modal">
