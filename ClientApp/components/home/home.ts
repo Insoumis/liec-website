@@ -22,13 +22,14 @@ interface InfoLiec {
 })
 export default class HomeComponent extends Vue {
   infos: InfoLiec[] = [];
+  isFecthing: boolean = false;
 
   destroy() {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
   mounted() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.onscroll = this.handleScroll;
     eventHub.$on("hideTopBar", this.onHideTopBar);
     eventHub.$on("updateInfo", this.onUpdateInfo);
     eventHub.$on("showTopBar", this.onShowTopBar);
@@ -44,37 +45,55 @@ export default class HomeComponent extends Vue {
         .then(response => response.json() as Promise<InfoLiec[]>)
         .then(datas => {
           datas.forEach(data => {
-            data.creationDate = data.creationDate.substring(0,10);
+            data.creationDate = data.creationDate.substring(0, 10);
           });
           this.infos = datas;
         });
-    }
-    else{
+    } else {
       this.infos = infos;
     }
   }
 
   onHideTopBar() {
     if ($(".top-nav").css("display") != "none") {
-    $(".top-nav").fadeOut();
+      $(".top-nav").fadeOut();
     }
   }
 
   onShowTopBar() {
     if ($(".top-nav").css("display") == "none") {
-    $(".top-nav").fadeIn();
+      $(".top-nav").fadeIn();
     }
   }
 
   handleScroll() {
+    var that = this;
     $(window).scroll(function() {
+      // Handling topbar
       if ($(window)!.scrollTop() || 0 > 0) {
         eventHub.$emit("hideTopBar");
         $(".scrollToTop").fadeIn();
       } else {
         eventHub.$emit("showTopBar");
         $(".scrollToTop").fadeOut();
+        console.log("test");
       }
+
+      // Infinite scrolling : Not working (being called  multipled times hence not good performance whise)
+      // if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight  && !that.isFecthing) {
+      //   that.isFecthing = true;
+      //   console.log("do fetch");
+      //   fetch("api/InfoData/InfoLiec")
+      //     .then(response => response.json() as Promise<InfoLiec[]>)
+      //     .then(datas => {
+      //       datas.forEach(a => {
+      //         that.infos.push(a);
+      //       });
+      //     });
+      // }
+      // else{
+      //   that.isFecthing = false;;
+      // }
     });
   }
 
@@ -91,7 +110,7 @@ export default class HomeComponent extends Vue {
     //console.log("Switching background..." + $(".side-panel-background").css("display"));
     if ($(".side-panel-background").css("display") == "none") {
       $(".side-panel-background").fadeIn();
-    } 
+    }
   }
 
   onCloseSidePanelBackground() {
@@ -104,7 +123,7 @@ export default class HomeComponent extends Vue {
   closePanel() {
     eventHub.$emit("onCloseSearch");
     eventHub.$emit("onCloseDraft");
-    eventHub.$emit("onModalClose")
+    eventHub.$emit("onModalClose");
     this.onCloseSidePanelBackground();
   }
 }
