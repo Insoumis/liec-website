@@ -55,7 +55,8 @@ export default class SidebarComponent extends Vue {
   openAbout(){    
     eventHub.$emit("onCloseDraft");
     eventHub.$emit("onCloseSearch");
-    eventHub.$emit("closeSidePanelBackground"); 
+    eventHub.$emit("closeSidePanelBackground");     
+    eventHub.$emit('showTopBar');
     this.isDraftActive = false;
     this.isSearchActive = false;
     this.isAboutActive = true;
@@ -63,7 +64,7 @@ export default class SidebarComponent extends Vue {
 
   openSocialNetwork()
   {
-    eventHub.$emit("closeDraft");
+    eventHub.$emit("onCloseDraft");
     eventHub.$emit("onCloseSearch");
     eventHub.$emit("closeSidePanelBackground");    
     eventHub.$emit('hideTopBar');
