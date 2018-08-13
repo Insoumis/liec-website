@@ -140,7 +140,7 @@ body{
 }
 
 .main-container{
-  width: calc(100%-100px);
+  width: calc(100% - 100px);
   margin-left: 100px;
   padding: 20px;
 }

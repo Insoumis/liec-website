@@ -17,7 +17,84 @@
     background-image: url("../../../wwwroot/content/leaves-pattern.png");
     background-repeat: repeat;
   }  
-  
+  /*
+    Light brown 8A6552
+    brown 705242
+    beige FFE0B5
+  */
   .about {
-    background: #f00;
+    background-color: #8A6552;
+    color: white;
+    margin: auto;
+    margin-top : 9%;
+    height : 50%;
+    width: 70%;
+    padding: 20px;
+    border : 5px solid #705242;
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
   }
+
+  .about img{
+      margin-left : 75%;
+  }
+
+  .about b{
+      color : #FFE0B5;
+  }
+
+  .about a{
+    color : #FFE0B5;
+  }
+
+  .about a:{
+    color : #FFE0B5;
+  }
+
+  .about .theme{
+      width : 85%;
+      margin : auto;
+  }
+
+  .about .theme li{
+    list-style-type: none;
+    float: left;
+  }
+
+  .about .red{
+    background-color: rgba(204, 64, 51, 0.3);
+    text-align : center;
+    width : 170px;
+}
+
+.about .orange{
+    background-color: rgba(217, 135, 63, 0.3);
+    text-align : center;
+    width : 170px;
+}
+
+.about .yellow{
+    background-color:  rgba(237, 189, 69, 0.3);
+    text-align : center;
+    width : 170px;
+}
+
+.about .green{
+    background-color: rgba(107, 181, 146, 0.3);
+    text-align : center;
+    width : 170px;
+}
+
+.about .blue{
+    background-color: rgba(69, 117, 181, 0.3);
+    text-align : center;
+    width : 170px;
+}
+
+.about .violet{
+    background-color: rgba(134, 94, 145, 0.3);
+    text-align : center;
+    width : 170px;
+    
+}
