@@ -27,7 +27,7 @@
                             <router-link to="/">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </router-link>
-                        </li>
+                        </li>                        
                     </div>
                     <div class="social-network" v-on:click="openSocialNetwork">
                         <li>
@@ -45,6 +45,12 @@
                                 <span class="glyphicon glyphicon-book"></span>
                             </a>
                         </li>
+                        <li v-on:click="openAbout()"
+                        v-bind:class="{active: isAboutActive}">
+                        <router-link to="/about">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </router-link>
+                    </li>
                     </div>
                 </ul>
             </div>

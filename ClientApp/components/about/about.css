@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+  }
+  
+  /*
+     green 6bb592
+     orange fa9a46
+     bleu 6faaed
+     jaune ffe347
+     red f26257
+     violet bf80cf
+  
+    */
+  
+  body{
+    background-image: url("../../../wwwroot/content/leaves-pattern.png");
+    background-repeat: repeat;
+  }  
+  
+  .about {
+    padding: 0px;
+    margin-top: 100px;
+  
+  }
+  
+  .about .about-container {
+    width: calc(100% - 300px);
+    margin-left: 300px;
+    margin-top: 300px;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+  }

@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 
 const routes = [
     { path: '/', component: require('./components/home/home.vue.html') },
+    { path: '/about', component: require('./components/about/about.vue.html') },
 ];
 
 new Vue({

@@ -144,6 +144,13 @@ Beige : #FFE0B5
         background: #4575B5;
     }
 
+    .social-network li:hover:nth-of-type(4){
+        background: #FFE0B5;
+    }
+    .social-network li:hover:nth-of-type(4)::after{
+        background: #FFE0B5;
+    }
+
 
 
 }

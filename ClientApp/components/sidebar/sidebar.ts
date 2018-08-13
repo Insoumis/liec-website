@@ -13,6 +13,7 @@ import eventHub from "../eventhub/eventhub";
 export default class SidebarComponent extends Vue {
   isSearchActive: boolean = false;
   isDraftActive: boolean = false;
+  isAboutActive: boolean = false;
   mounted() {
     eventHub.$on("onModalClose", this.hideButtonHover);
   }
@@ -25,6 +26,7 @@ export default class SidebarComponent extends Vue {
       eventHub.$emit('hideTopBar');
       this.isSearchActive = true;
       this.isDraftActive = false;
+      this.isAboutActive = false;
     } else {
       eventHub.$emit("onCloseSearch");
       eventHub.$emit("closeSidePanelBackground");      
@@ -41,12 +43,22 @@ export default class SidebarComponent extends Vue {
       eventHub.$emit('hideTopBar');
       this.isDraftActive = true;
       this.isSearchActive = false;
+      this.isAboutActive = false;
     } else {
       eventHub.$emit("onCloseDraft");
       eventHub.$emit("closeSidePanelBackground");
       eventHub.$emit('showTopBar');
       this.isDraftActive = false;
     }
+  }
+
+  openAbout(){    
+    eventHub.$emit("onCloseDraft");
+    eventHub.$emit("onCloseSearch");
+    eventHub.$emit("closeSidePanelBackground"); 
+    this.isDraftActive = false;
+    this.isSearchActive = false;
+    this.isAboutActive = true;
   }
 
   openSocialNetwork()
