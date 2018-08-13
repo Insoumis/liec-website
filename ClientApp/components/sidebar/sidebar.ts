@@ -31,8 +31,6 @@ export default class SidebarComponent extends Vue {
       eventHub.$emit('showTopBar');
       this.isSearchActive = false;
     }
-    if ($(".side-panel-background").css("display") == "none") {
-    }
   }
 
   openConnexion() {
@@ -48,9 +46,6 @@ export default class SidebarComponent extends Vue {
       eventHub.$emit("closeSidePanelBackground");
       eventHub.$emit('showTopBar');
       this.isDraftActive = false;
-    }
-    if ($(".side-panel-background").css("display") == "none") {
-      
     }
   }
 

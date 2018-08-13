@@ -62,27 +62,6 @@ export default class SearchComponent extends Vue {
 
     console.log(baseUri);
 
-    // $.ajax({
-    //   contentType: "application/json; charset=utf-8",
-    //   dataType: "json",
-    //   url: baseUri,
-    //   type: "POST",
-    //   data: {
-    //     tags: ["hot"],
-    //     date: "",
-    //     themes: ["red","blue"],
-    //     freeSearchText: "txt"
-    //   },
-    //   success: function(response) {
-    //     console.log(response);
-    //     eventHub.$emit("updateInfo", this.$data);
-    //     eventHub.$emit("onCloseSearch");
-    //   },
-    //   error: function() {
-    //     console.log("Oops");
-    //   }
-    // });
-
     fetch(baseUri, {
       method: "POST",
       headers: {
@@ -97,6 +76,7 @@ export default class SearchComponent extends Vue {
         });
         eventHub.$emit("updateInfo", datas);
         eventHub.$emit("onCloseSearch");
+        eventHub.$emit("closeSidePanelBackground");
       });
   }
 }
