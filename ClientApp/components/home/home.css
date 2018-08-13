@@ -26,7 +26,6 @@ body{
 
 .home .liec-container {
   width: calc(100% - 100px);
-  margin-left: 100px;
   height: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -138,4 +137,10 @@ body{
   left:0;
   background-color: rgba(0, 0, 0, .8);
   display : none;
+}
+
+.main-container{
+  width: calc(100%-100px);
+  margin-left: 100px;
+  padding: 20px;
 }
