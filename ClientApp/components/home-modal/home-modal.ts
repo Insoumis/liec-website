@@ -48,5 +48,9 @@ export default class ModalComponent extends Vue {
         $("body").removeClass("modal-open");
         $("body").scrollTop(this.modalOffset);
         
-      }
+    }
+
+    hoverlink(){
+      $(".sources-link a:hover").css("color", this.info.lightTheme);
+    }
 }

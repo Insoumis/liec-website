@@ -9,19 +9,21 @@
             </div>
             <div class="liec-infos">
                 <h2>{{ info.title}}</h2>
-                <p>
+                <p class="context">
                     {{ info.context }}
                 </p>
-                <br/><u>Sources</u>
-                <br/>
-                <div v-for="item in info.sources">
-                    <a class="link" href="item" v-bind:style="{ color: info.darkTheme}" >{{item}}</a>
-                    <br/>
+                <h3>Sources</h3>
+                <div class="sources-container">
+                    <div v-for="item in info.sources" class="sources-link">
+                        <a class="link" href="item" >{{item}}</a>
+                    </div>
                 </div>
-                <br/><u>Tags</u>
-                <br/>
-                <div v-for="item in info.tags" class="tag" v-bind:style="{ 'background-color': info.darkTheme}">
-                    {{ item }}
+
+                <h3>Tags</h3>
+                <div class="tags-container">
+                    <div v-for="item in info.tags" class="tag-item" >
+                        {{ item }}
+                    </div>
                 </div>
             </div>
         </div>
