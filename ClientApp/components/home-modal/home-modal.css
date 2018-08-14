@@ -82,9 +82,10 @@
 
   .tag-item, .sources-link{
     margin: 0 10px;
+    transition: .1s all;
   }
 
-  .sources-link a, .tag-item{
+  .sources-link a, .tag-item a {
     color:#fff;
     font-weight: 400;
     padding: 10px;
@@ -92,8 +93,15 @@
     transition: .2s all;
   }
 
-  .sources-link a:hover, .tag:hover, .sources-link a:focus, .tag:focus,.sources-link a:active, .tag:active{
-    border-width: 5px;
+  .sources-link:hover, .tag-item:hover{
+    background: #fff;
+    transform: scale(0.92);
+  }
+
+  .sources-link a:hover, .tag-item a:hover, .sources-link a:focus, .tag-item a:focus,.sources-link a:active, .tag-item a:active{
+    background-color: #fff;
+    text-decoration: none;
+    transform: scale(0.92);
   }
   
   .home .tag {
@@ -103,4 +111,43 @@
   body.modal-open{
     overflow: hidden;
     position: absolute;
+  }
+  .social-container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center; 
+  }
+
+  .social-container a{
+    flex: 1;
+    text-align: center;
+    border: 3px solid #fff;
+    margin: 0 20px;
+    padding: 10px;
+    color: #fff;
+    transition: .2s all;
+  }
+
+  .social-container a:hover, .social-container a:focus, .social-container a:active{
+    transform: scale(0.92);
+  }
+
+  .social-container a:first-of-type{
+    margin-left: 0px;
+  }
+
+  .social-container:last-of-type{
+    margin-right: 0px;
+  }
+
+  #twitter-btn{
+    background-color: #6FAAED;
+  }
+  #insta-btn{
+    background-color: #D9483B;
+  }
+  #facebook-btn{
+    background-color:#4575B5;
   }
