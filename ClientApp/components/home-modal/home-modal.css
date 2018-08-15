@@ -25,7 +25,7 @@
   
   .home .modal-container {
     display: flex;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     flex-flow: row nowrap;
     justify-content: space-around;
@@ -39,12 +39,27 @@
     height: 550px;
     background-color: #fff;
     margin: 50px;
+    z-index: 1;
+    position: relative;
   }
   
   .home .liec-modal img {
     width: 550px;
     height: 550px;
     border: 10px solid #fff;
+    position: relative;
+  }
+
+  .liec-modal svg{
+    position: absolute;
+    height: 250px;
+    z-index: 2;
+    top: calc(50% - 125px);
+    left: -50px;
+    z-index: 0;;
+  }
+  .liec-modal svg path{
+    fill: #fff;
   }
 
   .home .liec-infos{
@@ -53,8 +68,9 @@
     color: #fff;
     font-family: 'Montserrat', sans-serif !important;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px;
     margin: 50px;
+    max-height: 550px;
   }
 
   .home .liec-infos h2{
@@ -151,3 +167,6 @@
   #facebook-btn{
     background-color:#4575B5;
   }
+
+
+
