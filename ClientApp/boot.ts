@@ -7,6 +7,7 @@ Vue.use(VueRouter);
 const routes = [
     { path: '/', component: require('./components/home/home.vue.html') },
     { path: '/about', component: require('./components/about/about.vue.html') },
+    { path: '/rss', component: require('./components/rss/rss.vue.html') },
 ];
 
 new Vue({

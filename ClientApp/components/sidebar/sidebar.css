@@ -151,6 +151,16 @@ Beige : #FFE0B5
         background: #FFE0B5;
     }
 
-
-
+    .social-network li:hover:nth-of-type(5){
+        background: orange;
+    }
+    .social-network li:hover:nth-of-type(5)::after{
+        background: orange;
+    }
+    .main-nav .navbar-nav .social-network li.active:nth-of-type(5) {
+        background: orange;
+    }
+    .main-nav .navbar-nav .social-network li.active:nth-of-type(5)::after{
+        background: orange;
+    }
 }

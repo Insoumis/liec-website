@@ -46,11 +46,17 @@
                             </a>
                         </li>
                         <li v-on:click="openAbout()"
-                        v-bind:class="{active: isAboutActive}">
-                        <router-link to="/about">
-                            <span class="glyphicon glyphicon-info-sign"></span>
-                        </router-link>
-                    </li>
+                            v-bind:class="{active: isAboutActive}">
+                            <router-link to="/about">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </router-link>
+                        </li>
+                        <li v-on:click="openRss()"
+                            v-bind:class="{active: isRssActive}">
+                            <router-link to="/rss">
+                                <span class="glyphicon glyphicon glyphicon-fire"></span>
+                            </router-link>
+                        </li>
                     </div>
                 </ul>
             </div>
