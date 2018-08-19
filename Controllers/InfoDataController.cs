@@ -61,7 +61,14 @@ namespace LIEC_Website.Controllers
             return ContentModelToInfoLiecViewmodel(contents);
         }
 
-        public IEnumerable<InfoLiecViewModel> ContentModelToInfoLiecViewmodel(IEnumerable<ContentModel> contentModels)
+        [HttpPost("[action]")]
+        public async Task<StatusCodeResult> GenerateInfoLiec()
+        {
+            await CreateRandomData();
+            return Ok();
+        }
+
+            public IEnumerable<InfoLiecViewModel> ContentModelToInfoLiecViewmodel(IEnumerable<ContentModel> contentModels)
         {
             var vmList = new List<InfoLiecViewModel>();
             foreach(var c in contentModels)

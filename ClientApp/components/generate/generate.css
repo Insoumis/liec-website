@@ -1,0 +1,119 @@
+
+  
+  /*
+     green 6bb592
+     orange fa9a46
+     bleu 6faaed
+     jaune ffe347
+     red f26257
+     violet bf80cf
+  
+    */  
+
+  /*
+    Light brown 8A6552
+    brown 705242
+    beige FFE0B5
+  */
+  .generate {
+    background-color: #8A6552;
+    color: white;
+    margin: auto;
+    margin-top : 9%;
+    height : 50%;
+    width: 70%;
+    padding: 20px;
+    border : 5px solid #705242;
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+  }
+
+
+.generate button {
+    border: 3px solid white;
+    color: white;
+    background-color: #705242;
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.generate input {
+    background-color: #705242;
+    border: none;
+    padding-left: 10px;
+}
+
+.generate button:hover {
+    border-color: #705242;
+    background-color: #705242;
+    color: #FFE0B5;
+    cursor: pointer;
+}
+
+
+  .generate img{
+      margin-left : 75%;
+  }
+
+  .generate b{
+      color : #FFE0B5;
+  }
+
+  .generate a{
+    color : #FFE0B5;
+  }
+
+  .generate a:{
+    color : #FFE0B5;
+  }
+
+  .generate .theme{
+      width : 90%;
+      margin : auto;
+  }
+
+  .generate .theme li{
+    list-style-type: none;
+    float: left;
+  }
+
+  .generate .red{
+    background-color: rgba(204, 64, 51, 0.3);
+    text-align : center;
+    width : 170px;
+}
+
+.generate .orange{
+    background-color: rgba(217, 135, 63, 0.3);
+    text-align : center;
+    width : 170px;
+}
+
+.generate .yellow{
+    background-color:  rgba(237, 189, 69, 0.3);
+    text-align : center;
+    width : 170px;
+}
+
+.generate .green{
+    background-color: rgba(107, 181, 146, 0.3);
+    text-align : center;
+    width : 170px;
+}
+
+.generate .blue{
+    background-color: rgba(69, 117, 181, 0.3);
+    text-align : center;
+    width : 170px;
+}
+
+.generate .violet{
+    background-color: rgba(134, 94, 145, 0.3);
+    text-align : center;
+    width : 170px;
+    
+}
