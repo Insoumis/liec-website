@@ -34,7 +34,7 @@ namespace LIEC_Website.Controllers
             FileInfo[] Files = d.GetFiles("*.png");
             foreach (FileInfo file in Files)
             {
-                _imageSources.Add($"static\\{file.Name}");
+                _imageSources.Add($"static/{file.Name}");
             }
 
             var random = new Random();
