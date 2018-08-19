@@ -30,9 +30,7 @@ export default class HomeComponent extends Vue {
 
   mounted() {
     window.onscroll = this.handleScroll;
-    eventHub.$on("hideTopBar", this.onHideTopBar);
     eventHub.$on("updateInfo", this.onUpdateInfo);
-    eventHub.$on("showTopBar", this.onShowTopBar);
     eventHub.$on("openSidePanelBackground", this.onOpenSidePanelBackground);
     eventHub.$on("closeSidePanelBackground", this.onCloseSidePanelBackground);
     eventHub.$emit("updateInfo");
@@ -54,18 +52,6 @@ export default class HomeComponent extends Vue {
     }
   }
 
-  onHideTopBar() {
-    if ($(".top-nav").css("display") != "none") {
-      $(".top-nav").fadeOut();
-    }
-  }
-
-  onShowTopBar() {
-    if ($(".top-nav").css("display") == "none") {
-      $(".top-nav").fadeIn();
-    }
-  }
-
   handleScroll() {
     var that = this;
     $(window).scroll(function() {
@@ -76,7 +62,6 @@ export default class HomeComponent extends Vue {
       } else {
         eventHub.$emit("showTopBar");
         $(".scrollToTop").fadeOut();
-        console.log("test");
       }
 
       // Infinite scrolling : Not working (being called  multipled times hence not good performance whise)

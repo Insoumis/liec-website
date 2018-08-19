@@ -39,7 +39,7 @@ export default class SidebarComponent extends Vue {
 
   openConnexion() {
     eventHub.$emit("onCloseSearch");
-    if ($(".draft").css("display") == "none") {
+    if ($(".sidebar-draft").css("display") == "none") {
       eventHub.$emit("openDraft");      
       eventHub.$emit("openSidePanelBackground");      
       eventHub.$emit('hideTopBar');

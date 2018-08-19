@@ -1,0 +1,207 @@
+/*
+     green 6bb592
+     orange fa9a46
+     bleu 6faaed
+     jaune ffe347
+     red f26257
+     violet bf80cf
+  
+    */
+
+/*
+    Light brown 8A6552
+    brown 705242
+    beige FFE0B5
+  */
+
+.draft {
+    background-color: #8A6552;
+    color: white;
+    margin: auto;
+    margin-top: 9%;
+    width: 70%;
+    padding: 20px;
+    border: 5px solid #705242;
+    justify-content: space-evenly;
+}
+
+.draft button {
+    border: 3px solid white;
+    color: white;
+    background-color: #705242;
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.draft input {
+    background-color: #705242;
+    border: none;
+    padding-left: 10px;
+}
+
+.draft button:hover {
+    border-color: #705242;
+    background-color: #705242;
+    color: #FFE0B5;
+    cursor: pointer;
+}
+
+.draft .btn-submit {
+    margin-top: 20px;
+}
+
+.draft .dropbox {
+    outline: 2px dashed white;
+    /* the dash box */
+    outline-offset: -10px;
+    background: #FFE0B5;
+    color: #705242;
+    padding: 10px 10px;
+    min-height: 200px;
+    /* minimum height */
+    cursor: pointer;
+}
+
+.draft .input-file {
+    opacity: 0;
+    /* invisible but it's there! */
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.draft .dropbox:hover {
+    background: #FFE0B5;
+    /* when mouse over to the drop zone, change color */
+}
+
+.draft .dropbox p {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.draft .header {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder !important;
+    font-size: 25px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.draft button {
+    border: 3px solid white;
+    color: white;
+    background-color: #705242;
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.draft input, .draft textarea{
+    background-color: #705242;
+    border: none;
+    padding-left: 10px;
+}
+
+.draft button:hover {
+    border-color: #705242;
+    background-color: #705242;
+    color: #FFE0B5;
+    cursor: pointer;
+}
+
+.draft .theme {
+    border: 3px solid white;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    height: 100px;
+    width: 150px;
+    float: left;
+    background-color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    padding-top: 30px;
+    cursor: pointer;
+}
+
+.draft .theme span {
+    position: relative;
+    border: 1px solid white;
+    margin-left: 134px;
+    margin-top: 14px;
+    padding: 2px;
+    border-radius: 50%;
+    background-color: inherit;
+    visibility: hidden;
+    background-size: contain;
+}
+
+.draft .theme:hover span, .draft input[type="radio"]:checked+.theme span {
+    background-color: inherit;
+    border-color: inherit;
+    visibility: visible;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.draft .red {
+    background-color: rgba(204, 64, 51, 0.3);
+}
+
+.draft .red:hover, .draft input[type="radio"]:checked+.red {
+    border-color: #cc4033;
+    background-color: rgba(204, 64, 51, 0.3);
+}
+
+.draft .orange {
+    background-color: rgba(217, 135, 63, 0.3);
+}
+
+.draft .orange:hover, .draft input[type="radio"]:checked+.orange {
+    border-color: #d9873f;
+    background-color: rgba(217, 135, 63, 0.3);
+}
+
+.draft .yellow {
+    background-color: rgba(237, 189, 69, 0.3);
+}
+
+.draft .yellow:hover, .draft input[type="radio"]:checked+.yellow {
+    border-color: #edbd45;
+    background-color: rgba(237, 189, 69, 0.3);
+}
+
+.draft .green {
+    background-color: rgba(107, 181, 146, 0.3);
+}
+
+.draft .green:hover, .draft input[type="radio"]:checked+.green {
+    border-color: #6bb592;
+    background-color: rgba(107, 181, 146, 0.3);
+}
+
+.draft .blue {
+    background-color: rgba(69, 117, 181, 0.3);
+}
+
+.draft .blue:hover, .draft input[type="radio"]:checked+.blue {
+    border-color: #4575b5;
+    background-color: rgba(69, 117, 181, 0.3);
+}
+
+.draft .violet {
+    background-color: rgba(134, 94, 145, 0.3);
+}
+
+.draft .violet:hover, .draft input[type="radio"]:checked+.violet {
+    border-color: #865e91;
+    background-color: rgba(134, 94, 145, 0.3);
+}

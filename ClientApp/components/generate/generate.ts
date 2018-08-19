@@ -3,13 +3,6 @@ import { Component } from "vue-property-decorator";
 import $ from "jquery";
 import eventHub from "../eventhub/eventhub";
 
-interface SearchViewModel {
-  tags: string[];
-  date: string;
-  themes: string[];
-  freeSearchText: string;
-}
-
 @Component
 export default class GenerateComponent extends Vue {
   isOk: boolean = false;

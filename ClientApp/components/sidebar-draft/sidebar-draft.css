@@ -1,4 +1,4 @@
-.draft {
+.sidebar-draft {
     width: 400px;
     height: 100%;
     z-index: 3;
@@ -12,12 +12,12 @@
     text-align: center;
 }
 
-.draft h1{
+.sidebar-draft h1{
     font-family: 'Roboto-Slab', sans-serif;
     font-weight: 1500;
 }
 
-.draft button {
+.sidebar-draft button {
     width : 100%;
     border: 3px solid white;
     color: white;
@@ -29,13 +29,13 @@
     margin-top : 25px;
 }
 
-.draft input {
+.sidebar-draft input {
     background-color: #705242;
     border : none;
     padding-left : 10px;
 }
 
-.draft button:hover {
+.sidebar-draft button:hover {
     border-color: #705242;
     background-color: #705242;
     color: #FFE0B5;

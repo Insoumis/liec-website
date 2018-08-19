@@ -9,6 +9,7 @@ const routes = [
     { path: '/about', component: require('./components/about/about.vue.html') },
     { path: '/rss', component: require('./components/rss/rss.vue.html') },
     { path: '/generate', component: require('./components/generate/generate.vue.html') },
+    { path: '/draft', component: require('./components/draft/draft.vue.html') },
 ];
 
 new Vue({
