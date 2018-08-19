@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LIEC_Website.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -23,6 +24,7 @@ namespace LIEC_Website
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            MongoDbContext.Configure(Configuration.GetConnectionString("MongoDB"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
