@@ -108,23 +108,50 @@ body{
 }
 
 .home .scrollToTop{
-  border-radius: 50%;
   background-color: #8A6552;
   color: #FFE0B5;
   position: fixed;
-  border : 1px solid #636363;
   width: 50px;
   height: 50px;
   top : 90%;
   left : 95%;
-  z-index: 2;
-  font-size: 30px;
-  padding-left : 6.5px;
-  padding-top : 6px;
+  z-index: 10;
+  font-size: 24px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.home .scrollToTop::before{
+  content:'';
+  height:15px;
+  width: 100%;
+  position: absolute;
+  background-color: #8A6552;
+  top: -6px;
+  left: 0;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.home .scrollToTop > span{
+  padding-right: 2px;
+  padding-bottom: 7px;
+  text-align: left;
 }
 
 .home .scrollToTop:hover{
   cursor: pointer;
+  text-decoration: none;
+  background-color: #FFE0B5;
+  color: #8a6552; 
+}
+
+.home .scrollToTop:hover::before{
+  background-color: #FFE0B5;
 }
 
 .home .side-panel-background {
