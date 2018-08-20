@@ -17,93 +17,94 @@
         </form>
         <br/>
         <form class="container" v-on:submit.prevent="handleSubmit" method="post">
-            <div class="row col-12">
-                <div class="col-12">
+            <div class="col-lg-12">
+                <div class="col-lg-12">
                     <div class="header">Thème</div>
-                    <input id="draft_red" name="theme" type="radio" value="red" v-model="info.theme" />
-                    <label for="draft_red" class="theme red" v-bind:style="{ backgroundImage: 'url(' + imageRed + ')' }">
-                        <div>Urgence
-                            <br/> Sociale
-                        </div>
-                        <span class="glyphicon glyphicon-ok red"></span>
-                    </label>
-                    <input id="draft_orange" name="theme" type="radio" value="orange" v-model="info.theme" />
-                    <label for="draft_orange" class="theme orange">
-                        <div>Progrès
-                            <br/> Humain
-                        </div>
-                        <span class="glyphicon glyphicon-ok orange"></span>
-                    </label>
-                    <input id="draft_yellow" name="theme" type="radio" value="yellow" v-model="info.theme" />
-                    <label for="draft_yellow" class="theme yellow">
-                        <div>Urgence
-                            <br/> Démocratique
-                        </div>
-                        <span class="glyphicon glyphicon-ok yellow"></span>
-                    </label>
-                    <input id="draft_green" name="theme" type="radio" value="green" v-model="info.theme" />
-                    <label for="draft_green" class="theme green">
-                        <div>Urgence
-                            <br/> Ecologique
-                        </div>
-                        <span class="glyphicon glyphicon-ok green"></span>
-                    </label>
-                    <input id="draft_blue" name="theme" type="radio" value="blue" v-model="info.theme" />
-                    <label for="draft_blue" class="theme blue">
-                        <div>Union
-                            <br/> Européenne
-                        </div>
-                        <span class="glyphicon glyphicon-ok blue"></span>
-                    </label>
-                    <input id="draft_violet" name="theme" type="radio" value="violet" v-model="info.theme" />
-                    <label for="draft_violet" class="theme violet">
-                        <div>Paix &
-                            <br/> International
-                        </div>
-                        <span class="glyphicon glyphicon-ok violet"></span>
-                    </label>
+                    <center>
+                        <input id="draft_red" name="theme" type="radio" value="red" v-model="info.theme" />
+                        <label for="draft_red" class="theme red" v-bind:style="{ backgroundImage: 'url(' + imageRed + ')' }">
+                            <div>Urgence
+                                <br/> Sociale
+                            </div>
+                            <span class="glyphicon glyphicon-ok red"></span>
+                        </label>
+                        <input id="draft_orange" name="theme" type="radio" value="orange" v-model="info.theme" />
+                        <label for="draft_orange" class="theme orange">
+                            <div>Progrès
+                                <br/> Humain
+                            </div>
+                            <span class="glyphicon glyphicon-ok orange"></span>
+                        </label>
+                        <input id="draft_yellow" name="theme" type="radio" value="yellow" v-model="info.theme" />
+                        <label for="draft_yellow" class="theme yellow">
+                            <div>Urgence
+                                <br/> Démocratique
+                            </div>
+                            <span class="glyphicon glyphicon-ok yellow"></span>
+                        </label>
+                        <input id="draft_green" name="theme" type="radio" value="green" v-model="info.theme" />
+                        <label for="draft_green" class="theme green">
+                            <div>Urgence
+                                <br/> Ecologique
+                            </div>
+                            <span class="glyphicon glyphicon-ok green"></span>
+                        </label>
+                        <input id="draft_blue" name="theme" type="radio" value="blue" v-model="info.theme" />
+                        <label for="draft_blue" class="theme blue">
+                            <div>Union
+                                <br/> Européenne
+                            </div>
+                            <span class="glyphicon glyphicon-ok blue"></span>
+                        </label>
+                        <input id="draft_violet" name="theme" type="radio" value="violet" v-model="info.theme" />
+                        <label for="draft_violet" class="theme violet">
+                            <div>Paix &
+                                <br/> International
+                            </div>
+                            <span class="glyphicon glyphicon-ok violet"></span>
+                        </label></center>
                 </div>
             </div>
 
-            <div class="row col-12">
-                <div class="col-4">
+            <div class="col-lg-12">
+                <div class="col-lg-4">
                     <div class="header">Title</div>
-                    <input class="col-12" type="text" v-model="info.title" />
+                    <input class="col-lg-12" type="text" v-model="info.title" />
                 </div>
 
-                <div class="col-4">
+                <div class="col-lg-4">
                     <div class="header">Créateur</div>
-                    <input class="col-12" type="text" v-model="info.context" />
+                    <input class="col-lg-12" type="text" v-model="info.context" />
                 </div>
 
-                <div class="col-4">
+                <div class="col-lg-4">
                     <div class="header">Date de mise en ligne</div>
-                    <input class="col-12" type="date" v-model="info.creationdate" />
+                    <input class="col-lg-12" type="date" v-model="info.creationdate" />
                 </div>
 
 
-                <div class="col-6">
+                <div class="col-lg-6">
                     <div class="header">Tags</div>
-                    <input class="col-12" type="text" v-model="info.tags" />
+                    <input class="col-lg-12" type="text" v-model="info.tags" />
                 </div>
 
-                <div class="col-6">
+                <div class="col-lg-6">
                     <div class="header">Sources</div>
-                    <input class="col-12" type="text" v-model="info.sources" />
+                    <input class="col-lg-12" type="text" v-model="info.sources" />
                 </div>
 
-                <div class="col-6">
+                <div class="col-lg-6">
                     <div class="header">Contexte</div>
-                    <textarea name="context" rows="10" class="col-12" v-model="info.context"> </textarea>
+                    <textarea name="context" rows="10" class="col-lg-12" v-model="info.context"> </textarea>
                 </div>
 
-                <div class="col-6">
+                <div class="col-lg-6">
                     <div class="header">Texte</div>
-                    <textarea name="text" rows="10" class="col-12" v-model="info.text"> </textarea>
+                    <textarea name="text" rows="10" class="col-lg-12" v-model="info.text"> </textarea>
                 </div>
             </div>
-            <div class="row">
-                <button class="btn-submit" type="submit">Soumettre</button>
+            <div class="">
+                <center><button class="btn-submit" type="submit">Soumettre</button></center>
             </div>
         </form>
     </div>
