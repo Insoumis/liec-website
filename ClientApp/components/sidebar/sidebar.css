@@ -84,6 +84,10 @@ Beige : #FFE0B5
         overflow: hidden;
     }
 
+    .main-nav .navbar-nav div li a img{
+        width: 30px;
+    }
+
 
     /* Buttons Specification */
     .main-nav .navbar-nav li::after, .main-nav .navbar-nav li.active::after {

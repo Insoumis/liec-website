@@ -158,9 +158,14 @@
     margin-right: 0px;
   }
 
+  .social-container a img{
+    width: 30px;
+  }
+
   #twitter-btn{
     background-color: #6FAAED;
   }
+
   #insta-btn{
     background-color: #D9483B;
   }

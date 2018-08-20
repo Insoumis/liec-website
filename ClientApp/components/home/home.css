@@ -123,6 +123,8 @@ body{
   align-items: center;
   transition: all 0.2s;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .home .scrollToTop::before{
@@ -169,4 +171,10 @@ body{
   width: calc(100% - 100px);
   margin-left: 100px;
   padding: 20px;
+}
+
+@media screen and (max-width >= 1921px){
+  .main-container{
+    background: #f00;
+  }
 }
