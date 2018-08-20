@@ -17,6 +17,13 @@ interface InfoLiec {
   creator: string;
   creationdate: string;
 }
+
+interface Image {
+  url : string;
+  name : string;
+  id : string;
+}
+
 const STATUS_INITIAL = 0,
   STATUS_SAVING = 1,
   STATUS_SUCCESS = 2,
@@ -39,11 +46,11 @@ export default class CreateComponent extends Vue {
     creationdate: ""
   };
   isOk: boolean = false;
-  uploadedFiles: string[] = [];
+  uploadedFile: Image = { url : "", name : "", id : ""};
   uploadError: string = "";
   currentStatus: number = 0;
 
-destroy() {
+  destroy() {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
@@ -67,6 +74,40 @@ destroy() {
     return this.currentStatus === STATUS_FAILED;
   }
 
+  filesChange(fieldName: string, fileList: File[]) {
+    
+    const formData = new FormData();
+
+    if (!fileList.length) return;
+    
+    for (var i = 0; i < fileList.length; i++) {
+      formData.append("file" + fileList, fileList[i]);
+    };
+    
+      this.save(formData);
+  }
+
+  save(formData: FormData) {
+    // upload data to the server
+    this.currentStatus = STATUS_SAVING;
+    var baseUri = "/api/InfoData/UploadImage";
+    console.log(baseUri);
+    fetch(baseUri, {
+      method: "POST",
+      body: formData
+    })
+      .then(response => response.json() as Promise<Image>)
+      .then(data => {
+        console.log("succesfully uploaded : " + data);
+        this.uploadedFile = data;
+        this.currentStatus = STATUS_SUCCESS;
+      })
+      .catch(err => {
+        this.uploadError = err.response;
+        this.currentStatus = STATUS_FAILED;
+      });
+  }
+
   handleSubmit(e: Event) {
     e.preventDefault();
     var baseUri = "/api/InfoData/CreateInfoLiec";
@@ -86,14 +127,14 @@ destroy() {
 
   handleScroll() {
     var that = this;
-    console.log($(window)!.scrollTop())
+    console.log($(window)!.scrollTop());
     $(window).scroll(function() {
       // Handling topbar
       if ($(window)!.scrollTop() || 0 > 0) {
         eventHub.$emit("hideTopBar");
       } else {
         eventHub.$emit("showTopBar");
-      } 
-  });
-}
+      }
+    });
+  }
 }

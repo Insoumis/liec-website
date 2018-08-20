@@ -11,6 +11,8 @@ using LIEC_Website.ViewModel;
 using static LIEC_Website.Helper.Utility;
 using LIEC_Website.Data;
 using LIEC_Website.Model;
+using MongoDB.Bson;
+using System.Diagnostics;
 
 namespace LIEC_Website.Controllers
 {
@@ -56,9 +58,14 @@ namespace LIEC_Website.Controllers
         [HttpGet("[action]")]
         public async Task<IEnumerable<InfoLiecViewModel>> InfoLiec()
         {
-            //await CreateRandomData();
+            Stopwatch stopwatch = Stopwatch.StartNew();             
+            
             var contents = await MongoDbContext.Content_GetAll();
-            return ContentModelToInfoLiecViewmodel(contents);
+            var infos = ContentModelEnumerableToInfoLiecViewmodelEnumerable(contents);
+
+            stopwatch.Stop();
+            Console.WriteLine(stopwatch.ElapsedMilliseconds);
+            return infos;
         }
 
         [HttpPost("[action]")]
@@ -68,56 +75,13 @@ namespace LIEC_Website.Controllers
             return Ok();
         }
 
-            public IEnumerable<InfoLiecViewModel> ContentModelToInfoLiecViewmodel(IEnumerable<ContentModel> contentModels)
+        [HttpPost("[action]")]
+        public async Task<JsonResult> UploadImage()
         {
-            var vmList = new List<InfoLiecViewModel>();
-            foreach(var c in contentModels)
-            {
-                var info = new InfoLiecViewModel
-                {
-                    Context = c.Context,
-                    DarkTheme = c.GetTheme().DarkColorCode,
-                    CreationDate = c.CreationDate,
-                    LightTheme = c.GetTheme().LightColorCode,
-                    NormalTheme = c.GetTheme().NormalColorCode,
-                    Sources = c.Sources,
-                    Tags = c.Tags,
-                    Theme = c.Theme,
-                    Title = c.Title,
-                    Text = c.Text,
-                    Image = "data:image/png;base64," + Convert.ToBase64String(c.ImageBytes)
-                };
-
-                vmList.Add(info);
-            }
-            return vmList;
-        }
-
-        public async Task CreateRandomData()
-        {
-            foreach (var info in _info)
-            {
-                System.IO.FileStream fS = new System.IO.FileStream(Path.Combine(_hostingEnvironment.WebRootPath, info.Image), System.IO.FileMode.Open, System.IO.FileAccess.Read);
-                byte[] b = new byte[fS.Length];
-                fS.Read(b, 0, (int)fS.Length);
-                fS.Close();
-                var content = new ContentModel()
-                {
-                    Title = info.Title,
-                    Context = info.Context,
-                    Sources = info.Sources,
-                    CreationDate = info.CreationDate,
-                    ModificationDate = info.CreationDate,
-                    Creator = "Blust",
-                    Media = Media.image,
-                    Tags = info.Tags,
-                    Theme = info.Theme,
-                    ImageBytes = b,
-                    Text = info.Text
-                };
-
-                await MongoDbContext.Content_Create(content);
-            }
+            var test = Request.Form.Files;
+            var content = await MongoDbContext.Content_Get(new ObjectId("5b799af0be47ff2ff491fba9"));
+            var info =  ContentModelToInfoLiecViewmodel(content);
+            return Json(new ImageViewModel{ Name = info.Title, Id = content.ImageId.ToString(), Url = info.Image });
         }
 
         [HttpPost("[action]")]
@@ -180,6 +144,63 @@ namespace LIEC_Website.Controllers
                 response = response.Where(x => x.Context.Contains(searchVm.FreeSearchText) || x.Text.Contains(searchVm.FreeSearchText));
 
             return Json(response.OrderByDescending(x => x.CreationDate));
-        }              
+        }
+
+        public InfoLiecViewModel ContentModelToInfoLiecViewmodel(ContentModel c)
+        {
+            var info = new InfoLiecViewModel
+            {
+                Context = c.Context,
+                DarkTheme = c.GetTheme().DarkColorCode,
+                CreationDate = c.CreationDate,
+                LightTheme = c.GetTheme().LightColorCode,
+                NormalTheme = c.GetTheme().NormalColorCode,
+                Sources = c.Sources,
+                Tags = c.Tags,
+                Theme = c.Theme,
+                Title = c.Title,
+                Text = c.Text,
+                Image = "data:image/png;base64," + Convert.ToBase64String(c.ImageBytes)
+            };
+            return info;
+        }
+
+        public IEnumerable<InfoLiecViewModel> ContentModelEnumerableToInfoLiecViewmodelEnumerable(IEnumerable<ContentModel> contentModels)
+        {
+            var vmList = new List<InfoLiecViewModel>();
+            foreach (var c in contentModels)
+            {
+                var info = ContentModelToInfoLiecViewmodel(c);
+                vmList.Add(info);
+            }
+            return vmList;
+        }
+
+        public async Task CreateRandomData()
+        {
+            foreach (var info in _info)
+            {
+                System.IO.FileStream fS = new System.IO.FileStream(Path.Combine(_hostingEnvironment.WebRootPath, info.Image), System.IO.FileMode.Open, System.IO.FileAccess.Read);
+                byte[] b = new byte[fS.Length];
+                fS.Read(b, 0, (int)fS.Length);
+                fS.Close();
+                var content = new ContentModel()
+                {
+                    Title = info.Title,
+                    Context = info.Context,
+                    Sources = info.Sources,
+                    CreationDate = info.CreationDate,
+                    ModificationDate = info.CreationDate,
+                    Creator = "Blust",
+                    Media = Media.image,
+                    Tags = info.Tags,
+                    Theme = info.Theme,
+                    ImageBytes = b,
+                    Text = info.Text
+                };
+
+                await MongoDbContext.Content_Create(content);
+            }
+        }
     }
 }

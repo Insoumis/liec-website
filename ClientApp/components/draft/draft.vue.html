@@ -1,18 +1,30 @@
 <template>
     <div class="draft">
         <h1><span class="glyphicon glyphicon-pencil"></span> Participer à l'instant en commun !</h1>
-        <form class="container" enctype="multipart/form-data" novalidate v-if="isInitial() || isSaving()">
+        <form class="container" enctype="multipart/form-data" novalidate>
             <div class="header">Upload image</div>
             <div class="dropbox">
                 <input type="file" :name="uploadFieldName" :disabled="isSaving()" @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
                     accept="image/*" class="input-file">
                 <p v-if="isInitial()">
-                    Drag your file(s) here to begin<br> or click to browse
+                    Glissez et déposez vos fichiers <br> ou cliquez pour parcourir.
                 </p>
                 <p v-if="isSaving()">
-                    Uploading {{ fileCount }} files...
+                    Téléchargement de {{ fileCount }} fichier...
                 </p>
-
+                <div v-if="isSuccess()">
+                    <a href="javascript:void(0)" @click="reset()">Supprimer <span class="glyphicon glyphicon glyphicon-remove"></span></a>
+                    <center class="">
+                        <img :src="uploadedFile.url" class="img-responsive img-thumbnail" :alt="uploadedFile.name">
+                    </center>
+                </div>
+                <div v-if="isFailed()">
+                    <h2>Uploaded failed.</h2>
+                    <p>
+                        <a href="javascript:void(0)" @click="reset()">Try again</a>
+                    </p>
+                    <pre>{{ uploadError }}</pre>
+                </div>
             </div>
         </form>
         <br/>
