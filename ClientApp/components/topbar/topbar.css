@@ -11,6 +11,9 @@
     right: 0;
     z-index: 2;
 }
+@media (min-width: 279px){
+    
+}
 
 @media (min-width: 768px) {
     /* On small screens, convert the nav menu to a vertical sidebar */

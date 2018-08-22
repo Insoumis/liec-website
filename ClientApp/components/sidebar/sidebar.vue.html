@@ -20,12 +20,14 @@
                             v-bind:class="{active: isSearchActive}">
                             <router-link to="/" :exact="true">
                                 <span class="glyphicon glyphicon-search"></span>
+                                <div class="small_label">Rechercher</div>
                             </router-link>
                         </li>
                         <li v-on:click="openConnexion()"
                             v-bind:class="{active: isDraftActive}">
                             <router-link to="/">
                                 <span class="glyphicon glyphicon-pencil"></span>
+                                <div class="small_label">Participer</div>
                             </router-link>
                         </li>                        
                     </div>
@@ -33,28 +35,33 @@
                         <li v-on:click="openSocialNetwork">
                             <a href="https://twitter.com/instantencommun?lang=fr">
                                 <img src="../../../wwwroot/logos/twitter-logo-silhouette.svg" />
+                                <div class="small_label">Twitter</div>
                             </a>
                         </li>
                         <li v-on:click="openSocialNetwork">
                             <a href="https://www.instagram.com/instantencommun/">
                                 <img src="../../../wwwroot/logos/instagram-social-outlined-logo.svg" />
+                                <div class="small_label">Instagram</div>
                             </a>
                         </li>
                         <li v-on:click="openSocialNetwork">
                             <a href="https://fr-fr.facebook.com/Linstantencommun/">
                                 <img src="../../../wwwroot/logos/facebook-letter-logo.svg" />
+                                <div class="small_label">Facebook</div>
                             </a>
                         </li>
                         <li v-on:click="openAbout()"
                             v-bind:class="{active: isAboutActive}">
                             <router-link to="/about">
                                 <span class="glyphicon glyphicon-info-sign"></span>
+                                <div class="small_label">A propos</div>
                             </router-link>
                         </li>
-                        <li v-on:click="openRss()" style="visibility:hidden"
+                        <li v-on:click="openRss()" style="display:none"
                             v-bind:class="{active: isRssActive}">
                             <router-link to="/rss">
                                 <span class="glyphicon glyphicon glyphicon-fire"></span>
+                                <div class="small_label">Flux RSS</div>
                             </router-link>
                         </li>
                     </div>
