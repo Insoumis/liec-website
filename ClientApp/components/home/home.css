@@ -173,7 +173,7 @@ body{
   padding: 20px;
 }
 
-@media (min-width: 279px){
+@media (min-width: 279px) and (max-width: 768px){
   .main-container{
     width: 100%;
     padding: 0px;
