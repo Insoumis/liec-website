@@ -17,9 +17,7 @@ body{
   background-repeat: repeat;
 }  
 
-
-
-.home .cover-.home {
+.home {
   padding: 0px;
   margin-top: 100px;
 
@@ -41,7 +39,9 @@ body{
 
   transition: .3s;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}index:hover {
+}
+
+.home .cover-index:hover {
   box-shadow: 0 0 10px rgba(254, 99, 96, 0.3);
   transition: .9s;
 }
