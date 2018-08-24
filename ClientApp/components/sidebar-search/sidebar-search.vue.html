@@ -3,7 +3,6 @@
         <center>
             <h1>Rechercher des instants en commun</h1>
         </center>
-        <br/>
         <form v-on:submit.prevent="handleSubmit" method="post">
             <div class="header">Tags</div>
             <input type="search" v-model="unsplitTags" />
@@ -20,41 +19,49 @@
 
             <br/>
             <div class="header">Thèmes</div>
-            <input id="red" type="checkbox" value="red" v-model="searchVm.themes" />
-            <div for="red" class="theme red" v-bind:style="{ backgroundImage: 'url(' + imageRed + ')' }">
-                <div>Urgence
-                    <br/> Sociale</div>
-                <span class="glyphicon glyphicon-ok red"></span>
-            </div>
-            <input id="orange" type="checkbox" value="orange" v-model="searchVm.themes" />
-            <div for="orange" class="theme orange">
-                <div>Progrès
-                    <br/> Humain</div>
-                <span class="glyphicon glyphicon-ok orange"></span>
-            </div>
-            <input id="yellow" type="checkbox" value="yellow" v-model="searchVm.themes" />
-            <div for="yellow" class="theme yellow">
-                <div>Urgence
-                    <br/> Démocratique</div>
-                <span class="glyphicon glyphicon-ok yellow"></span>
-            </div>
-            <input id="green" type="checkbox" value="green" v-model="searchVm.themes" />
-            <div for="green" class="theme green">
-                <div>Urgence
-                    <br/> Ecologique</div>
-                <span class="glyphicon glyphicon-ok green"></span>
-            </div>
-            <input id="blue" type="checkbox" value="blue" v-model="searchVm.themes" />
-            <div for="blue" class="theme blue">
-                <div>Union
-                    <br/> Européenne</div>
-                <span class="glyphicon glyphicon-ok blue"></span>
-            </div>
-            <input id="violet" type="checkbox" value="violet" v-model="searchVm.themes" />
-            <div for="violet" class="theme violet">
-                <div>Paix &
-                    <br/> International</div>
-                <span class="glyphicon glyphicon-ok violet"></span>
+            <div class="all-themes">
+                <input id="red" type="checkbox" value="red" v-model="searchVm.themes" />
+                <div for="red" class="theme red" v-bind:style="{ backgroundImage: 'url(' + imageRed + ')' }">
+                    <div>Urgence
+                        <br/> Sociale
+                    </div>
+                    <span class="glyphicon glyphicon-ok red"></span>
+                </div>
+                <input id="orange" type="checkbox" value="orange" v-model="searchVm.themes" />
+                <div for="orange" class="theme orange">
+                    <div>Progrès
+                        <br/> Humain
+                    </div>
+                    <span class="glyphicon glyphicon-ok orange"></span>
+                </div>
+                <input id="yellow" type="checkbox" value="yellow" v-model="searchVm.themes" />
+                <div for="yellow" class="theme yellow">
+                    <div>Urgence
+                        <br/> Démocratique
+                    </div>
+                    <span class="glyphicon glyphicon-ok yellow"></span>
+                </div>
+                <input id="green" type="checkbox" value="green" v-model="searchVm.themes" />
+                <div for="green" class="theme green">
+                    <div>Urgence
+                        <br/> Ecologique
+                    </div>
+                    <span class="glyphicon glyphicon-ok green"></span>
+                </div>
+                <input id="blue" type="checkbox" value="blue" v-model="searchVm.themes" />
+                <div for="blue" class="theme blue">
+                    <div>Union
+                        <br/> Européenne
+                    </div>
+                    <span class="glyphicon glyphicon-ok blue"></span>
+                </div>
+                <input id="violet" type="checkbox" value="violet" v-model="searchVm.themes" />
+                <div for="violet" class="theme violet">
+                    <div>Paix &
+                        <br/> International
+                    </div>
+                    <span class="glyphicon glyphicon-ok violet"></span>
+                </div>
             </div>
             <button class="btn-search" type="submit">Rechercher</button>
         </form>
