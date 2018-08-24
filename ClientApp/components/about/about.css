@@ -45,13 +45,14 @@ body {
     color: #FFE0B5;
 }
 
-.about a: {
+.about a {
     color: #FFE0B5;
 }
 
 .about .theme {
     width: 90%;
     margin: auto;
+    margin-bottom : 20px;
 }
 
 .about .theme li {
@@ -113,5 +114,17 @@ body {
         margin-left: auto;
         width : 268px;
         margin-top: 20px;
+    }
+
+    .about .theme li{
+        float: none;
+    }
+
+    .about h1 {
+        font-weight: 501;
+        font-size: 22px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
     }
 }

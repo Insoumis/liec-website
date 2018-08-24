@@ -17,32 +17,42 @@ export default class SidebarComponent extends Vue {
   isRssActive: boolean = false;
   mounted() {
     eventHub.$on("onModalClose", this.hideButtonHover);
+    eventHub.$on("onCloseToggle", this.closeToggle);
+  }
+
+  closeToggle() {
+    var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
+    if (width <= 768) {
+      $(".navbar-toggle").click();
+    }
   }
 
   openSearch() {
     eventHub.$emit("onCloseDraft");
+    eventHub.$emit("onCloseToggle");
     if ($(".search").css("display") == "none") {
-      eventHub.$emit("onOpenSearch");      
-      eventHub.$emit("openSidePanelBackground");      
-      eventHub.$emit('hideTopBar');
+      eventHub.$emit("onOpenSearch");
+      eventHub.$emit("openSidePanelBackground");
+      eventHub.$emit("hideTopBar");
       this.isSearchActive = true;
       this.isDraftActive = false;
       this.isAboutActive = false;
       this.isRssActive = false;
     } else {
       eventHub.$emit("onCloseSearch");
-      eventHub.$emit("closeSidePanelBackground");      
-      eventHub.$emit('showTopBar');
+      eventHub.$emit("closeSidePanelBackground");
+      eventHub.$emit("showTopBar");
       this.isSearchActive = false;
     }
   }
 
   openConnexion() {
+    eventHub.$emit("onCloseToggle");
     eventHub.$emit("onCloseSearch");
     if ($(".sidebar-draft").css("display") == "none") {
-      eventHub.$emit("openDraft");      
-      eventHub.$emit("openSidePanelBackground");      
-      eventHub.$emit('hideTopBar');
+      eventHub.$emit("openDraft");
+      eventHub.$emit("openSidePanelBackground");
+      eventHub.$emit("hideTopBar");
       this.isDraftActive = true;
       this.isSearchActive = false;
       this.isAboutActive = false;
@@ -50,42 +60,44 @@ export default class SidebarComponent extends Vue {
     } else {
       eventHub.$emit("onCloseDraft");
       eventHub.$emit("closeSidePanelBackground");
-      eventHub.$emit('showTopBar');
+      eventHub.$emit("showTopBar");
       this.isDraftActive = false;
     }
   }
 
-  openAbout(){    
+  openAbout() {
+    eventHub.$emit("onCloseToggle");
     eventHub.$emit("onCloseDraft");
     eventHub.$emit("onCloseSearch");
-    eventHub.$emit("closeSidePanelBackground");     
-    eventHub.$emit('showTopBar');
+    eventHub.$emit("closeSidePanelBackground");
+    eventHub.$emit("showTopBar");
     this.isDraftActive = false;
     this.isSearchActive = false;
     this.isAboutActive = true;
     this.isRssActive = false;
   }
 
-  openRss(){    
+  openRss() {
+    eventHub.$emit("onCloseToggle");
     eventHub.$emit("onCloseDraft");
     eventHub.$emit("onCloseSearch");
-    eventHub.$emit("closeSidePanelBackground");     
-    eventHub.$emit('hideTopBar');
+    eventHub.$emit("closeSidePanelBackground");
+    eventHub.$emit("hideTopBar");
     this.isDraftActive = false;
     this.isSearchActive = false;
     this.isAboutActive = false;
     this.isRssActive = true;
   }
 
-  openSocialNetwork()
-  {
+  openSocialNetwork() {
+    eventHub.$emit("onCloseToggle");
     eventHub.$emit("onCloseDraft");
     eventHub.$emit("onCloseSearch");
-    eventHub.$emit("closeSidePanelBackground");    
-    eventHub.$emit('hideTopBar');
+    eventHub.$emit("closeSidePanelBackground");
+    eventHub.$emit("hideTopBar");
   }
 
-  hideButtonHover(){
+  hideButtonHover() {
     this.isDraftActive = false;
     this.isSearchActive = false;
   }
