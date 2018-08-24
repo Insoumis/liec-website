@@ -65,7 +65,7 @@
     
     .sidebar-draft img {
         width : 250px;
-        height : 350px;
+        height : 325px;
     }
 
     .sidebar-draft h1 {
@@ -73,5 +73,9 @@
         font-size: 22px;
         margin-top: 20px;
         margin-bottom: 20px;
+    }
+
+    .sidebar-draft button {
+        margin-bottom: 50px;
     }
 }

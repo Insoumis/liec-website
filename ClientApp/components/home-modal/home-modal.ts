@@ -56,7 +56,7 @@ export default class ModalComponent extends Vue {
     }
 
     normallink(){
-      $(".sources-link a:hover").css("color", "#fff");
-      $(".tag-item a:hover").css("color", "#fff");
+      $(".sources-link a").css("color", "#fff");
+      $(".tag-item a").css("color", "#fff");
     }
 }

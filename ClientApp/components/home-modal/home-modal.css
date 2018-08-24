@@ -1,177 +1,245 @@
 .home #modalwindow {
-    height: 100%;
-    width: 100%;
-    background-color: #363f41;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: none;
-    z-index: 2000;
-    overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background-color: #363f41;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 2000;
+  overflow: hidden;
+}
+
+.home #modalcross {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: #fff;
+  transition: .2s all;
+  font-size: 40px;
+}
+
+.home #modalcross:hover {
+  cursor: pointer;
+  transform: rotateZ(-10deg)
+}
+
+.home .modal-container {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+}
+
+.home .liec-modal {
+  width: 550px;
+  height: 550px;
+  background-color: #fff;
+  margin: 50px;
+  z-index: 1;
+  position: relative;
+}
+
+.home .liec-modal img {
+  width: 550px;
+  height: 550px;
+  border: 10px solid #fff;
+  position: relative;
+}
+
+.liec-modal svg {
+  position: absolute;
+  height: 250px;
+  z-index: 2;
+  top: calc(50% - 125px);
+  left: -50px;
+  z-index: 0;
+  ;
+}
+
+.liec-modal svg path {
+  fill: #fff;
+}
+
+.home .liec-infos {
+  height: 550px;
+  padding: 0px;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 400;
+  font-size: 18px;
+  margin: 50px;
+  max-height: 550px;
+}
+
+.home .liec-infos h2 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.home .liec-infos h3 {
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.sources-container, .tags-container {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 40px;
+}
+
+.sources-link:first-child, .tag-item:first-child {
+  margin-left: 0px;
+}
+
+.tag-item, .sources-link {
+  margin: 0 10px;
+  transition: .1s all;
+}
+
+.sources-link a, .tag-item a {
+  color: #fff;
+  font-weight: 400;
+  padding: 10px;
+  border: 2px solid #fff;
+  transition: .2s all;
+}
+
+.sources-link:hover, .tag-item:hover {
+  background: #fff;
+  transform: scale(0.92);
+}
+
+.sources-link a:hover, .tag-item a:hover, .sources-link a:focus, .tag-item a:focus, .sources-link a:active, .tag-item a:active {
+  background-color: #fff;
+  text-decoration: none;
+  transform: scale(0.92);
+}
+
+.home .tag {
+  background-color: #363f41;
+}
+
+body.modal-open {
+  overflow: hidden;
+  position: absolute;
+}
+
+.social-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+
+.social-container a {
+  flex: 1;
+  text-align: center;
+  border: 3px solid #fff;
+  margin: 0 20px;
+  padding: 10px;
+  color: #fff;
+  transition: .2s all;
+}
+
+.social-container a:hover, .social-container a:focus, .social-container a:active {
+  transform: scale(0.92);
+}
+
+.social-container a:first-of-type {
+  margin-left: 0px;
+}
+
+.social-container:last-of-type {
+  margin-right: 0px;
+}
+
+.social-container a img {
+  width: 30px;
+}
+
+#twitter-btn {
+  background-color: #6FAAED;
+}
+
+#insta-btn {
+  background-color: #D9483B;
+}
+
+#facebook-btn {
+  background-color: #4575B5;
+}
+
+@media (min-width: 279px) and (max-width: 768px) {
+  .home #modalwindow {
+    width: 100%;    
+    overflow-y: scroll;
+    display: flex;
   }
-  
-  .home #modalcross {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    color: #fff;
-    transition: .2s all;
+  .home .liec-modal {
+    width: 315px;
+    height: 315px;
+    margin-left: 40px;    
+    margin-bottom : 0px;
   }
-  
-  .home #modalcross:hover {
-    cursor: pointer;
-    transform: rotateZ(-10deg)
+  .home .liec-modal img {
+    width: 310px;
+    height: 310px;
   }
-  
   .home .modal-container {
     display: flex;
     width: 90%;
-    margin: 0 auto;
-    flex-flow: row nowrap;
-    justify-content: space-around;
+    margin: auto;
+    padding: 5px;
+    flex-flow: wrap;
+    justify-content: safe;
     align-items: center;
-    height: 100vh;
-    
+    height: auto;
   }
-  
-  .home .liec-modal {
-    width: 550px;
-    height: 550px;
-    background-color: #fff;
-    margin: 50px;
-    z-index: 1;
-    position: relative;
-  }
-  
-  .home .liec-modal img {
-    width: 550px;
-    height: 550px;
-    border: 10px solid #fff;
-    position: relative;
+  .liec-modal svg {
+    height: 150px;
+    margin-left: 25px;
+    top: calc(50% - 70px);
   }
 
-  .liec-modal svg{
+  .home #modalcross {
     position: absolute;
-    height: 250px;
-    z-index: 2;
-    top: calc(50% - 125px);
-    left: -50px;
-    z-index: 0;;
-  }
-  .liec-modal svg path{
-    fill: #fff;
+    top: 10px;
+    color: #fff;
+    transition: .2s all;
+    font-size: 30px;
   }
 
-  .home .liec-infos{
+  .home .liec-infos {
     height: 550px;
     padding: 0px;
     color: #fff;
     font-family: 'Montserrat', sans-serif !important;
     font-weight: 400;
     font-size: 18px;
-    margin: 50px;
+    margin: 5px;
     max-height: 550px;
-  }
-
-  .home .liec-infos h2{
-    font-family: 'Roboto Slab', serif;
-    font-size: 36px;
-    font-weight: bold;
-  }
-
-  .home .liec-infos h3{
-    text-transform: uppercase;
-    font-weight:800;
-    margin-bottom: 20px;
+    width :  310px;
+    margin-bottom: 100px;
   }
 
   .sources-container, .tags-container {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: nowrap;
     margin-bottom: 40px;
-  }
-
-
-  .sources-link:first-child, .tag-item:first-child{
-    margin-left: 0px;
-  }
-
-  .tag-item, .sources-link{
-    margin: 0 10px;
-    transition: .1s all;
-  }
-
-  .sources-link a, .tag-item a {
-    color:#fff;
-    font-weight: 400;
-    padding: 10px;
-    border: 2px solid #fff;
-    transition: .2s all;
-  }
-
-  .sources-link:hover, .tag-item:hover{
-    background: #fff;
-    transform: scale(0.92);
-  }
-
-  .sources-link a:hover, .tag-item a:hover, .sources-link a:focus, .tag-item a:focus,.sources-link a:active, .tag-item a:active{
-    background-color: #fff;
-    text-decoration: none;
-    transform: scale(0.92);
+    font-size: 12px;
   }
   
-  .home .tag {
-    background-color: #363f41;
-  }
-
-  body.modal-open{
-    overflow: hidden;
-    position: absolute;
-  }
-  .social-container{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-content: center;
-    align-items: center; 
-  }
-
-  .social-container a{
-    flex: 1;
-    text-align: center;
-    border: 3px solid #fff;
-    margin: 0 20px;
-    padding: 10px;
-    color: #fff;
-    transition: .2s all;
-  }
-
-  .social-container a:hover, .social-container a:focus, .social-container a:active{
-    transform: scale(0.92);
-  }
-
-  .social-container a:first-of-type{
+  .sources-link:first-child, .tag-item:first-child {
     margin-left: 0px;
+    page-break-after: always; /* CSS 2.1 syntax */
+  break-after: always; 
   }
-
-  .social-container:last-of-type{
-    margin-right: 0px;
-  }
-
-  .social-container a img{
-    width: 30px;
-  }
-
-  #twitter-btn{
-    background-color: #6FAAED;
-  }
-
-  #insta-btn{
-    background-color: #D9483B;
-  }
-  #facebook-btn{
-    background-color:#4575B5;
-  }
-
-
-
+  
+}

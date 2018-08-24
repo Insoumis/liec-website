@@ -2,11 +2,11 @@
     <div id="modalwindow" 
          v-bind:style="{ 'background-color': info.lightTheme, display : isDisplayed}" 
          v-on:onOpenModal="closeModal()">
-        <span id="modalcross" class="glyphicon glyphicon-remove" v-on:click="closeModal()" style="font-size: 40px"></span>
+        <span id="modalcross" class="glyphicon glyphicon-remove" v-on:click="closeModal()"></span>
         <div class="modal-container">
 
                 <div class="liec-modal">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69.819 249.649" style="height:250px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69.819 249.649">
                     <path id="liec_arrow" data-name="liec_arrow" class="cls-1" style="color:#fff" d="M-6.974,0C1.4-90.567,7.469,41.638,7.469,93S-5.884,280.9-6.974,186-61.528,99.653-62.34,89.354-15.35,90.567-6.974,0Z" transform="translate(62.35 30.917)"/>
                 </svg>
                 <img v-bind:src="info.image" v-bind:alt="info.title" />
