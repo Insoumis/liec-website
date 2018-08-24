@@ -4,6 +4,7 @@
             <span class="glyphicon glyphicon-arrow-up"></span>
         </a>
         <div class="liec-container">
+            <div class="loader">Chargement des instants en commun...</div>
             <div v-for="info in infos" class="cover-index">
                 <img v-bind:src="info.image" v-bind:alt="info.title" />
                 <div class="tail" v-bind:title="info.title">
@@ -17,7 +18,7 @@
                         <br/>
                         <br/>
                         <div v-for="item in info.tags" class="tag" v-bind:style="{ 'background-color': info.darkTheme}">
-                            {{ item }} 
+                            {{ item }}
                         </div>
                         <br/>
                         <br/>
@@ -25,10 +26,10 @@
                         <br/>
 
                         <div class="shortcuts" v-bind:style="{ color: info.darkTheme}">
-                        <a href="#" v-on:click.prevent.stop="openModal(info)">
-                            <span class="glyphicon glyphicon glyphicon-new-window"></span>
-                        </a>
-                    </div>
+                            <a href="#" v-on:click.prevent.stop="openModal(info)">
+                                <span class="glyphicon glyphicon glyphicon-new-window"></span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

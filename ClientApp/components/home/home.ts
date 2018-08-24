@@ -46,6 +46,7 @@ export default class HomeComponent extends Vue {
             data.creationDate = data.creationDate.substring(0, 10);
           });
           this.infos = datas;
+          $(".loader").hide();
         });
     } else {
       this.infos = infos;
