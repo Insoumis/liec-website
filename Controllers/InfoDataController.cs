@@ -79,6 +79,17 @@ namespace LIEC_Website.Controllers
         public async Task<JsonResult> CreateContent([FromBody] InfoLiecViewModel vm)
         {
             var content = InfoLiecViewmodelToContentModel(vm);
+
+            // Tags and Sources to lower
+            for (int i = 0; i < content.Tags.Length; i++)
+            {
+                content.Tags[i] = content.Tags[i].ToLower();
+            }
+            for (int i = 0; i < content.Sources.Length; i++)
+            {
+                content.Sources[i] = content.Sources[i].ToLower();
+            }
+
             try
             {
                 await MongoDbContext.Content_Create(content);
@@ -129,9 +140,6 @@ namespace LIEC_Website.Controllers
             var infos = ContentModelEnumerableToInfoLiecViewmodelEnumerable(contents);
             var response = infos;
 
-            stopwatch.Stop();
-            Console.WriteLine(stopwatch.ElapsedMilliseconds);
-
             if (searchVm?.Date == null && searchVm?.FreeSearchText == null && searchVm?.Tags == null && searchVm?.Themes == null)
             {
                 return Json(response.OrderByDescending(x => x.CreationDate));
@@ -169,7 +177,7 @@ namespace LIEC_Website.Controllers
                 foreach (var tag in searchVm.Tags)
                 {
                     var temp = tag.Replace(" ", "");
-                    tags.Add(temp[0].ToString().ToUpper() + temp.Substring(1).ToLower());
+                    tags.Add(temp.ToLower());
                 }
                 response = response.Where(x => x.Tags.Intersect(tags).Count() > 0);
             }
@@ -181,12 +189,14 @@ namespace LIEC_Website.Controllers
                 {
                     themes.Add(Enum.Parse<Themes>(theme));
                 }
-                response = response.Where(x => themes.Contains( Enum.Parse<Themes>(x.Theme)));
+                response = response.Where(x => themes.Contains(Enum.Parse<Themes>(x.Theme)));
             }
 
             if (!string.IsNullOrWhiteSpace(searchVm.FreeSearchText))
                 response = response.Where(x => x.Context.Contains(searchVm.FreeSearchText) || x.Text.Contains(searchVm.FreeSearchText));
 
+            stopwatch.Stop();
+            Console.WriteLine(stopwatch.ElapsedMilliseconds);
             return Json(response.OrderByDescending(x => x.CreationDate));
         }
 

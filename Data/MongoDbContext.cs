@@ -107,7 +107,7 @@ namespace LIEC_Website.Data
 
         public static async Task Content_Create(ContentModel data)
         {
-            data.CreationDate = DateTime.Now;
+            data.ModificationDate = DateTime.Now;
             await _contentDataCollection.InsertOneAsync(data);
         }
 
@@ -115,7 +115,6 @@ namespace LIEC_Website.Data
         {
             foreach (var data in datas)
             {
-                data.CreationDate = DateTime.Now;
                 data.ModificationDate = DateTime.Now;
             }
             await _contentDataCollection.InsertManyAsync(datas);
