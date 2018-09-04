@@ -4,6 +4,11 @@
             <h1>Rechercher des instants en commun</h1>
         </center>
         <form v-on:submit.prevent="handleSubmit" method="post">
+            <div style="display:none;">
+                <div class="header">Libre</div>
+                <input type="search" v-model="searchVm.freeSearchText" />
+                <br/>
+            </div>
             <div class="header">Tags</div>
             <input type="search" v-model="unsplitTags" />
             <br/>
