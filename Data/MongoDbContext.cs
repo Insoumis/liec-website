@@ -66,10 +66,7 @@ namespace LIEC_Website.Data
         {
             var query = await _contentDataCollection.FindAsync(x => true);
             var contents = await query.ToListAsync();
-            foreach(var content in contents)
-            {
-                content.ImageBytes = await _imageBucket.DownloadAsBytesAsync(content.ImageId);
-            }
+ 
             return contents ?? new List<ContentModel>();
         }
 
@@ -105,17 +102,11 @@ namespace LIEC_Website.Data
         public static async Task<ContentModel> Content_Get(ObjectId id)
         {
             var content = await _contentDataCollectionQueryable.FirstOrDefaultAsync(x => x.Id == id);
-            content.ImageBytes = await _imageBucket.DownloadAsBytesAsync(content.ImageId);
             return content;
         }
 
         public static async Task Content_Create(ContentModel data)
         {
-            if (data.ImageBytes.Any())
-            {
-                var imageId = await _imageBucket.UploadFromBytesAsync(data.Title, data.ImageBytes);
-                data.ImageId = imageId;
-            }
             data.CreationDate = DateTime.Now;
             await _contentDataCollection.InsertOneAsync(data);
         }

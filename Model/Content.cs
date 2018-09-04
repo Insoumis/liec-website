@@ -12,12 +12,8 @@ namespace LIEC_Website.Model
         public virtual ObjectId Id { get; set; }
         public string Title { get; set; }
         public Media Media { get; set; }
-        public ObjectId ImageId { get; set; }
-        [BsonIgnore]
-        public Byte[] ImageBytes { get; set; }
-        public ObjectId Video { get; set; }
-        [BsonIgnore]
-        public Byte[]VideoBytes { get; set; }
+        public string ImagePath {get; set;}
+        public string VideoPath { get; set; }
         public string Context { get; set; }
         public string Text { get; set; }
         public string[] Sources { get; set; }

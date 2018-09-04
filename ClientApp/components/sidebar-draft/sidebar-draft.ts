@@ -24,6 +24,10 @@ export default class SearchComponent extends Vue {
   connectOrSubscribe() {
     eventHub.$emit("onOpenConnexion");
   }
+  
+  openDraft() {
+    window.open("/draft","_self");
+  }
 
   openDiscord(){
     window.open("https://discordapp.com/invite/JQGdHpj","_self");

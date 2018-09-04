@@ -14,7 +14,8 @@ namespace LIEC_Website.ViewModel
         public string LightTheme { get; set; }
         public string NormalTheme { get; set; }
         public string DarkTheme { get; set; }
-        public DateTime CreationDate { get; set; }
-        public Themes Theme { get; set; }
+        public string CreationDate { get; set; }
+        public string Theme { get; set; }
+        public string Creator { get; set; }
     }
 }

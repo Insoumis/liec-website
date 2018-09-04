@@ -25,6 +25,10 @@
     justify-content: space-evenly;
 }
 
+.draft .success{
+    color : rgba(107, 181, 146, 1);
+}
+
 .draft button {
     border: 3px solid white;
     color: white;

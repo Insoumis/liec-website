@@ -51,7 +51,7 @@ export default class SearchComponent extends Vue {
 
   closeSearch() {
     this.isDisplayed = "none";
-  }
+  }  
 
   handleSubmit(e: Event) {
     this.errors = [];

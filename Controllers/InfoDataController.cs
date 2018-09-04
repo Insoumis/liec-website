@@ -50,16 +50,16 @@ namespace LIEC_Website.Controllers
                 NormalTheme = __normalThemes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
                 DarkTheme = _darkThemes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
                 LightTheme = _lightThemes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
-                CreationDate = DateTime.Now.AddDays(-random.Next(0, 100)),
-                Theme = (Themes)random.Next(0, 6)
+                CreationDate = DateTime.Now.AddDays(-random.Next(0, 100)).ToShortDateString(),
+                Theme = ((Themes)random.Next(0, 6)).ToString()
             });
         }
 
         [HttpGet("[action]")]
         public async Task<IEnumerable<InfoLiecViewModel>> InfoLiec()
         {
-            Stopwatch stopwatch = Stopwatch.StartNew();             
-            
+            Stopwatch stopwatch = Stopwatch.StartNew();
+
             var contents = await MongoDbContext.Content_GetAll();
             var infos = ContentModelEnumerableToInfoLiecViewmodelEnumerable(contents);
 
@@ -76,27 +76,71 @@ namespace LIEC_Website.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<JsonResult> UploadImage()
+        public async Task<JsonResult> CreateContent([FromBody] InfoLiecViewModel vm)
         {
-            var test = Request.Form.Files;
-            var content = await MongoDbContext.Content_Get(new ObjectId("5b799af0be47ff2ff491fba9"));
-            var info =  ContentModelToInfoLiecViewmodel(content);
-            return Json(new ImageViewModel{ Name = info.Title, Id = content.ImageId.ToString(), Url = info.Image });
+            var content = InfoLiecViewmodelToContentModel(vm);
+            try
+            {
+                await MongoDbContext.Content_Create(content);
+            }
+            catch (Exception e)
+            {
+                return Json(new BadRequestResult());
+            }
+            return Json(Ok());
         }
 
         [HttpPost("[action]")]
-        public JsonResult Search([FromBody] SearchViewModel searchVm)
+        public async Task<JsonResult> UploadImage()
         {
+            var uploadList = new List<ImageViewModel>();
+            var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "static/ImageUpload");
+
+            if (!Directory.Exists(uploadPath))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(uploadPath);
+            }
+
+            var files = Request.Form.Files;
+            var filename = Guid.NewGuid().ToString();
+            foreach (var file in files)
+            {
+                if (file.Length > 0)
+                {
+                    var extension = Path.GetExtension(file.FileName);
+                    var filePath = Path.Combine(uploadPath, $"{filename}{extension}");
+                    uploadList.Add(new ImageViewModel { Name = filename, Url = filePath.Remove(0, _hostingEnvironment.WebRootPath.Length) });
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                }
+            }
+            return Json(uploadList);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<JsonResult> Search([FromBody] SearchViewModel searchVm)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+
+            var contents = await MongoDbContext.Content_GetAll();
+            var infos = ContentModelEnumerableToInfoLiecViewmodelEnumerable(contents);
+            var response = infos;
+
+            stopwatch.Stop();
+            Console.WriteLine(stopwatch.ElapsedMilliseconds);
+
             if (searchVm?.Date == null && searchVm?.FreeSearchText == null && searchVm?.Tags == null && searchVm?.Themes == null)
             {
-                return Json(_info.OrderByDescending(x => x.CreationDate));
+                return Json(response.OrderByDescending(x => x.CreationDate));
             }
-            var response = _info;
-            DateThreshold parsedDate;
-            if (Enum.TryParse(searchVm.Date, out parsedDate))
+            DateThreshold parsedDateThreshold;
+            if (Enum.TryParse(searchVm.Date, out parsedDateThreshold))
             {
                 DateTime date = DateTime.Now;
-                switch (parsedDate)
+                switch (parsedDateThreshold)
                 {
                     case (DateThreshold.week):
                         date = DateTime.Now.Add(new TimeSpan(-7, 0, 0, 0));
@@ -116,7 +160,7 @@ namespace LIEC_Website.Controllers
                     default:
                         break;
                 }
-                response = response.Where(x => x.CreationDate > date);
+                response = response.Where(x => DateTime.Parse(x.CreationDate) > date);
             }
 
             if (searchVm.Tags.Where(x => !string.IsNullOrWhiteSpace(x)).Count() > 0)
@@ -137,7 +181,7 @@ namespace LIEC_Website.Controllers
                 {
                     themes.Add(Enum.Parse<Themes>(theme));
                 }
-                response = response.Where(x => themes.Contains(x.Theme));
+                response = response.Where(x => themes.Contains( Enum.Parse<Themes>(x.Theme)));
             }
 
             if (!string.IsNullOrWhiteSpace(searchVm.FreeSearchText))
@@ -152,17 +196,35 @@ namespace LIEC_Website.Controllers
             {
                 Context = c.Context,
                 DarkTheme = c.GetTheme().DarkColorCode,
-                CreationDate = c.CreationDate,
+                CreationDate = c.CreationDate.ToShortDateString(),
                 LightTheme = c.GetTheme().LightColorCode,
                 NormalTheme = c.GetTheme().NormalColorCode,
                 Sources = c.Sources,
                 Tags = c.Tags,
-                Theme = c.Theme,
+                Theme = c.Theme.ToString(),
                 Title = c.Title,
                 Text = c.Text,
-                Image = "data:image/png;base64," + Convert.ToBase64String(c.ImageBytes)
+                Image = c.ImagePath,
+                Creator = c.Creator
             };
             return info;
+        }
+
+        public ContentModel InfoLiecViewmodelToContentModel(InfoLiecViewModel c)
+        {
+            var content = new ContentModel
+            {
+                Context = c.Context,
+                CreationDate = DateTime.Parse(c.CreationDate),
+                Sources = c.Sources,
+                Tags = c.Tags,
+                Theme = Enum.Parse<Themes>(c.Theme),
+                Title = c.Title,
+                Text = c.Text,
+                ImagePath = c.Image,
+                Creator = c.Creator
+            };
+            return content;
         }
 
         public IEnumerable<InfoLiecViewModel> ContentModelEnumerableToInfoLiecViewmodelEnumerable(IEnumerable<ContentModel> contentModels)
@@ -180,22 +242,22 @@ namespace LIEC_Website.Controllers
         {
             foreach (var info in _info)
             {
-                System.IO.FileStream fS = new System.IO.FileStream(Path.Combine(_hostingEnvironment.WebRootPath, info.Image), System.IO.FileMode.Open, System.IO.FileAccess.Read);
-                byte[] b = new byte[fS.Length];
-                fS.Read(b, 0, (int)fS.Length);
-                fS.Close();
+                // System.IO.FileStream fS = new System.IO.FileStream(Path.Combine(_hostingEnvironment.WebRootPath, info.Image), System.IO.FileMode.Open, System.IO.FileAccess.Read);
+                // byte[] b = new byte[fS.Length];
+                // fS.Read(b, 0, (int)fS.Length);
+                // fS.Close();
                 var content = new ContentModel()
                 {
                     Title = info.Title,
                     Context = info.Context,
                     Sources = info.Sources,
-                    CreationDate = info.CreationDate,
-                    ModificationDate = info.CreationDate,
+                    CreationDate = DateTime.Parse(info.CreationDate),
+                    ModificationDate = DateTime.Parse(info.CreationDate),
                     Creator = "Blust",
                     Media = Media.image,
                     Tags = info.Tags,
-                    Theme = info.Theme,
-                    ImageBytes = b,
+                    Theme = Enum.Parse<Themes>(info.Theme),
+                    ImagePath = info.Image,
                     Text = info.Text
                 };
 

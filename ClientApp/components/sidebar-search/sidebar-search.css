@@ -196,7 +196,7 @@ input[type="checkbox"] {
   background-color: rgba(134, 94, 145, 1);
 }
 
-.search .violet:hover, .search .violet.active, .search .violet {
+.search .violet:hover, .search .violet.active{
   border-color: #865e91;
   background-color: rgba(134, 94, 145, 0.3);
 }

@@ -3,25 +3,24 @@ import { Component } from "vue-property-decorator";
 import $ from "jquery";
 import eventHub from "../eventhub/eventhub";
 
-interface InfoLiec {
+interface InfoLiecViewModel {
   title: string;
   context: string;
+  text: string;
   image: string;
   sources: string[];
   tags: string[];
   lightTheme: string;
   normalTheme: string;
   darkTheme: string;
-  theme: string;
   creationDate: string;
+  theme: string;
   creator: string;
-  creationdate: string;
 }
 
 interface Image {
   url : string;
   name : string;
-  id : string;
 }
 
 const STATUS_INITIAL = 0,
@@ -31,9 +30,10 @@ const STATUS_INITIAL = 0,
 
 @Component
 export default class CreateComponent extends Vue {
-  info: InfoLiec = {
+  info: InfoLiecViewModel = {
     title: "",
     context: "",
+    text: "",
     image: "",
     sources: [],
     tags: [],
@@ -42,13 +42,15 @@ export default class CreateComponent extends Vue {
     darkTheme: "",
     theme: "",
     creationDate: "",
-    creator: "",
-    creationdate: ""
+    creator: ""
   };
-  isOk: boolean = false;
-  uploadedFile: Image = { url : "", name : "", id : ""};
+  isSuccessDisplayed: string = "none";
+  isSubmitDisplayed: string = "inline-block";
+  uploadedFile: Image = { url : "", name : ""};
   uploadError: string = "";
   currentStatus: number = 0;
+  unspilttedTags : string = "";
+  unsplittedSources : string = "";
 
   destroy() {
     window.removeEventListener("scroll", this.handleScroll);
@@ -74,6 +76,10 @@ export default class CreateComponent extends Vue {
     return this.currentStatus === STATUS_FAILED;
   }
 
+  openDraft(){
+    window.open("/draft","_self");
+  }
+
   filesChange(fieldName: string, fileList: File[]) {
     
     const formData = new FormData();
@@ -96,10 +102,11 @@ export default class CreateComponent extends Vue {
       method: "POST",
       body: formData
     })
-      .then(response => response.json() as Promise<Image>)
+      .then(response => response.json() as Promise<Array<Image>>)
       .then(data => {
         console.log("succesfully uploaded : " + data);
-        this.uploadedFile = data;
+        this.uploadedFile = data[0];
+        this.info.image = data[0].url;
         this.currentStatus = STATUS_SUCCESS;
       })
       .catch(err => {
@@ -110,9 +117,16 @@ export default class CreateComponent extends Vue {
 
   handleSubmit(e: Event) {
     e.preventDefault();
-    var baseUri = "/api/InfoData/CreateInfoLiec";
+    var baseUri = "/api/InfoData/CreateContent";
 
-    console.log("create");
+    this.info.tags = this.unspilttedTags.split(",");
+    this.info.sources = this.unsplittedSources.split(",");
+
+    console.log("create")
+    console.log(this.info.theme);
+    console.log(this.info.creator);
+    console.log(this.info.tags);
+    console.log(this.info.image);
 
     fetch(baseUri, {
       method: "POST",
@@ -121,13 +135,15 @@ export default class CreateComponent extends Vue {
       },
       body: JSON.stringify(this.info)
     }).then(response => {
-      this.isOk = response.ok;
+      this.isSuccessDisplayed = response.ok ? "block" : "none";
+      this.isSubmitDisplayed = response.ok ? "none" : "inline-block";
+      console.log("successfully created");
     });
   }
 
   handleScroll() {
     var that = this;
-    console.log($(window)!.scrollTop());
+    // console.log($(window)!.scrollTop());
     $(window).scroll(function() {
       // Handling topbar
       if ($(window)!.scrollTop() || 0 > 0) {

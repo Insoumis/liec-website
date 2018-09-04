@@ -2,12 +2,12 @@
     <div class="draft">
         <h1><span class="glyphicon glyphicon-pencil"></span> Participer à l'instant en commun !</h1>
         <form class="container" enctype="multipart/form-data" novalidate>
-            <div class="header">Upload image</div>
+            <div class="header">Ajouter une image</div>
             <div class="dropbox">
                 <input type="file" :name="uploadFieldName" :disabled="isSaving()" @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
                     accept="image/*" class="input-file">
                 <p v-if="isInitial()">
-                    Glissez et déposez vos fichiers <br> ou cliquez pour parcourir.
+                    Glissez et déposez votre fichier <br> ou cliquez pour parcourir.
                 </p>
                 <p v-if="isSaving()">
                     Téléchargement de {{ fileCount }} fichier...
@@ -19,9 +19,9 @@
                     </center>
                 </div>
                 <div v-if="isFailed()">
-                    <h2>Uploaded failed.</h2>
+                    <h2>Le téléchargement a failli.</h2>
                     <p>
-                        <a href="javascript:void(0)" @click="reset()">Try again</a>
+                        <a href="javascript:void(0)" @click="reset()">Réessayer</a>
                     </p>
                     <pre>{{ uploadError }}</pre>
                 </div>
@@ -86,23 +86,23 @@
 
                 <div class="col-lg-4">
                     <div class="header">Créateur</div>
-                    <input class="col-lg-12" type="text" v-model="info.context" />
+                    <input class="col-lg-12" type="text" v-model="info.creator" />
                 </div>
 
                 <div class="col-lg-4">
                     <div class="header">Date de mise en ligne</div>
-                    <input class="col-lg-12" type="date" v-model="info.creationdate" />
+                    <input class="col-lg-12" type="date" v-model="info.creationDate" />
                 </div>
 
 
                 <div class="col-lg-6">
                     <div class="header">Tags</div>
-                    <input class="col-lg-12" type="text" v-model="info.tags" />
+                    <input class="col-lg-12" type="text" v-model="unspilttedTags" />
                 </div>
 
                 <div class="col-lg-6">
                     <div class="header">Sources</div>
-                    <input class="col-lg-12" type="text" v-model="info.sources" />
+                    <input class="col-lg-12" type="text" v-model="unsplittedSources" />
                 </div>
 
                 <div class="col-lg-6">
@@ -116,9 +116,21 @@
                 </div>
             </div>
             <div class="">
-                <center><button class="btn-submit" type="submit">Soumettre</button></center>
+                <center>
+                    <button v-bind:style="{display : isSubmitDisplayed}" class="btn-submit" type="submit">Soumettre</button>
+                </center>
+                <center v-bind:style="{display : isSuccessDisplayed}">
+                    <h4 class="success">
+                        Votre instant en commun a été publié avec succès !<br/> Merci de votre participation !
+                    </h4>
+                </center>
             </div>
         </form>
+        <center v-bind:style="{display : isSuccessDisplayed}">
+            <p>
+                <button v-on:click="openDraft()">Recommencer ?</button>
+            </p>
+        </center>
     </div>
 </template>
 <style src="./draft.css" />
