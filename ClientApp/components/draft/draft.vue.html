@@ -82,37 +82,44 @@
                 <div class="col-lg-4">
                     <div class="header">Title</div>
                     <input class="col-lg-12" type="text" v-model="info.title" />
+                    <p><i>Le titre de ta publication.</i></p>
                 </div>
 
                 <div class="col-lg-4">
                     <div class="header">Créateur</div>
                     <input class="col-lg-12" type="text" v-model="info.creator" />
+                    <p><i>Ton pseudo ou le pseudo à l'origine du texte.</i></p>
                 </div>
 
                 <div class="col-lg-4">
                     <div class="header">Date de mise en ligne</div>
                     <input class="col-lg-12" type="date" v-model="info.creationDate" />
+                    <p><i>Date à laquelle la publication a été publiée.</i></p>
                 </div>
 
 
                 <div class="col-lg-6">
                     <div class="header">Tags</div>
-                    <input class="col-lg-12" type="text" v-model="unspilttedTags" />
+                    <input class="col-lg-12" type="text" v-model="unspilttedTags" />                    
+                    <p><i>Les mots-clés pour retrouver ce visuel. <b>Sépares chaque tag par une virgule ","</b>.</i></p>
                 </div>
 
                 <div class="col-lg-6">
                     <div class="header">Sources</div>
                     <input class="col-lg-12" type="text" v-model="unsplittedSources" />
+                    <p><i>Les sources de ce visuel. <b>Sépares chaque tag par une virgule ","</b>.</i></p>
                 </div>
 
                 <div class="col-lg-6">
                     <div class="header">Contexte</div>
                     <textarea name="context" rows="10" class="col-lg-12" v-model="info.context"> </textarea>
+                    <p><i>Le texte accompagnatif de la publication sur les réseaux sociaux</i>.</p>
                 </div>
 
                 <div class="col-lg-6">
                     <div class="header">Texte</div>
                     <textarea name="text" rows="10" class="col-lg-12" v-model="info.text"> </textarea>
+                    <p><i>Le texte de la publication.</i></p>
                 </div>
             </div>
             <div class="">
