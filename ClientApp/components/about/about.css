@@ -33,68 +33,68 @@ body {
     flex-flow: row wrap;
 }
 
-.about img {
-    margin-left: 75%;
-}
+    .about img {
+        margin-left: 75%;
+    }
 
-.about b {
-    color: #FFE0B5;
-}
+    .about b {
+        color: #FFE0B5;
+    }
 
-.about a {
-    color: #FFE0B5;
-}
+    .about a {
+        color: #FFE0B5;
+    }
 
-.about a {
-    color: #FFE0B5;
-}
+    .about a {
+        color: #FFE0B5;
+    }
 
-.about .theme {
-    width: 90%;
-    margin: auto;
-    margin-bottom : 20px;
-}
+    .about .theme {
+        width: 91.85%;
+        margin: auto;
+        margin-bottom: 30px;
+    }
 
-.about .theme li {
-    list-style-type: none;
-    float: left;
-}
+        .about .theme li {
+            list-style-type: none;
+            float: left;
+        }
 
-.about .red {
-    background-color: rgba(204, 64, 51, 0.3);
-    text-align: center;
-    width: 170px;
-}
+    .about .red {
+        background-color: rgba(204, 64, 51, 0.3);
+        text-align: center;
+        width: 170px;
+    }
 
-.about .orange {
-    background-color: rgba(217, 135, 63, 0.3);
-    text-align: center;
-    width: 170px;
-}
+    .about .orange {
+        background-color: rgba(217, 135, 63, 0.3);
+        text-align: center;
+        width: 170px;
+    }
 
-.about .yellow {
-    background-color: rgba(237, 189, 69, 0.3);
-    text-align: center;
-    width: 170px;
-}
+    .about .yellow {
+        background-color: rgba(237, 189, 69, 0.3);
+        text-align: center;
+        width: 170px;
+    }
 
-.about .green {
-    background-color: rgba(107, 181, 146, 0.3);
-    text-align: center;
-    width: 170px;
-}
+    .about .green {
+        background-color: rgba(107, 181, 146, 0.3);
+        text-align: center;
+        width: 170px;
+    }
 
-.about .blue {
-    background-color: rgba(69, 117, 181, 0.3);
-    text-align: center;
-    width: 170px;
-}
+    .about .blue {
+        background-color: rgba(69, 117, 181, 0.3);
+        text-align: center;
+        width: 170px;
+    }
 
-.about .violet {
-    background-color: rgba(134, 94, 145, 0.3);
-    text-align: center;
-    width: 170px;
-}
+    .about .violet {
+        background-color: rgba(134, 94, 145, 0.3);
+        text-align: center;
+        width: 170px;
+    }
 
 @media (min-width: 279px) and (max-width: 768px) {
     .about {
@@ -110,21 +110,22 @@ body {
         flex-flow: row wrap;
         margin-top: -15px;
     }
-    .about img {
-        margin-left: auto;
-        width : 268px;
-        margin-top: 20px;
-    }
 
-    .about .theme li{
-        float: none;
-    }
+        .about img {
+            margin-left: auto;
+            width: 268px;
+            margin-top: 20px;
+        }
 
-    .about h1 {
-        font-weight: 501;
-        font-size: 22px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        text-align: center;
-    }
+        .about .theme li {
+            float: none;
+        }
+
+        .about h1 {
+            font-weight: 501;
+            font-size: 22px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 }
