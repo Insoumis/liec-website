@@ -26,13 +26,15 @@
 }
 
 .draft .success{
-    color : rgba(107, 181, 146, 1);
+    background-color: rgba(107, 181, 146, 1);
+    color : white;
+    padding : 5px;
 }
 
 .draft .error{
     background-color: #cc4033;
     color : white;
-    width : auto;
+    padding : 5px;
 }
 
 .draft button {

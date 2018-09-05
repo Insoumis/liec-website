@@ -100,7 +100,7 @@
 
                 <div class="col-lg-6">
                     <div class="header">Tags</div>
-                    <input class="col-lg-12" type="text" v-model="unspilttedTags" />                    
+                    <input class="col-lg-12" type="text" v-model="unspilttedTags" />
                     <p><i>Les mots-clés pour retrouver ce visuel. <b>Sépares chaque tag par une virgule ","</b>.</i></p>
                 </div>
 
@@ -126,19 +126,19 @@
                 <center>
                     <button v-bind:style="{display : isSubmitDisplayed}" class="btn-submit" type="submit">Soumettre</button>
                 </center>
-                <center v-bind:style="{display : isSuccessDisplayed}">
-                    <h4 class="success">
-                        Votre instant en commun a été publié avec succès !<br/> Merci de votre participation !
-                    </h4>
-                </center>
-                <center v-if="isSubmitError()">
-                    <h4 class="error">
-                        {{submitError}}
-                    </h4>
-                </center>
             </div>
         </form>
-        <center v-bind:style="{display : isSuccessDisplayed}">
+        <center v-if="isSuccessDisplayed">
+            <h4 class="success">
+                Votre instant en commun a été publié avec succès !<br/> Merci de votre participation !
+            </h4>
+        </center>
+        <center v-if="isSubmitError()">
+            <h4 class="error">
+                {{submitError}}
+            </h4>
+        </center>
+        <center v-if="isSuccessDisplayed">
             <p>
                 <button v-on:click="openDraft()">Recommencer ?</button>
             </p>

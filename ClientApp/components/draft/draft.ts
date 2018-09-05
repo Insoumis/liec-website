@@ -44,7 +44,7 @@ export default class CreateComponent extends Vue {
     creationDate: "",
     creator: ""
   };
-  isSuccessDisplayed: string = "none";
+  isSuccessDisplayed: boolean = false;
   isSubmitDisplayed: string = "inline-block";
   uploadedFile: Image = { url : "", name : ""};
   uploadError: string = "";
@@ -140,7 +140,7 @@ export default class CreateComponent extends Vue {
       },
       body: JSON.stringify(this.info)
     }).then(response => {
-      this.isSuccessDisplayed = response.ok ? "block" : "none";
+      this.isSuccessDisplayed = response.ok ? true : false;
       this.isSubmitDisplayed = response.ok ? "none" : "inline-block";
       this.submitError = response.ok ? "" : "¯\\_(ツ)_/¯ Mince ! Une erreur est survenue ! Vérifies tes champs, une erreur doit-s'y être cachée. ( ͡° ͜ʖ ͡°)"
       console.log(response.statusText);
