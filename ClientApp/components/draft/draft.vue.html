@@ -124,6 +124,11 @@
                         Votre instant en commun a été publié avec succès !<br/> Merci de votre participation !
                     </h4>
                 </center>
+                <center v-if="isSubmitError()">
+                    <h4 class="error">
+                        {{submitError}}
+                    </h4>
+                </center>
             </div>
         </form>
         <center v-bind:style="{display : isSuccessDisplayed}">
@@ -131,6 +136,7 @@
                 <button v-on:click="openDraft()">Recommencer ?</button>
             </p>
         </center>
+
     </div>
 </template>
 <style src="./draft.css" />

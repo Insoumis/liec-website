@@ -48,6 +48,7 @@ export default class CreateComponent extends Vue {
   isSubmitDisplayed: string = "inline-block";
   uploadedFile: Image = { url : "", name : ""};
   uploadError: string = "";
+  submitError : string = "";
   currentStatus: number = 0;
   unspilttedTags : string = "";
   unsplittedSources : string = "";
@@ -74,6 +75,10 @@ export default class CreateComponent extends Vue {
 
   isFailed() {
     return this.currentStatus === STATUS_FAILED;
+  }
+
+  isSubmitError(){
+    return this.submitError !== "";
   }
 
   openDraft(){
@@ -137,8 +142,12 @@ export default class CreateComponent extends Vue {
     }).then(response => {
       this.isSuccessDisplayed = response.ok ? "block" : "none";
       this.isSubmitDisplayed = response.ok ? "none" : "inline-block";
-      console.log("successfully created");
-    });
+      this.submitError = response.ok ? "" : "¯\\_(ツ)_/¯ Mince ! Une erreur est survenue ! Vérifies tes champs, une erreur doit-s'y être cachée. ( ͡° ͜ʖ ͡°)"
+      console.log(response.statusText);
+    })
+    .catch(err => {
+      this.submitError = err.response;
+    });;
   }
 
   handleScroll() {
