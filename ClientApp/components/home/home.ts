@@ -36,6 +36,19 @@ export default class HomeComponent extends Vue {
     eventHub.$emit("updateInfo");
   }
 
+  sourceShortener(src: string) {
+    var result = "";
+    var srcArray = src
+      .replace("http://", "")
+      .replace("https://", "")
+      .split("/");
+      
+    if (srcArray.length > 1) result = srcArray[0];
+    else result = src;
+
+    return result;
+  }
+
   onUpdateInfo(infos: InfoLiec[]) {
     console.log(infos);
     if (infos === undefined) {

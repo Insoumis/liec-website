@@ -13,7 +13,7 @@
                             {{ info.context }}
                         </p>
                         <div class="sources" v-for="item in info.sources">
-                            <a class="link" v-bind:href="item" v-bind:style="{ color: info.darkTheme}">{{item}} </a> &nbsp;
+                            <a class="link" v-bind:href="item" v-bind:style="{ color: info.darkTheme}">{{sourceShortener(item)}} </a> &nbsp;
                         </div>
                         <br/>
                         <br/>

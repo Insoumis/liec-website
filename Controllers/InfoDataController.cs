@@ -78,7 +78,9 @@ namespace LIEC_Website.Controllers
         [HttpPost("[action]")]
         public async Task<JsonResult> CreateContent([FromBody] InfoLiecViewModel vm)
         {
+            var imagePath = Path.Combine(_hostingEnvironment.WebRootPath, "static/Images");
             var content = InfoLiecViewmodelToContentModel(vm);
+            var dir = new DirectoryInfo(imagePath);
 
             // Tags and Sources to lower
             for (int i = 0; i < content.Tags.Length; i++)
@@ -89,6 +91,20 @@ namespace LIEC_Website.Controllers
             {
                 content.Sources[i] = content.Sources[i].ToLower();
             }
+
+            if (!dir.Exists)
+            {
+                dir.Create();
+            }
+
+            // Copy and delete temp image file
+            var cleanPath = content.ImagePath.Remove(0,1);
+            var tempFilePath = Path.Combine(_hostingEnvironment.WebRootPath, cleanPath);
+            FileInfo imageFile = new FileInfo(tempFilePath);
+            var newFilePath = Path.Combine(dir.FullName, imageFile.Name);
+            imageFile.CopyTo(newFilePath);
+            content.ImagePath = newFilePath.Remove(0, _hostingEnvironment.WebRootPath.Length);
+            imageFile.Delete();
 
             try
             {
@@ -105,11 +121,12 @@ namespace LIEC_Website.Controllers
         public async Task<JsonResult> UploadImage()
         {
             var uploadList = new List<ImageViewModel>();
-            var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "static/ImageUpload");
+            var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "static/Upload");
+            DirectoryInfo dir = new DirectoryInfo(uploadPath);
 
-            if (!Directory.Exists(uploadPath))
+            if (!dir.Exists)
             {
-                DirectoryInfo di = Directory.CreateDirectory(uploadPath);
+                dir.Create();
             }
 
             var files = Request.Form.Files;
