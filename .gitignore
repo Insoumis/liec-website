@@ -238,4 +238,5 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 /wwwroot/static/Images
-/wwwroot/content/Upload
+/wwwroot/static/Upload
+/wwwroot/static/Visual
