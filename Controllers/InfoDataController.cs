@@ -13,6 +13,7 @@ using LIEC_Website.Data;
 using LIEC_Website.Model;
 using MongoDB.Bson;
 using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 
 namespace LIEC_Website.Controllers
 {
@@ -25,10 +26,13 @@ namespace LIEC_Website.Controllers
 
         private static List<string> _imageSources = new List<string>();
 
-        public InfoDataController(IHostingEnvironment hostingEnvironment)
+        private static ILogger<InfoDataController> _logger;
+
+        public InfoDataController(IHostingEnvironment hostingEnvironment, ILogger<InfoDataController> logger)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
             _hostingEnvironment = hostingEnvironment;
+            _logger = logger;
 
             // Get all visual paths
             var rootpath = $"{hostingEnvironment.WebRootPath}/static/";
@@ -112,7 +116,7 @@ namespace LIEC_Website.Controllers
             }
             catch (Exception e)
             {
-                return Json(new BadRequestResult());
+                return Json(BadRequest(e));
             }
             return Json(Ok());
         }
@@ -120,32 +124,52 @@ namespace LIEC_Website.Controllers
         [HttpPost("[action]")]
         public async Task<JsonResult> UploadImage()
         {
-            var uploadList = new List<ImageViewModel>();
-            var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "static/Upload");
-            DirectoryInfo dir = new DirectoryInfo(uploadPath);
-
-            if (!dir.Exists)
+            try
             {
-                dir.Create();
-            }
+                _logger.LogInformation($"InfoController > UploadImage : Start.");
+                var uploadList = new List<ImageViewModel>();
+                var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "static/Upload");
+                DirectoryInfo dir = new DirectoryInfo(uploadPath);
 
-            var files = Request.Form.Files;
-            var filename = Guid.NewGuid().ToString();
-            foreach (var file in files)
-            {
-                if (file.Length > 0)
+                if (!dir.Exists)
                 {
-                    var extension = Path.GetExtension(file.FileName);
-                    var filePath = Path.Combine(uploadPath, $"{filename}{extension}");
-                    uploadList.Add(new ImageViewModel { Name = filename, Url = filePath.Remove(0, _hostingEnvironment.WebRootPath.Length) });
+                    dir.Create();
+                    _logger.LogInformation($"InfoController > UploadImage : Does directory {dir.FullName} exists : {dir.Exists}.");
+                }
 
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                var files = Request.Form.Files;
+                var filename = Guid.NewGuid().ToString();
+                foreach (var file in files)
+                {
+                    _logger.LogInformation($"InfoController > UploadImage : File length {file.Length}.");
+                    if (file.Length > 0)
                     {
-                        await file.CopyToAsync(fileStream);
+                        var extension = Path.GetExtension(file.FileName);
+                        var filePath = Path.Combine(uploadPath, $"{filename}{extension}");
+                        _logger.LogInformation($"InfoController > UploadImage : File path {filePath}.");
+
+                        uploadList.Add(new ImageViewModel
+                        {
+                            Name = filename,
+                            Url = filePath.Remove(0, _hostingEnvironment.WebRootPath.Length)
+                        });
+
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await file.CopyToAsync(fileStream);
+                            _logger.LogInformation($"InfoController > UploadImage : Create file to {filePath}.");
+                        }
                     }
                 }
+
+                return Json(uploadList);
             }
-            return Json(uploadList);
+            catch (Exception e)
+            {
+                _logger.LogError($"InfoController > An exception occured : {e}");
+                HttpContext.Response.StatusCode = 400;
+                return Json(e);
+            }
         }
 
         [HttpPost("[action]")]

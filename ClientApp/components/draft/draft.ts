@@ -108,14 +108,24 @@ export default class CreateComponent extends Vue {
             method: "POST",
             body: formData
         })
+            .then(response => {
+                debugger;
+                if (response.ok) {
+                    return response;
+                } else {
+                    throw Error(response.statusText);
+                }
+            })
             .then(response => response.json() as Promise<Array<Image>>)
             .then(data => {
+                debugger;
                 console.log("succesfully uploaded : " + data);
                 this.uploadedFile = data[0];
                 this.info.image = data[0].url;
                 this.currentStatus = STATUS_SUCCESS;
             })
             .catch(err => {
+                console.error("Upload error : " + err);
                 this.uploadError = err.response;
                 this.currentStatus = STATUS_FAILED;
             });
