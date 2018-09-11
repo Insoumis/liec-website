@@ -41,6 +41,7 @@ export default class HomeComponent extends Vue {
     var srcArray = src
       .replace("http://", "")
       .replace("https://", "")
+      .replace("www", "")
       .split("/");
       
     if (srcArray.length > 1) result = srcArray[0];
