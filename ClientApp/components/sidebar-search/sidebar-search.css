@@ -85,7 +85,7 @@
   width: 46%;
   background-color: rgba(255, 255, 255, 0.3);
   text-align: center;
-  padding-top: 8%;
+  padding-top: 20px;
   cursor: pointer;
   /* Unselectable */
   -webkit-touch-callout: none;
@@ -195,9 +195,20 @@ input[type="checkbox"] {
   background-color: rgba(134, 94, 145, 1);
 }
 
-.search .violet:hover, .search .violet.active{
+.search .violet:hover, .search .violet.active {
   border-color: #865e91;
   background-color: rgba(134, 94, 145, 0.3);
+}
+
+@media (hover:none), (hover:on-demand) {
+  .search .theme:hover {
+    border-color: white;
+    background-color: inherit;
+  }
+  .search .theme:hover span {
+    border-color: inherit;
+    visibility: hidden;
+  }
 }
 
 @media (min-width: 279px) and (max-width: 768px) {
@@ -228,26 +239,25 @@ input[type="checkbox"] {
     margin-top: 20px;
   }
   .search .all-themes {
-    margin: auto;
-    width: 100%;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
   }
   .search .theme {
     border: 3px solid white;
     margin: 2%;
     height: 70px;
     width: 120px;
-    background-color: rgba(255, 255, 255, 0.3);
     text-align: center;
     cursor: pointer;
   }
   .search .theme div {
-    margin-top: -10%;
+    margin-top: -10px;
   }
   .search .theme span {
     position: relative;
     border: 1px solid white;
-    margin-left: 92%;
-    margin-top: 0%;
+    margin-left: 105px;
+    margin-top: 0;
     border-radius: 50%;
     visibility: hidden;
     background-size: contain;

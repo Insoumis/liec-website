@@ -5,8 +5,6 @@ import eventHub from "../eventhub/eventhub";
 
 @Component
 export default class TopBarComponent extends Vue {
-
-
   mounted() {
     eventHub.$on("hideTopBar", this.onHideTopBar);
     eventHub.$on("showTopBar", this.onShowTopBar);
