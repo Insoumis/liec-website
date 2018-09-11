@@ -15,6 +15,12 @@ Beige : #FFE0B5
     z-index: 4;
 }
 
+.main-nav h1 {
+    color: rgba(255, 224, 181, 1);
+    border-bottom: 2px solid white;
+    margin-bottom: 20px;
+}
+
 /* Utilities Buttons*/
 
 .utilities-menu li:hover, .main-nav .navbar-nav div li.active {

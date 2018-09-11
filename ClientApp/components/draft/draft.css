@@ -18,8 +18,7 @@
     background-color: #8A6552;
     color: white;
     margin: auto;
-    margin-top: 9%;
-    width: 70%;
+    margin-top: 100px;
     padding: 20px;
     border: 5px solid #705242;
     justify-content: space-evenly;
@@ -72,6 +71,7 @@
     background: #FFE0B5;
     color: #8A6552;
     padding: 10px 10px;
+    margin: 20px;
     min-height: 200px;
     /* minimum height */
     cursor: pointer;
@@ -80,8 +80,6 @@
 .draft .input-file {
     opacity: 0;
     /* invisible but it's there! */
-    width: 100%;
-    height: 200px;
     position: absolute;
     cursor: pointer;
 }
@@ -215,4 +213,13 @@ input[type="radio"] {
 .draft .violet:hover, .draft input[type="radio"]:checked+.violet {
     border-color: #865e91;
     background-color: rgba(134, 94, 145, 0.3);
+}
+
+@media (min-width: 279px) and (max-width: 768px){
+    .draft{
+      width: 100%;
+      margin-left : 0px;
+      margin-top : 10px;
+      border : none;
+    }
 }
