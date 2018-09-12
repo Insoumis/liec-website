@@ -173,6 +173,10 @@ body{
   padding: 20px;
 }
 
+.main-container h1{
+ color : rgba(255, 224, 181, 1);;
+}
+
 @media (min-width: 279px) and (max-width: 768px){
   .main-container{
     width: 100%;

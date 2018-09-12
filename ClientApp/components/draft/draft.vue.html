@@ -1,36 +1,42 @@
 <template>
     <div class="draft">
-        <h1><span class="glyphicon glyphicon-pencil"></span> Participer à l'instant en commun !</h1>
-        <form class="container" enctype="multipart/form-data" novalidate>
-            <div class="header">Ajouter une image</div>
-            <div class="dropbox">
-                <input type="file" :name="uploadFieldName" :disabled="isSaving()" @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
-                    accept="image/*" class="input-file">
-                <p v-if="isInitial()">
-                    Glissez et déposez votre fichier <br> ou cliquez pour parcourir.
-                </p>
-                <p v-if="isSaving()">
-                    Téléchargement de {{ fileCount }} fichier...
-                </p>
-                <div v-if="isSuccess()">
-                    <a href="javascript:void(0)" @click="reset()">Supprimer <span class="glyphicon glyphicon glyphicon-remove"></span></a>
-                    <center class="">
-                        <img :src="uploadedFile.url" class="img-responsive img-thumbnail" :alt="uploadedFile.name">
-                    </center>
-                </div>
-                <div v-if="isFailed()">
-                    <h2>Le téléchargement a failli.</h2>
-                    <p>
-                        <a href="javascript:void(0)" @click="reset()">Réessayer</a>
-                    </p>
-                    <pre>{{ uploadError }}</pre>
+        <center>
+            <h1><span class="glyphicon glyphicon-pencil"></span> Participer à l'instant en commun !</h1>
+        </center>
+        <form class="row" enctype="multipart/form-data" novalidate>
+            <div class="col-sm-12">
+                <div class="col-sm-12">
+                    <div class="header">Ajouter une image</div>
+                    <div class="dropbox">
+                        <input type="file" :name="uploadFieldName" :disabled="isSaving()" @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
+                            accept="image/*" class="input-file">
+                        <p v-if="isInitial()">
+                            Glissez et déposez votre fichier <br> ou cliquez pour parcourir.
+                        </p>
+                        <p v-if="isSaving()">
+                            Téléchargement de {{ fileCount }} fichier...
+                        </p>
+                        <div v-if="isSuccess()">
+                            <a href="javascript:void(0)" @click="reset()">Supprimer <span class="glyphicon glyphicon glyphicon-remove"></span></a>
+                            <center class="">
+                                <img :src="uploadedFile.url" class="img-responsive img-thumbnail" :alt="uploadedFile.name">
+                            </center>
+                        </div>
+                        <div v-if="isFailed()">
+                            <h2>Le téléchargement a failli.</h2>
+                            <p>
+                                <a href="javascript:void(0)" @click="reset()">Réessayer</a>
+                            </p>
+                            <pre>{{ uploadError }}</pre>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
         <br/>
-        <form class="container" v-on:submit.prevent="handleSubmit" method="post">
-            <div class="col-lg-12">
-                <div class="col-lg-12">
+        <form class="row" v-on:submit.prevent="handleSubmit" method="post">
+            <div class="col-sm-12">
+                <div class="col-sm-12">
                     <div class="header">Thème</div>
                     <center>
                         <input id="draft_red" name="theme" type="radio" value="red" v-model="info.theme" />
@@ -78,47 +84,47 @@
                 </div>
             </div>
 
-            <div class="col-lg-12">
-                <div class="col-lg-4">
-                    <div class="header">Title</div>
-                    <input class="col-lg-12" type="text" v-model="info.title" />
+            <div class="col-sm-12">
+                <div class="col-sm-4">
+                    <div class="header">Titre</div>
+                    <input class="col-sm-12" type="text" v-model="info.title" />
                     <p><i>Le titre de ta publication.</i></p>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-sm-4">
                     <div class="header">Créateur</div>
-                    <input class="col-lg-12" type="text" v-model="info.creator" />
+                    <input class="col-sm-12" type="text" v-model="info.creator" />
                     <p><i>Ton pseudo ou le pseudo à l'origine du texte.</i></p>
                 </div>
 
-                <div class="col-lg-4">
-                    <div class="header">Date de mise en ligne</div>
-                    <input class="col-lg-12" type="date" v-model="info.creationDate" />
+                <div class="col-sm-4">
+                    <div class="header">Date de publication</div>
+                    <input class="col-sm-12" type="date" v-model="info.creationDate" />
                     <p><i>Date à laquelle la publication a été publiée.</i></p>
                 </div>
 
 
-                <div class="col-lg-6">
+                <div class="col-sm-6">
                     <div class="header">Tags</div>
-                    <input class="col-lg-12" type="text" v-model="unspilttedTags" />
+                    <input class="col-sm-12" type="text" v-model="unspilttedTags" />
                     <p><i>Les mots-clés pour retrouver ce visuel. <b>Sépares chaque tag par une virgule ","</b>.</i></p>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-sm-6">
                     <div class="header">Sources</div>
-                    <input class="col-lg-12" type="text" v-model="unsplittedSources" />
+                    <input class="col-sm-12" type="text" v-model="unsplittedSources" />
                     <p><i>Les sources de ce visuel. <b>Sépares chaque tag par une virgule ","</b>.</i></p>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-sm-6">
                     <div class="header">Contexte</div>
-                    <textarea name="context" rows="10" class="col-lg-12" v-model="info.context"> </textarea>
+                    <textarea name="context" rows="10" class="col-sm-12" v-model="info.context"> </textarea>
                     <p><i>Le texte accompagnatif de la publication sur les réseaux sociaux</i>.</p>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-sm-6">
                     <div class="header">Texte</div>
-                    <textarea name="text" rows="10" class="col-lg-12" v-model="info.text"> </textarea>
+                    <textarea name="text" rows="10" class="col-sm-12" v-model="info.text"> </textarea>
                     <p><i>Le texte de la publication.</i></p>
                 </div>
             </div>
