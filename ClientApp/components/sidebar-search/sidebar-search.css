@@ -85,7 +85,7 @@
   width: 46%;
   background-color: rgba(255, 255, 255, 0.3);
   text-align: center;
-  padding-top: 20px;
+  padding-top: 25px;
   cursor: pointer;
   /* Unselectable */
   -webkit-touch-callout: none;
@@ -105,15 +105,15 @@
 .search .theme span {
   position: relative;
   border: 1px solid white;
-  margin-left: 94%;
-  margin-top: 12%;
+  margin-left: 128px;
+  margin-top: 15px;
   padding: 2px;
   border-radius: 50%;
   visibility: hidden;
   background-size: contain;
 }
 
-.search .theme:hover span, .search .theme.active span {
+.search .theme.active span {
   border-color: inherit;
   visibility: visible;
 }
@@ -130,7 +130,7 @@ input[type="checkbox"] {
   background-color: rgba(204, 64, 51, 1);
 }
 
-.search .red:hover, .search .red.active {
+.search .red.active {
   border-color: #cc4033;
   background-color: rgba(204, 64, 51, 0.3);
 }
@@ -143,7 +143,7 @@ input[type="checkbox"] {
   background-color: rgba(217, 135, 63, 1);
 }
 
-.search .orange:hover, .search .orange.active {
+.search .orange.active {
   border-color: #d9873f;
   background-color: rgba(217, 135, 63, 0.3);
 }
@@ -156,7 +156,7 @@ input[type="checkbox"] {
   background-color: rgba(237, 189, 69, 1);
 }
 
-.search .yellow:hover, .search .yellow.active {
+.search .yellow.active {
   border-color: #edbd45;
   background-color: rgba(237, 189, 69, 0.3);
 }
@@ -169,7 +169,7 @@ input[type="checkbox"] {
   background-color: rgba(107, 181, 146, 1);
 }
 
-.search .green:hover, .search .green.active {
+.search .green.active {
   border-color: #6bb592;
   background-color: rgba(107, 181, 146, 0.3);
 }
@@ -182,7 +182,7 @@ input[type="checkbox"] {
   background-color: rgba(69, 117, 181, 1);
 }
 
-.search .blue:hover, .search .blue.active {
+.search .blue.active {
   border-color: #4575b5;
   background-color: rgba(69, 117, 181, 0.3);
 }
@@ -195,12 +195,13 @@ input[type="checkbox"] {
   background-color: rgba(134, 94, 145, 1);
 }
 
-.search .violet:hover, .search .violet.active {
+.search .violet.active {
   border-color: #865e91;
   background-color: rgba(134, 94, 145, 0.3);
 }
 
-@media (hover:none), (hover:on-demand) {
+/* @media (hover:...) is not yet implemented by firefox nor firefox android
+/* @media (hover:none), (hover:on-demand) {
   .search .theme:hover {
     border-color: white;
     background-color: inherit;
@@ -208,6 +209,56 @@ input[type="checkbox"] {
   .search .theme:hover span {
     border-color: inherit;
     visibility: hidden;
+  }
+} */
+
+@media(min-width: 768px) {
+  .search .theme:hover span, .search .theme.active span {
+    border-color: inherit;
+    visibility: visible;
+  }
+  .search .red:hover, .search .red.active {
+    border-color: #cc4033;
+    background-color: rgba(204, 64, 51, 0.3);
+  }
+  .search .orange:hover, .search .orange.active {
+    border-color: #d9873f;
+    background-color: rgba(217, 135, 63, 0.3);
+  }
+  .search .yellow:hover, .search .yellow.active {
+    border-color: #edbd45;
+    background-color: rgba(237, 189, 69, 0.3);
+  }
+  .search .green:hover, .search .green.active {
+    border-color: #6bb592;
+    background-color: rgba(107, 181, 146, 0.3);
+  }
+  .search .blue:hover, .search .blue.active {
+    border-color: #4575b5;
+    background-color: rgba(69, 117, 181, 0.3);
+  }
+  .search .violet:hover, .search .violet.active {
+    border-color: #865e91;
+    background-color: rgba(134, 94, 145, 0.3);
+  }
+  
+  .search .red span:hover {
+    background-color: rgba(204, 64, 51, 1);
+  }
+  .search .orange span:hover {
+    background-color: rgba(217, 135, 63, 1);
+  }
+  .search .yellow span:hover {
+    background-color: rgba(237, 189, 69, 1);
+  }
+  .search .green span:hover {
+    background-color: rgba(107, 181, 146, 1);
+  }
+  .search .blue span:hover {
+    background-color: rgba(69, 117, 181, 1);
+  }
+  .search .violet span:hover {
+    background-color: rgba(134, 94, 145, 1);
   }
 }
 

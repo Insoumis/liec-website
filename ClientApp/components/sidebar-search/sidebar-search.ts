@@ -43,40 +43,6 @@ export default class SearchComponent extends Vue {
       var id = $(this).attr("for");
       $("#" + id).trigger("click");
     });
-    this.byebyeHover();
-  }
-
-  hasTouch() {
-    return (
-      "ontouchstart" in document.documentElement ||
-      navigator.maxTouchPoints > 0 ||
-      navigator.msMaxTouchPoints > 0
-    );
-  }
-
-  byebyeHover() {
-    if (this.hasTouch()) {
-      // remove all :hover stylesheets
-      try {
-        // prevent exception on browsers not supporting DOM styleSheets properly
-        for (var si in document.styleSheets) {
-          var styleSheet = document.styleSheets[si] as CSSStyleSheet;
-          if (!styleSheet.rules) continue;
-
-          for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
-            if (!(styleSheet.rules[ri] as CSSStyleRule).selectorText) continue;
-
-            if (
-              (styleSheet.rules[ri] as CSSStyleRule).selectorText.match(
-                ":hover"
-              )
-            ) {
-              styleSheet.deleteRule(ri);
-            }
-          }
-        }
-      } catch (ex) {}
-    }
   }
 
   onOpenSearch() {

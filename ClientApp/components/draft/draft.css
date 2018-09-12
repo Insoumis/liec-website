@@ -137,6 +137,13 @@
     text-align: center;
     padding-top: 30px;
     cursor: pointer;
+    /* Unselectable */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .draft .theme span {
@@ -214,6 +221,44 @@ input[type="radio"] {
     background-color: rgba(134, 94, 145, 0.3);
 }
 
+.draft .red span:hover {
+    background-color: rgba(204, 64, 51, 1);
+}
+.draft .orange span:hover {
+    background-color: rgba(217, 135, 63, 1);
+}
+.draft .yellow span:hover {
+    background-color: rgba(237, 189, 69, 1);
+}
+.draft .green span:hover {
+    background-color: rgba(107, 181, 146, 1);
+}
+.draft .blue span:hover {
+    background-color: rgba(69, 117, 181, 1);
+}
+.draft .violet span:hover {
+    background-color: rgba(134, 94, 145, 1);
+}
+
+.draft .red span {
+    background-color: rgba(204, 64, 51, 1);
+}
+.draft .orange span {
+    background-color: rgba(217, 135, 63, 1);
+}
+.draft .yellow span {
+    background-color: rgba(237, 189, 69, 1);
+}
+.draft .green span {
+    background-color: rgba(107, 181, 146, 1);
+}
+.draft .blue span {
+    background-color: rgba(69, 117, 181, 1);
+}
+.draft .violet span {
+    background-color: rgba(134, 94, 145, 1);
+}
+
 @media (min-width: 279px) and (max-width: 768px) {
     .draft {
         width: 100%;
@@ -251,29 +296,24 @@ input[type="radio"] {
         visibility: hidden;
         background-size: contain;
     }
-
     .draft .red span {
         background-color: rgba(204, 64, 51, 1);
-      }
-      
-      .draft .orange span {
+    }
+    .draft .orange span {
         background-color: rgba(217, 135, 63, 1);
-      }
-      
-      .draft .yellow span {
+    }
+    .draft .yellow span {
         background-color: rgba(237, 189, 69, 1);
-      }
-            
-      .draft .green span {
+    }
+    .draft .green span {
         background-color: rgba(107, 181, 146, 1);
-      }
-      
-      .draft .blue span {
+    }
+    .draft .blue span {
         background-color: rgba(69, 117, 181, 1);
-      }
-      .draft .violet span {
+    }
+    .draft .violet span {
         background-color: rgba(134, 94, 145, 1);
-      }
+    }
 }
 
 @media (min-width: 1340px) {
