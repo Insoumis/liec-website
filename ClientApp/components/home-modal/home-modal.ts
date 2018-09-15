@@ -34,6 +34,20 @@ export default class ModalComponent extends Vue {
     mounted() {
       eventHub.$on('onOpenModal', this.openModal);
     }
+
+    sourceShortener(src: string) {
+      var result = "";
+      var srcArray = src
+        .replace("http://", "")
+        .replace("https://", "")
+        .replace("www", "")
+        .split("/");
+        
+      if (srcArray.length > 1) result = srcArray[0];
+      else result = src;
+  
+      return result;
+    }
   
     openModal (infoLiec : InfoLiec, ) {
       this.info = infoLiec;
