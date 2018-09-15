@@ -90,7 +90,7 @@
 .sources-container, .tags-container {
   display: flex;
   flex-flow: row wrap;
-  margin-bottom: 40px;
+  margin-bottom: 10px;  
 }
 
 .sources-link:first-child, .tag-item:first-child {
@@ -98,8 +98,17 @@
 }
 
 .tag-item, .sources-link {
-  margin: 0 10px;
+  margin-right: 20px;
+  margin-bottom : 10px;
   transition: .1s all;
+  height : 46px;
+}
+
+.modal-container .link-modal{
+  position : relative;
+  height : 46px;
+  width : 114px;
+  margin-top : 30px;
 }
 
 .sources-link a, .tag-item a {
@@ -111,11 +120,10 @@
 }
 
 .sources-link:hover, .tag-item:hover {
-  background: #fff;
   transform: scale(0.92);
 }
 
-.sources-link a:hover, .tag-item a:hover, .sources-link a:focus, .tag-item a:focus, .sources-link a:active, .tag-item a:active {
+.sources-link a:hover, .tag-item a:hover, .sources-link a:focus, .tag-item a:focus, .sources-link a:active, .tag-item a:active{
   background-color: #fff;
   text-decoration: none;
   transform: scale(0.92);

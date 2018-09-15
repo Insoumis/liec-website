@@ -49,9 +49,12 @@ export default class HomeComponent extends Vue {
       .replace("https://", "")
       .replace("www", "")
       .split("/");
-      
-    if (srcArray.length > 1) result = srcArray[0];
-    else result = src;
+
+    if (srcArray.length > 1) {
+      result = srcArray[0];
+
+      if (result.charAt(0) == ".") result = result.substr(1, result.length);
+    } else result = src;
 
     return result;
   }
