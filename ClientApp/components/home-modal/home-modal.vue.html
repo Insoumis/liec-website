@@ -32,13 +32,13 @@
 
                 <h3>Partager sur les réseaux ~ pouloulou</h3>
                 <div class="social-container">
-                    <a id="twitter-btn" href="https://twitter.com/instantencommun?lang=fr">
+                    <a id="twitter-btn" v-bind:href="info.twitterUrl">
                         <img src="../../../wwwroot/logos/twitter-logo-silhouette.svg" />
                     </a>
-                    <a id="insta-btn" href="https://www.instagram.com/instantencommun/">
+                    <a id="insta-btn" v-bind:href="info.facebookUrl">
                         <img src="../../../wwwroot/logos/instagram-social-outlined-logo.svg" />
                     </a>
-                    <a id="facebook-btn" href="https://fr-fr.facebook.com/Linstantencommun/">
+                    <a id="facebook-btn" v-bind:href="info.instagramUrl">
                         <img src="../../../wwwroot/logos/facebook-letter-logo.svg" />
                     </a>
                 </div>

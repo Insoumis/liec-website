@@ -16,6 +16,9 @@ interface InfoLiecViewModel {
     creationDate: string;
     theme: string;
     creator: string;
+    twitterUrl: string;
+    facebookUrl: string;
+    instagramUrl: string;
 }
 
 interface Image {
@@ -42,7 +45,10 @@ export default class CreateComponent extends Vue {
         darkTheme: "",
         theme: "",
         creationDate: "",
-        creator: ""
+        creator: "",
+        twitterUrl: "",
+        facebookUrl: "",
+        instagramUrl: "",
     };
     isSuccessDisplayed: boolean = false;
     isSubmitDisplayed: string = "inline-block";

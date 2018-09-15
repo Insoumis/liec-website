@@ -252,7 +252,10 @@ namespace LIEC_Website.Controllers
                 Title = c.Title,
                 Text = c.Text,
                 Image = c.ImagePath,
-                Creator = c.Creator
+                TwitterUrl = String.IsNullOrEmpty(c.TwitterUrl) ? "https://twitter.com/instantencommun?lang=fr" : c.TwitterUrl,
+                FacebookUrl = String.IsNullOrEmpty(c.FacebookUrl) ? "https://www.instagram.com/instantencommun/" : c.FacebookUrl,
+                InstagramUrl = String.IsNullOrEmpty(c.InstagramUrl) ? "https://fr-fr.facebook.com/Linstantencommun/" : c.InstagramUrl,
+                Creator = c.InstagramUrl
             };
             return info;
         }
@@ -269,7 +272,10 @@ namespace LIEC_Website.Controllers
                 Title = c.Title,
                 Text = c.Text,
                 ImagePath = c.Image,
-                Creator = c.Creator
+                Creator = c.Creator,
+                TwitterUrl = c.TwitterUrl,
+                InstagramUrl = c.InstagramUrl,
+                FacebookUrl = c.FacebookUrl,
             };
             return content;
         }

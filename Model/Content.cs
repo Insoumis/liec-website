@@ -16,6 +16,9 @@ namespace LIEC_Website.Model
         public string VideoPath { get; set; }
         public string Context { get; set; }
         public string Text { get; set; }
+        public string TwitterUrl { get; set; }
+        public string InstagramUrl { get; set; }
+        public string FacebookUrl { get; set; }
         public string[] Sources { get; set; }
         public string[] Tags { get; set; }
         public DateTime CreationDate { get; set; }

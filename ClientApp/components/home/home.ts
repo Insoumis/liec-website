@@ -3,9 +3,10 @@ import { Component } from "vue-property-decorator";
 import $ from "jquery";
 import eventHub from "../eventhub/eventhub";
 
-interface InfoLiec {
+interface InfoLiecViewModel {
   title: string;
   context: string;
+  text: string;
   image: string;
   sources: string[];
   tags: string[];
@@ -13,6 +14,11 @@ interface InfoLiec {
   normalTheme: string;
   darkTheme: string;
   creationDate: string;
+  theme: string;
+  creator: string;
+  twitterUrl: string;
+  facebookUrl: string;
+  instagramUrl: string;
 }
 
 @Component({
@@ -21,7 +27,7 @@ interface InfoLiec {
   }
 })
 export default class HomeComponent extends Vue {
-  infos: InfoLiec[] = [];
+  infos: InfoLiecViewModel[] = [];
   isFecthing: boolean = false;
 
   destroy() {
@@ -50,11 +56,11 @@ export default class HomeComponent extends Vue {
     return result;
   }
 
-  onUpdateInfo(infos: InfoLiec[]) {
+  onUpdateInfo(infos: InfoLiecViewModel[]) {
     console.log(infos);
     if (infos === undefined) {
       fetch("api/InfoData/InfoLiec")
-        .then(response => response.json() as Promise<InfoLiec[]>)
+        .then(response => response.json() as Promise<InfoLiecViewModel[]>)
         .then(datas => {
           datas.forEach(data => {
             data.creationDate = data.creationDate.substring(0, 10);
@@ -97,7 +103,7 @@ export default class HomeComponent extends Vue {
     });
   }
 
-  openModal(info: InfoLiec) {
+  openModal(info: InfoLiecViewModel) {
     eventHub.$emit("onOpenModal", info);
   }
 

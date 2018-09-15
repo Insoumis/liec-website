@@ -3,9 +3,10 @@ import { Component } from "vue-property-decorator";
 import $ from "jquery";
 import eventHub from '../eventhub/eventhub'
 
-interface InfoLiec {
+interface InfoLiecViewModel {
   title: string;
   context: string;
+  text: string;
   image: string;
   sources: string[];
   tags: string[];
@@ -13,20 +14,31 @@ interface InfoLiec {
   normalTheme: string;
   darkTheme: string;
   creationDate: string;
+  theme: string;
+  creator: string;
+  twitterUrl: string;
+  facebookUrl: string;
+  instagramUrl: string;
 }
 
 @Component
 export default class ModalComponent extends Vue {
-  info: InfoLiec = {
-      title :"",
-      context: "",
-      image: "",
-      sources: [],
-      tags : [],
-      lightTheme: "",
-      normalTheme: "",
-      darkTheme: "",
-      creationDate: "",
+    info: InfoLiecViewModel = {
+        title: "",
+        context: "",
+        text: "",
+        image: "",
+        sources: [],
+        tags: [],
+        lightTheme: "",
+        normalTheme: "",
+        darkTheme: "",
+        theme: "",
+        creationDate: "",
+        creator: "",
+        twitterUrl: "",
+        facebookUrl: "",
+        instagramUrl: "",
     };
     modalOffset = document.body.scrollTop;
     isDisplayed: string = "none";
@@ -49,7 +61,7 @@ export default class ModalComponent extends Vue {
       return result;
     }
   
-    openModal (infoLiec : InfoLiec, ) {
+    openModal (infoLiec : InfoLiecViewModel, ) {
       this.info = infoLiec;
       this.isDisplayed = 'block';
       this.modalOffset = document.body.scrollTop;
