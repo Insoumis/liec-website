@@ -26,7 +26,7 @@ namespace LIEC_Website.Model
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime ModificationDate { get; set; }
         public string Creator { get; set; }
-        public Themes Theme { get; set; }
+        public Themes? Theme { get; set; }
 
         public Theme GetTheme()
         {

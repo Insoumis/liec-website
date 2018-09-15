@@ -37,26 +37,6 @@ namespace LIEC_Website.Controllers
             // Get all visual paths
             var rootpath = $"{hostingEnvironment.WebRootPath}/static/";
             DirectoryInfo d = new DirectoryInfo(rootpath);
-            FileInfo[] Files = d.GetFiles("*.png");
-            foreach (FileInfo file in Files)
-            {
-                _imageSources.Add($"static/{file.Name}");
-            }
-
-            var random = new Random();
-            _info = Enumerable.Range(1, 80).Select(index => new InfoLiecViewModel
-            {
-                Title = "Le Bonus Cultura, un modèle ?",
-                Context = "Le pass culture, co-financé par les #GAFAM, est-il une bonne solution pour promouvoir la culture chez les jeunes ?",
-                Image = _imageSources.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
-                Sources = _sources.OrderBy(x => Guid.NewGuid()).Take(2).ToList().ToArray(),
-                Tags = _tags.OrderBy(x => Guid.NewGuid()).Take(3).ToList().ToArray(),
-                NormalTheme = __normalThemes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
-                DarkTheme = _darkThemes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
-                LightTheme = _lightThemes.OrderBy(x => Guid.NewGuid()).Take(1).ToList().First(),
-                CreationDate = DateTime.Now.AddDays(-random.Next(0, 100)).ToShortDateString(),
-                Theme = ((Themes)random.Next(0, 6)).ToString()
-            });
         }
 
         [HttpGet("[action]")]
@@ -70,13 +50,6 @@ namespace LIEC_Website.Controllers
             stopwatch.Stop();
             Console.WriteLine(stopwatch.ElapsedMilliseconds);
             return infos;
-        }
-
-        [HttpPost("[action]")]
-        public async Task<StatusCodeResult> GenerateInfoLiec()
-        {
-            await CreateRandomData();
-            return Ok();
         }
 
         [HttpPost("[action]")]
@@ -254,8 +227,8 @@ namespace LIEC_Website.Controllers
                 Text = c.Text,
                 Image = c.ImagePath,
                 TwitterUrl = String.IsNullOrEmpty(c.TwitterUrl) ? "https://twitter.com/instantencommun?lang=fr" : c.TwitterUrl,
-                FacebookUrl = String.IsNullOrEmpty(c.FacebookUrl) ? "https://www.instagram.com/instantencommun/" : c.FacebookUrl,
-                InstagramUrl = String.IsNullOrEmpty(c.InstagramUrl) ? "https://fr-fr.facebook.com/Linstantencommun/" : c.InstagramUrl,
+                FacebookUrl = String.IsNullOrEmpty(c.FacebookUrl) ? "https://fr-fr.facebook.com/Linstantencommun/" : c.FacebookUrl,
+                InstagramUrl = String.IsNullOrEmpty(c.InstagramUrl) ? "https://www.instagram.com/instantencommun/" : c.InstagramUrl,
                 Creator = c.InstagramUrl
             };
             return info;
@@ -263,15 +236,30 @@ namespace LIEC_Website.Controllers
 
         public ContentModel InfoLiecViewmodelToContentModel(InfoLiecViewModel c)
         {
-            var content = new ContentModel
+            //var content = new ContentModel();
+            //content.Context = c.Context;
+            //content.CreationDate = c.CreationDate == null ? DateTime.Now : DateTime.Parse(c.CreationDate);
+            //content.ModificationDate = c.ModificationDate == null ? DateTime.Now : DateTime.Parse(c.ModificationDate);
+            //content.Sources = c.Sources;
+            //content.Tags = c.Tags;
+            //content.Theme = String.IsNullOrEmpty(c.Theme) ? (Themes?)null : Enum.Parse<Themes>(c.Theme);
+            //content.Title = c.Title;
+            //content.Text = c.Text;
+            //content.ImagePath = c.Image;
+            //content.Creator = c.Creator;
+            //content.TwitterUrl = c.TwitterUrl;
+            //content.InstagramUrl = c.InstagramUrl;
+            //content.FacebookUrl = c.FacebookUrl;
+
+            var content = new ContentModel()
             {
                 Context = c.Context,
-                CreationDate = DateTime.Parse(c.CreationDate),
-                ModificationDate = DateTime.Parse(c.ModificationDate),
+                CreationDate = c.CreationDate == null ? DateTime.Now : DateTime.Parse(c.CreationDate),
+                ModificationDate = c.ModificationDate == null ? DateTime.Now : DateTime.Parse(c.ModificationDate),
                 Sources = c.Sources,
                 Tags = c.Tags,
-                Theme = Enum.Parse<Themes>(c.Theme),
-                Title = c.Title,
+                Theme = String.IsNullOrEmpty(c.Theme) ? (Themes?)null : Enum.Parse<Themes>(c.Theme),
+            Title = c.Title,
                 Text = c.Text,
                 ImagePath = c.Image,
                 Creator = c.Creator,
@@ -291,33 +279,6 @@ namespace LIEC_Website.Controllers
                 vmList.Add(info);
             }
             return vmList;
-        }
-
-        public async Task CreateRandomData()
-        {
-            foreach (var info in _info)
-            {
-                // System.IO.FileStream fS = new System.IO.FileStream(Path.Combine(_hostingEnvironment.WebRootPath, info.Image), System.IO.FileMode.Open, System.IO.FileAccess.Read);
-                // byte[] b = new byte[fS.Length];
-                // fS.Read(b, 0, (int)fS.Length);
-                // fS.Close();
-                var content = new ContentModel()
-                {
-                    Title = info.Title,
-                    Context = info.Context,
-                    Sources = info.Sources,
-                    CreationDate = DateTime.Parse(info.CreationDate),
-                    ModificationDate = DateTime.Parse(info.CreationDate),
-                    Creator = "Blust",
-                    Media = Media.image,
-                    Tags = info.Tags,
-                    Theme = Enum.Parse<Themes>(info.Theme),
-                    ImagePath = info.Image,
-                    Text = info.Text
-                };
-
-                await MongoDbContext.Content_Create(content);
-            }
         }
     }
 }
