@@ -254,8 +254,8 @@ namespace LIEC_Website.Controllers
             var content = new ContentModel()
             {
                 Context = c.Context,
-                CreationDate = c.CreationDate == null ? DateTime.Now : DateTime.Parse(c.CreationDate),
-                ModificationDate = c.ModificationDate == null ? DateTime.Now : DateTime.Parse(c.ModificationDate),
+                CreationDate = String.IsNullOrEmpty(c.CreationDate) ? DateTime.Now : DateTime.Parse(c.CreationDate),
+                ModificationDate = String.IsNullOrEmpty(c.ModificationDate) ? DateTime.Now : DateTime.Parse(c.ModificationDate),
                 Sources = c.Sources,
                 Tags = c.Tags,
                 Theme = String.IsNullOrEmpty(c.Theme) ? (Themes?)null : Enum.Parse<Themes>(c.Theme),
