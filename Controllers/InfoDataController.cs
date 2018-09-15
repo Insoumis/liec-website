@@ -244,6 +244,7 @@ namespace LIEC_Website.Controllers
                 Context = c.Context,
                 DarkTheme = c.GetTheme().DarkColorCode,
                 CreationDate = c.CreationDate.ToShortDateString(),
+                ModificationDate = c.ModificationDate.ToShortDateString(),
                 LightTheme = c.GetTheme().LightColorCode,
                 NormalTheme = c.GetTheme().NormalColorCode,
                 Sources = c.Sources,
@@ -266,6 +267,7 @@ namespace LIEC_Website.Controllers
             {
                 Context = c.Context,
                 CreationDate = DateTime.Parse(c.CreationDate),
+                ModificationDate = DateTime.Parse(c.ModificationDate),
                 Sources = c.Sources,
                 Tags = c.Tags,
                 Theme = Enum.Parse<Themes>(c.Theme),

@@ -12,7 +12,7 @@ namespace LIEC_Website.Model
         public virtual ObjectId Id { get; set; }
         public string Title { get; set; }
         public Media Media { get; set; }
-        public string ImagePath {get; set;}
+        public string ImagePath { get; set; }
         public string VideoPath { get; set; }
         public string Context { get; set; }
         public string Text { get; set; }
@@ -21,7 +21,9 @@ namespace LIEC_Website.Model
         public string FacebookUrl { get; set; }
         public string[] Sources { get; set; }
         public string[] Tags { get; set; }
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime CreationDate { get; set; }
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime ModificationDate { get; set; }
         public string Creator { get; set; }
         public Themes Theme { get; set; }

@@ -102,6 +102,7 @@ namespace LIEC_Website.Data
         public static async Task<ContentModel> Content_Get(ObjectId id)
         {
             var content = await _contentDataCollectionQueryable.FirstOrDefaultAsync(x => x.Id == id);
+            content.CreationDate = content.CreationDate.ToUniversalTime();
             return content;
         }
 
@@ -135,7 +136,6 @@ namespace LIEC_Website.Data
 
         public static async Task<ReplaceOneResult> Content_Update(ContentModel data)
         {
-            data.ModificationDate = DateTime.Now;
             var result = await _contentDataCollection.ReplaceOneAsync(x => x.Id == data.Id, data);
             return result;
         }

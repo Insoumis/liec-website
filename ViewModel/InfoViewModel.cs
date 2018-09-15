@@ -15,6 +15,7 @@ namespace LIEC_Website.ViewModel
         public string NormalTheme { get; set; }
         public string DarkTheme { get; set; }
         public string CreationDate { get; set; }
+        public string ModificationDate { get; set; }
         public string Theme { get; set; }
         public string TwitterUrl { get; set; }
         public string InstagramUrl { get; set; }
