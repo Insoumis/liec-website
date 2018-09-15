@@ -77,13 +77,11 @@
     cursor: pointer;
 }
 
-.draft .dropbox .input-file {
+.draft .input-file {
     opacity: 0;
     /* invisible but it's there! */
     position: absolute;
     cursor: pointer;
-    min-height: 180px;
-    width : calc(100% - 90px);
 }
 
 .draft .dropbox:hover {

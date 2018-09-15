@@ -91,10 +91,6 @@ namespace LIEC_Website.Controllers
             {
                 content.Tags[i] = content.Tags[i].ToLower();
             }
-            for (int i = 0; i < content.Sources.Length; i++)
-            {
-                content.Sources[i] = content.Sources[i].ToLower();
-            }
 
             if (!dir.Exists)
             {
