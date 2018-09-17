@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LIEC_Website.Data;
+using LIEC_Website.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace LIEC_Website
 {
@@ -25,6 +22,13 @@ namespace LIEC_Website
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddIdentityWithMongoStores(Configuration.GetConnectionString("MongoDB") + "/users")
+                .AddDefaultTokenProviders();
+
+            // Add application services.
+            services.AddTransient<IEmailSender, EmailSender>();
+
             MongoDbContext.Configure(Configuration.GetConnectionString("MongoDB"));
         }
 
@@ -45,6 +49,7 @@ namespace LIEC_Website
             }
 
             app.UseStaticFiles();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
