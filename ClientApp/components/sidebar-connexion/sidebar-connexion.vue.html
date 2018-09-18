@@ -4,7 +4,7 @@
         <div class="left">
             <h1>CONNEXION</h1>
 
-            <form class="row" v-on:submit.prevent="handleSubmitToLogin" method="post">
+            <form id="login-form" class="row" v-on:submit.prevent="handleSubmitToLogin" method="post">
                 <div class="col-sm-12">
                     <div class="col-sm-4">
                         <div class="header">E-mail</div>
@@ -37,7 +37,7 @@
         </div>
         <div class="right">
             <h1>INSCRIPTION</h1>
-            <form class="row" v-on:submit.prevent="handleSubmitToRegister" method="post">
+            <form id="register-form" class="row" v-on:submit.prevent="handleSubmitToRegister" method="post">
                 <div class="col-sm-12">
                     <div class="col-sm-4">
                         <div class="header">E-mail</div>
