@@ -7,7 +7,6 @@ interface RegisterViewModel {
     email: string;
     password: string;
     confirmPassword: string;
-    __RequestVerificationToken:string;
 }
 
 @Component
@@ -16,7 +15,6 @@ export default class ConnexionComponent extends Vue {
         email: "",
         password: "",
         confirmPassword: "",
-        __RequestVerificationToken : ""
     }
     isDisplayed: string = "none";
     GDPRConsent: boolean = false;
@@ -54,8 +52,6 @@ export default class ConnexionComponent extends Vue {
         var token = $('input[name="__RequestVerificationToken"]', form).val() as string;
         token = $('input[name="__RequestVerificationToken"]').val() as string;
 
-        this.register.__RequestVerificationToken = token;
-
         console.log("create user");
         console.log(this.register.email);
         console.log(this.register.password);
@@ -65,7 +61,8 @@ export default class ConnexionComponent extends Vue {
         fetch(baseUri, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'RequestVerificationToken' : token
             },
             body: JSON.stringify(this.register)
         }).then(response => {

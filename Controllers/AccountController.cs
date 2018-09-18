@@ -239,8 +239,22 @@ namespace LIEC_Website.Controllers
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            // If we got this far, something failed
+            var modelErrors = new List<string>();
+            foreach (var modelState in ModelState.Values)
+            {
+                foreach (var modelError in modelState.Errors)
+                {
+                    modelErrors.Add(modelError.ErrorMessage);
+                }
+            }
+
+            string actionName = this.ControllerContext.RouteData.Values["action"].ToString();
+            string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+
+            _logger.LogError($"AccountController > Errors occured : {String.Join(",", modelErrors)}");
+            HttpContext.Response.StatusCode = 400;
+            return Json(ModelState);
         }
 
         [HttpPost("[action]")]
