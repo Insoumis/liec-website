@@ -26,12 +26,12 @@
             </form>
             <center v-if="isLoginSuccessDisplayed">
                 <h4 class="success">
-                    Votre inscription a été succès !<br /> Merci de votre inscription !
+                    Vous êtes désormais logués !
                 </h4>
             </center>
             <center v-if="isSubmitLoginError()">
-                <h4 class="error">
-                    {{submitError}}
+                <h4 class="error" id="submitLoginError">
+                    <!-- To be filled with Jquery-->
                 </h4>
             </center>
         </div>
@@ -67,14 +67,14 @@
                     </center>
                 </div>
             </form>
-            <center v-if="isSuccessDisplayed">
+            <center v-if="isRegisterSuccessDisplayed">
                 <h4 class="success">
                     Votre inscription a été succès !<br /> Merci de votre inscription !
                 </h4>
             </center>
             <center v-if="isSubmitRegisterError()">
-                <h4 class="error">
-                    {{submitError}}
+                <h4 class="error" id="submitRegisterError">
+                    <!-- To be filled with Jquery-->
                 </h4>
             </center>
         </div>

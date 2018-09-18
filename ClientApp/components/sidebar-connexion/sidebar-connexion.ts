@@ -29,11 +29,11 @@ export default class ConnexionComponent extends Vue {
     }
 
     isSubmitRegisterError() {
-        return this.submitRegisterError !== "";
+        return !this.isRegisterSuccessDisplayed;
     }
 
     isSubmitLoginError() {
-        return this.submitLoginError !== "";
+        return !this.isLoginSuccessDisplayed;
     }
 
     onOpenConnexion() {
@@ -62,12 +62,34 @@ export default class ConnexionComponent extends Vue {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                'RequestVerificationToken' : token
+                'RequestVerificationToken': token
             },
             body: JSON.stringify(this.register)
         }).then(response => {
+
+            if (!response.ok) {
+                response.json().then(json => json as Promise<string[]>)
+                    .then(datas => {
+                        debugger;
+
+                        var errors = "<ul>";
+                        datas.forEach((error, index, array) => {
+                            errors+="<li>" + error + "</li>"
+                        });
+                        errors += "</ul>";
+
+                        var errorMessage = "¯\\_(ツ)_/¯ Mince ! Une ou plusieurs erreures sont survenues : ";
+                        $("#submitRegisterError").append(this.isRegisterSuccessDisplayed ? "" : errorMessage + errors + "( ͡° ͜ʖ ͡°)");
+                    });
+            }
+            else {
+                response.json().then(json => json as Promise<string>)
+                    .then(data => {
+                        debugger;
+                    });
+            }
+
             this.isRegisterSuccessDisplayed = response.ok ? true : false;
-            this.submitRegisterError = response.ok ? "" : "¯\\_(ツ)_/¯ Mince ! Une erreur est survenue ! Vérifies tes champs, une erreur doit-s'y être cachée. ( ͡° ͜ʖ ͡°)"
             console.log(response.statusText);
             console.log(response.status);
         })
@@ -81,7 +103,7 @@ export default class ConnexionComponent extends Vue {
         e.preventDefault();
         var baseUri = "/api/Account/Login";
         var form = $('#login-form');
-        var token = $('input[name="__RequestVerificationToken"]', form).val() as string;
+        var token = $('input[name="__RequestVerificationToken"]').val() as string;
 
         console.log("log user in");
         console.log(this.register.email);
@@ -91,12 +113,34 @@ export default class ConnexionComponent extends Vue {
         fetch(baseUri, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'RequestVerificationToken': token
             },
             body: JSON.stringify(this.register)
         }).then(response => {
+            if (!response.ok) {
+                response.json().then(json => json as Promise<string[]>)
+                    .then(datas => {
+                        debugger;
+
+                        var errors = "<ul>";
+                        datas.forEach((error, index, array) => {
+                            errors += "<li>" + error + "</li>"
+                        });
+                        errors += "</ul>";
+
+                        var errorMessage = "¯\\_(ツ)_/¯ Mince ! Une ou plusieurs erreures sont survenues : ";
+                        $("#submitLoginError").append(this.isLoginSuccessDisplayed ? "" : errorMessage + errors + "( ͡° ͜ʖ ͡°)");
+                    });
+            }
+            else {
+                response.json().then(json => json as Promise<string>)
+                    .then(data => {
+                        debugger;
+                    });
+            }
+
             this.isLoginSuccessDisplayed = response.ok ? true : false;
-            this.submitLoginError = response.ok ? "" : "¯\\_(ツ)_/¯ Mince ! Une erreur est survenue ! Vérifies tes champs, une erreur doit-s'y être cachée. ( ͡° ͜ʖ ͡°)"
             console.log(response.statusText);
             console.log(response.status);
         })
