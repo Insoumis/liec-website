@@ -53,7 +53,11 @@ body{
   z-index: 2;
 }
 
-.home .cover-index:hover .tail {
+.home .cover-index .back-cover{
+  display: none;
+}
+
+.home .cover-index:hover .back-cover {
   position: relative;
   background-color: rgba(0, 0, 0, .8);
   display: table;

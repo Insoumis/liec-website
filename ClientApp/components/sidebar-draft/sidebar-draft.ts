@@ -21,8 +21,8 @@ export default class SearchComponent extends Vue {
     this.isDisplayed = "none";
   }
 
-  connectOrSubscribe() {
-    eventHub.$emit("onOpenConnexion");
+  openLogin() {
+    window.open("/login","_self");
   }
   
   openDraft() {

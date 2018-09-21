@@ -7,7 +7,7 @@
             <div class="loader">Chargement des instants en commun...</div>
             <div v-for="info in infos" class="cover-index">
                 <img v-bind:src="info.image" v-bind:alt="info.title" />
-                <div class="tail" v-bind:title="info.title">
+                <div class="back-cover" v-bind:title="info.title">
                     <div style="vertical-align: middle;  display: table-cell;">
                         <p>
                             {{ info.context }}
