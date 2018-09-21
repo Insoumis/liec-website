@@ -19,7 +19,7 @@ export default class TopBarComponent extends Vue {
 
   onShowTopBar() {
     console.log("show");
-    if ($(".top-nav").css("display") == "none") {
+    if ($(".top-nav").css("display") == "none" &&  !($(window)!.scrollTop() || 0 > 0)) {
       $(".top-nav").fadeIn();
     }
   }
