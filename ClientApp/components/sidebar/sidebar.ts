@@ -126,7 +126,8 @@ export default class SidebarComponent extends Vue {
     eventHub.$emit("onCloseSearch");
     eventHub.$emit("onCloseDraft");
     eventHub.$emit("onModalClose");
-    this.onCloseSidePanelBackground();
+    this.onCloseSidePanelBackground();         
+    eventHub.$emit("showTopBar");
   }
-  
+
 }
