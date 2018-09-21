@@ -21,6 +21,16 @@ Beige : #FFE0B5
     margin-bottom: 20px;
 }
 
+.main-nav .side-panel-background {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .8);
+    display: none;
+}
+
 /* Utilities Buttons*/
 
 .utilities-menu li:hover, .main-nav .navbar-nav div li.active {
@@ -142,6 +152,7 @@ Beige : #FFE0B5
         height: 100%;
         display: flex;
         flex-flow: column nowrap;
+        z-index: 4;
     }
     .main-nav .small_label {
         display: none;

@@ -160,17 +160,6 @@ body{
   background-color: #FFE0B5;
 }
 
-.home .side-panel-background {
-  width: 100%;
-  height: 100%;
-  z-index: 3;
-  position: fixed;
-  top: 0;
-  left:0;
-  background-color: rgba(0, 0, 0, .8);
-  display : none;
-}
-
 .main-container{
   width: calc(100% - 100px);
   margin-left: 100px;

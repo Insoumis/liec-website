@@ -37,8 +37,6 @@ export default class HomeComponent extends Vue {
   mounted() {
     window.onscroll = this.handleScroll;
     eventHub.$on("updateInfo", this.onUpdateInfo);
-    eventHub.$on("openSidePanelBackground", this.onOpenSidePanelBackground);
-    eventHub.$on("closeSidePanelBackground", this.onCloseSidePanelBackground);
     eventHub.$emit("updateInfo");
   }
 
@@ -113,26 +111,5 @@ export default class HomeComponent extends Vue {
   scrollToTop() {
     $(".scrollToTop").fadeOut();
     window.scrollTo(0, 0);
-  }
-
-  onOpenSidePanelBackground() {
-    //console.log("Switching background..." + $(".side-panel-background").css("display"));
-    if ($(".side-panel-background").css("display") == "none") {
-      $(".side-panel-background").fadeIn();
-    }
-  }
-
-  onCloseSidePanelBackground() {
-    //console.log("Switching background..." + $(".side-panel-background").css("display"));
-    if ($(".side-panel-background").css("display") == "block") {
-      $(".side-panel-background").fadeOut();
-    }
-  }
-
-  closePanel() {
-    eventHub.$emit("onCloseSearch");
-    eventHub.$emit("onCloseDraft");
-    eventHub.$emit("onModalClose");
-    this.onCloseSidePanelBackground();
   }
 }

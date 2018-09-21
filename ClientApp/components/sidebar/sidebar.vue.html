@@ -9,14 +9,14 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">
-                    <img src="content\logo-vert-1.png" alt="Logo"></img>
+                    <img src="content\logo-vert-1.png" alt="Logo"/>
                 </a>                
                 <div class="small_label"> L'instant en commun</div>
             </div>
             <div class="clearfix"></div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <div class="utilities-menu">
+                    <div class="utilities-menu" v-on:click="toggleSidePanelBackground()" >
                         <li v-on:click="openSearch()"
                             v-bind:class="{active: isSearchActive}">
                             <router-link to="/" :exact="true">
@@ -71,7 +71,8 @@
             <search-component />
             <draft-component />
             <connexion-component />
-        </div>
+        </div>        
+        <div class="side-panel-background" v-on:click="closePanel()"></div>
     </div>
 </template>
 

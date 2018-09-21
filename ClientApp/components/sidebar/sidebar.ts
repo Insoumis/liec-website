@@ -17,6 +17,9 @@ export default class SidebarComponent extends Vue {
   mounted() {
     eventHub.$on("onModalClose", this.hideButtonHover);
     eventHub.$on("onCloseToggle", this.closeToggle);
+    
+    eventHub.$on("openSidePanelBackground", this.onOpenSidePanelBackground);
+    eventHub.$on("closeSidePanelBackground", this.onCloseSidePanelBackground);
   }
 
   closeToggle() {
@@ -26,21 +29,29 @@ export default class SidebarComponent extends Vue {
     }
   }
 
+  toggleSidePanelBackground(){
+    if ($(".search").css("display") == "none" || $(".sidebar-draft").css("display") == "none")
+     {      
+      eventHub.$emit("openSidePanelBackground");      
+      eventHub.$emit("hideTopBar");
+    }
+    else {      
+      eventHub.$emit("closeSidePanelBackground");      
+      eventHub.$emit("showTopBar");
+    }
+  }
+
   openSearch() {
     eventHub.$emit("onCloseDraft");
     eventHub.$emit("onCloseToggle");
     if ($(".search").css("display") == "none") {
       eventHub.$emit("onOpenSearch");
-      eventHub.$emit("openSidePanelBackground");
-      eventHub.$emit("hideTopBar");
       this.isSearchActive = true;
       this.isDraftActive = false;
       this.isAboutActive = false;
       this.isRssActive = false;
     } else {
       eventHub.$emit("onCloseSearch");
-      eventHub.$emit("closeSidePanelBackground");
-      eventHub.$emit("showTopBar");
       this.isSearchActive = false;
     }
   }
@@ -50,16 +61,12 @@ export default class SidebarComponent extends Vue {
     eventHub.$emit("onCloseSearch");
     if ($(".sidebar-draft").css("display") == "none") {
       eventHub.$emit("openDraft");
-      eventHub.$emit("openSidePanelBackground");
-      eventHub.$emit("hideTopBar");
       this.isDraftActive = true;
       this.isSearchActive = false;
       this.isAboutActive = false;
       this.isRssActive = false;
     } else {
       eventHub.$emit("onCloseDraft");
-      eventHub.$emit("closeSidePanelBackground");
-      eventHub.$emit("showTopBar");
       this.isDraftActive = false;
     }
   }
@@ -100,4 +107,26 @@ export default class SidebarComponent extends Vue {
     this.isDraftActive = false;
     this.isSearchActive = false;
   }
+
+  onOpenSidePanelBackground() {
+    //console.log("Switching background..." + $(".side-panel-background").css("display"));
+    if ($(".side-panel-background").css("display") == "none") {
+      $(".side-panel-background").fadeIn();
+    }
+  }
+
+  onCloseSidePanelBackground() {
+    //console.log("Switching background..." + $(".side-panel-background").css("display"));
+    if ($(".side-panel-background").css("display") == "block") {
+      $(".side-panel-background").fadeOut();
+    }
+  }
+
+  closePanel() {
+    eventHub.$emit("onCloseSearch");
+    eventHub.$emit("onCloseDraft");
+    eventHub.$emit("onModalClose");
+    this.onCloseSidePanelBackground();
+  }
+  
 }
