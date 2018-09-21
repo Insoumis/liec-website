@@ -1,15 +1,19 @@
 .connexion {
-    height: 100%;
-    width: 100%;
-    background-color: #636363;
+    height: 100vh;
+    width: 100vw;
+    background-color: #adadad;
     position: fixed;
     top: 0;
     left: 0;
-    display: none;
-    z-index: 2000;
+    z-index: 10000;
     font-family: 'Roboto', sans-serif;
+    transition: 0.3s all;
 }
 
+.connexion.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
 .connexion #modalcross {
     position: absolute;
     right: 10px;
@@ -17,28 +21,32 @@
     color: #fff;
 }
 
-.connexion #modalcross:hover {
-    cursor: pointer;
+.connexion h1{
+    font-size: 72px;    
+    font-weight: 900;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    margin: 0 0 20px;
 }
 
-.connexion h1{
-    font-size: 70px;    
-    padding-left: 140px;
-    font-weight: 900;
+.connexion .right h1{
+    text-align: right;
 }
 
 .connexion .left {
-    background-color: #636363;
+    background-color: #ADADAD;
     width: 50%;
-    height: 100%;
+    height: 100vh;
     float: left;
+    transition: 0.3s all;
 }
 
 .connexion .right {
-    background-color: #636363;
+    background-color: #ADADAD;
     width: 50%;
     height: 100%;
-    float: left;
+    float: right;
+    transition: 0.3s all;
 }
 
 .connexion .left:hover {
@@ -53,16 +61,32 @@
 
 .connexion .gradient {
     width: 100%;
-    height: 90px;
+    height: 45px;
     background: linear-gradient(to right, #8A6552, #FFE0B5);
     box-shadow: 0px 1px 10px #555;
     position: fixed;
-    top: 90.5%;
+    bottom: 0;
     left: 0;
 }
 
 .connexion .logo {
+    height:300px;
+    width: 300px;
     position: fixed;
-    top: 59.5%;
-    left: 42%;
+    bottom: 0;
+    left: calc(50% - 150px);
+    z-index: 10;
+    
+}
+
+.right form{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+
+}
+
+.form div{
+    display: flex;
+    flex-flow: row nowrap;
 }

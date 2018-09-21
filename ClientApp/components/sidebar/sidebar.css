@@ -34,7 +34,7 @@ Beige : #FFE0B5
 }
 
 .social-network li:hover:first-of-type::after {
-    background: #FFE0B5;
+    background: #6FAAED;
 }
 
 .social-network li:hover:nth-of-type(2) {
@@ -42,7 +42,7 @@ Beige : #FFE0B5
 }
 
 .social-network li:hover:nth-of-type(2)::after {
-    background: #FFE0B5;
+    background: #D9483B;
 }
 
 .social-network li:hover:nth-of-type(3) {
@@ -50,7 +50,7 @@ Beige : #FFE0B5
 }
 
 .social-network li:hover:nth-of-type(3)::after {
-    background: #FFE0B5;
+    background: #4575B5;
 }
 
 .social-network li:hover:nth-of-type(4) {
@@ -58,7 +58,7 @@ Beige : #FFE0B5
 }
 
 .social-network li:hover:nth-of-type(4)::after {
-    background: #FFE0B5;
+    background: #705242;
 }
 
 .social-network li:hover:nth-of-type(5) {
@@ -203,7 +203,7 @@ Beige : #FFE0B5
         display: block;
         height: 100px;
         width: 40px;
-        background: #FFE0B5;
+        background: #705242;
         position: relative;
         top: 0;
         right: -13px;

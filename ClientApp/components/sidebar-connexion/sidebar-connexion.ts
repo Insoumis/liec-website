@@ -16,7 +16,8 @@ export default class ConnexionComponent extends Vue {
         password: "",
         confirmPassword: "",
     }
-    isDisplayed: string = "none";
+    isDisplayed: string = "block";
+    isSubmitDisplayed: string= "block";
     GDPRConsent: boolean = false;
     isRegisterSuccessDisplayed: boolean = false;
     isLoginSuccessDisplayed: boolean = false;

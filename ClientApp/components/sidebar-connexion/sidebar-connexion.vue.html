@@ -1,10 +1,9 @@
 <template>
-    <div class="connexion row" v-bind:style="{display : isDisplayed}">
-        <span id="modalcross" class="glyphicon glyphicon-remove" v-on:click="closeConnexion()" style="font-size: 40px"></span>
+    <div class="connexion row">
         <div class="left">
             <h1>CONNEXION</h1>
 
-            <form id="login-form" class="row" v-on:submit.prevent="handleSubmitToLogin" method="post">
+            <form id="login-form" v-on:submit.prevent="handleSubmitToLogin" method="post">
                 <div class="col-sm-12">
                     <div class="col-sm-4">
                         <div class="header">E-mail</div>
@@ -15,7 +14,7 @@
                     <div class="col-sm-4">
                         <div class="header">Mot de passe</div>
                         <input class="col-sm-12" type="password" v-model="register.password" />
-                        <p><i>Ton mot de passe (plus de 8 caractères).</i></p>
+                        <p><i>Ton mot de passe (plus de 8 caractÃ¨res).</i></p>
                     </div>
                 </div>
                 <div class="">
@@ -26,7 +25,7 @@
             </form>
             <center v-if="isLoginSuccessDisplayed">
                 <h4 class="success">
-                    Vous êtes désormais logués !
+                    Yeah! zetes en ligne !
                 </h4>
             </center>
             <center v-if="isSubmitLoginError()">
@@ -37,39 +36,31 @@
         </div>
         <div class="right">
             <h1>INSCRIPTION</h1>
-            <form id="register-form" class="row" v-on:submit.prevent="handleSubmitToRegister" method="post">
-                <div class="col-sm-12">
-                    <div class="col-sm-4">
-                        <div class="header">E-mail</div>
-                        <input class="col-sm-12" type="text" v-model="register.email" />
-                        <p><i>Ton addresse e-mail.</i></p>
+            <form id="register-form" v-on:submit.prevent="handleSubmitToRegister" method="post">
+                    <div>
+                        <label for="mail">E-mail</label>
+                        <input id="mail" class="col-sm-12" type="text" v-model="register.email" placeholder="E-mail" />
                     </div>
 
-                    <div class="col-sm-4">
-                        <div class="header">Mot de passe</div>
-                        <input class="col-sm-12" type="password" v-model="register.password" />
-                        <p><i>Ton mot de passe (plus de 8 caractères).</i></p>
+                    <div>
+                        <label for="password">Mot de passe</label>
+                        <input id="password" class="col-sm-12" type="password" v-model="register.password" />
                     </div>
-                    <div class="col-sm-4">
-                        <div class="header">Confirmation du mot de passe</div>
-                        <input class="col-sm-12" type="password" v-model="register.confirmPassword" />
-                        <p><i>Confirmes ton mot de passe.</i></p>
+                    <div>
+                        <label for="password-confirm">Confirmation du mot de passe</label>
+                        <input id="password-confirm" class="col-sm-12" type="password" v-model="register.confirmPassword" />
                     </div>
-                    <div class="col-sm-4">
+                    <div>
                         <div class="header">GDPR</div>
                         <input class="col-sm-12" type="checkbox" v-model="GDPRConsent" style="display:block" />
-                        <p><i>Blabla GDPR à consentir.</i></p>
                     </div>
-                </div>
-                <div class="">
-                    <center>
-                        <button v-bind:style="{display : isSubmitDisplayed}" class="btn-submit" type="submit">S'inscrire</button>
-                    </center>
-                </div>
+                    <div>
+                        <button class="btn-submit" type="submit">S'inscrire</button>
+                    </div>
             </form>
             <center v-if="isRegisterSuccessDisplayed">
                 <h4 class="success">
-                    Votre inscription a été succès !<br /> Merci de votre inscription !
+                    Votre inscription a ï¿½tï¿½ succï¿½s !<br /> Merci de votre inscription !
                 </h4>
             </center>
             <center v-if="isSubmitRegisterError()">
