@@ -4,24 +4,16 @@
             <h1>CONNEXION</h1>
 
             <form id="login-form" v-on:submit.prevent="handleSubmitToLogin" method="post">
-                <div class="col-sm-12">
-                    <div class="col-sm-4">
-                        <div class="header">E-mail</div>
-                        <input class="col-sm-12" type="text" v-model="register.email" />
-                        <p><i>Ton addresse e-mail.</i></p>
+                    <div>
+                        <input type="text" v-model="register.email" placeholder="Adresse mail" />
                     </div>
 
-                    <div class="col-sm-4">
-                        <div class="header">Mot de passe</div>
-                        <input class="col-sm-12" type="password" v-model="register.password" />
-                        <p><i>Ton mot de passe (plus de 8 caractères).</i></p>
+                    <div>
+                        <input type="password" v-model="register.password" placeholder="Mot de Passe"/>
                     </div>
-                </div>
-                <div class="">
                     <center>
                         <button v-bind:style="{display : isSubmitDisplayed}" class="btn-submit" type="submit">Se connecter</button>
                     </center>
-                </div>
             </form>
             <center v-if="isLoginSuccessDisplayed">
                 <h4 class="success">
@@ -38,21 +30,19 @@
             <h1>INSCRIPTION</h1>
             <form id="register-form" v-on:submit.prevent="handleSubmitToRegister" method="post">
                     <div>
-                        <label for="mail">E-mail</label>
-                        <input id="mail" class="col-sm-12" type="text" v-model="register.email" placeholder="E-mail" />
+                        <input id="mail" type="text" v-model="register.email" placeholder="E-mail" />
                     </div>
 
                     <div>
-                        <label for="password">Mot de passe</label>
-                        <input id="password" class="col-sm-12" type="password" v-model="register.password" />
+                        <input id="password" type="password" v-model="register.password" placeholder="Mot de Passe" />
                     </div>
                     <div>
-                        <label for="password-confirm">Confirmation du mot de passe</label>
-                        <input id="password-confirm" class="col-sm-12" type="password" v-model="register.confirmPassword" />
+                        <input id="password-confirm" type="password" v-model="register.confirmPassword" placeholder="Confirmation Mot de Passe" />
                     </div>
                     <div>
-                        <div class="header">GDPR</div>
-                        <input class="col-sm-12" type="checkbox" v-model="GDPRConsent" style="display:block" />
+                        
+                        <input type="checkbox" v-model="GDPRConsent" id="rgpd" style="display:block"/>
+                        <label for="rgpd"> Vous consentez GPDR blabla </label>
                     </div>
                     <div>
                         <button class="btn-submit" type="submit">S'inscrire</button>
