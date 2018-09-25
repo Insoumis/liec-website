@@ -11,8 +11,8 @@ namespace LIEC_Website.Services
     {
         public static Task SendEmailConfirmationAsync(this IEmailSender emailSender, string email, string link)
         {
-            return emailSender.SendEmailAsync(email, "Confirm your email",
-                $"Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>");
+            return emailSender.SendEmailAsync(email, "Merci de confirmer ton email",
+                $"Merci de t'être inscrit sur L'instant en commun. Pour confirmer ton compte, cliques sur le lien suivant : <a href='{HtmlEncoder.Default.Encode(link)}'>activer son compte</a>");
         }
     }
 }
