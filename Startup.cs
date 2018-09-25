@@ -36,27 +36,27 @@ namespace LIEC_Website
             services.AddTransient<IEmailSender, EmailSender>();
 
             // Add external authentification (google, facebook...)
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(o => o.LoginPath = new PathString("/login"))
-                .AddFacebook(o =>
-                {
-                    o.AppId = Configuration["facebook:appid"];
-                    o.AppSecret = Configuration["facebook:appsecret"];
-                })
-                .AddGoogle(o =>
-                {
-                    o.ClientId = "YOUR_CLIENT_ID";
-                    o.ClientSecret = "YOUR_CLIENT_SECRET";
-                    //o.CallbackPath = new PathString("/signin-google");
-                    //o.SignInScheme = "ExternalCookie";
-                })
-                .AddTwitter(o =>
-                {
-                    o.ConsumerKey = "YOUR_CLIENT_ID";
-                    o.ConsumerSecret = "YOUR_CLIENT_SECRET";
-                    //o.CallbackPath = new PathString("/signin-google");
-                    //o.SignInScheme = "ExternalCookie";
-                });
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie(o => o.LoginPath = new PathString("/login"))
+            //    .AddFacebook(o =>
+            //    {
+            //        o.AppId = Configuration["facebook:appid"];
+            //        o.AppSecret = Configuration["facebook:appsecret"];
+            //    })
+            //    .AddGoogle(o =>
+            //    {
+            //        o.ClientId = "YOUR_CLIENT_ID";
+            //        o.ClientSecret = "YOUR_CLIENT_SECRET";
+            //        //o.CallbackPath = new PathString("/signin-google");
+            //        //o.SignInScheme = "ExternalCookie";
+            //    })
+            //    .AddTwitter(o =>
+            //    {
+            //        o.ConsumerKey = "YOUR_CLIENT_ID";
+            //        o.ConsumerSecret = "YOUR_CLIENT_SECRET";
+            //        //o.CallbackPath = new PathString("/signin-google");
+            //        //o.SignInScheme = "ExternalCookie";
+            //    });
 
             // Use OpenId to authenticate with Discord
             // https://kevinchalet.com/2016/07/13/creating-your-own-openid-connect-server-with-asos-introduction/
