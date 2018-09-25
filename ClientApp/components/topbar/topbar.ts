@@ -10,14 +10,16 @@ export default class TopBarComponent extends Vue {
     eventHub.$on("showTopBar", this.onShowTopBar);
   }
 
-  onHideTopBar() {
+  onHideTopBar() {    
+    console.log("hide");
     if ($(".top-nav").css("display") != "none") {
       $(".top-nav").fadeOut();
     }
   }
 
   onShowTopBar() {
-    if ($(".top-nav").css("display") == "none") {
+    console.log("show");
+    if ($(".top-nav").css("display") == "none" &&  !($(window)!.scrollTop() || 0 > 0)) {
       $(".top-nav").fadeIn();
     }
   }

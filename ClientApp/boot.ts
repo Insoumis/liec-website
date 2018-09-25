@@ -10,6 +10,7 @@ const routes = [
     { path: '/rss', component: require('./components/rss/rss.vue.html') },
     { path: '/draft', component: require('./components/draft/draft.vue.html') },
     { path: '/edit-draft', component: require('./components/edit-draft/edit-draft.vue.html') },
+    { path: '/login', component: require('./components/login/login.vue.html') }
 ];
 
 new Vue({

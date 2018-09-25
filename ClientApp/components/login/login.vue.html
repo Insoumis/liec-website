@@ -1,0 +1,68 @@
+<template>
+    <div class="connexion row">
+        <div class="left">
+            <h1>CONNEXION</h1>
+
+            <form id="login-form" v-on:submit.prevent="handleSubmitToLogin" method="post">
+                    <div>
+                        <input type="text" v-model="register.email" placeholder="Adresse mail" />
+                    </div>
+
+                    <div>
+                        <input type="password" v-model="register.password" placeholder="Mot de Passe"/>
+                    </div>
+                    <center>
+                        <button v-bind:style="{display : isSubmitDisplayed}" class="btn-submit" type="submit">Se connecter</button>
+                    </center>
+            </form>
+            <center v-if="isLoginSuccessDisplayed">
+                <h4 class="success">
+                    Yeah! zetes en ligne !
+                </h4>
+            </center>
+            <center v-if="isSubmitLoginError()">
+                <h4 class="error" id="submitLoginError">
+                    <!-- To be filled with Jquery-->
+                </h4>
+            </center>
+        </div>
+        <div class="right">
+            <h1>INSCRIPTION</h1>
+            <form id="register-form" v-on:submit.prevent="handleSubmitToRegister" method="post">
+                    <div>
+                        <input id="mail" type="text" v-model="register.email" placeholder="E-mail" />
+                    </div>
+
+                    <div>
+                        <input id="password" type="password" v-model="register.password" placeholder="Mot de Passe" />
+                    </div>
+                    <div>
+                        <input id="password-confirm" type="password" v-model="register.confirmPassword" placeholder="Confirmation Mot de Passe" />
+                    </div>
+                    <div>
+                        
+                        <input type="checkbox" v-model="GDPRConsent" id="rgpd" style="display:block"/>
+                        <label for="rgpd"> Vous consentez GPDR blabla </label>
+                    </div>
+                    <div>
+                        <button class="btn-submit" type="submit">S'inscrire</button>
+                    </div>
+            </form>
+            <center v-if="isRegisterSuccessDisplayed">
+                <h4 class="success">
+                    Votre inscription a �t� succ�s !<br /> Merci de votre inscription !
+                </h4>
+            </center>
+            <center v-if="isSubmitRegisterError()">
+                <h4 class="error" id="submitRegisterError">
+                    <!-- To be filled with Jquery-->
+                </h4>
+            </center>
+        </div>
+        <img class="logo" src="content\logo-vert-1.png" alt="Logo"></img>
+        <div class="gradient"></div>
+    </div>
+</template>
+
+<style src="./login.css" />
+<script src="./login.ts" />

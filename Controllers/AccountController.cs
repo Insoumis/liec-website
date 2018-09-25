@@ -16,7 +16,9 @@ using LIEC_Website.Services;
 
 namespace LIEC_Website.Controllers
 {
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity.MongoDB;
+    using Microsoft.AspNetCore.Mvc.Routing;
 
     [Authorize]
     [Route("api/[controller]")]
@@ -56,7 +58,7 @@ namespace LIEC_Website.Controllers
         [HttpPost("[action]")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login([FromBody]  LoginViewModel model, string returnUrl = null)
+        public async Task<JsonResult> Login([FromBody]  LoginViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -67,26 +69,42 @@ namespace LIEC_Website.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToLocal(returnUrl);
+                    return Json(Ok());
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    return RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
+                    UrlHelper url = new UrlHelper(this.ControllerContext);
+                    _logger.LogInformation("User requires two-factor.");
+                    return Json(Ok(url.Action(nameof(LoginWith2fa), new { returnUrl, model.RememberMe })));
                 }
                 if (result.IsLockedOut)
                 {
+                    UrlHelper url = new UrlHelper(this.ControllerContext);
                     _logger.LogWarning("User account locked out.");
-                    return RedirectToAction(nameof(Lockout));
+                    return Json(Ok(url.Action(nameof(Lockout))));
                 }
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
                 }
             }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            // If we got this far, something failed
+            var modelErrors = new List<string>();
+            foreach (var modelState in ModelState.Values)
+            {
+                foreach (var modelError in modelState.Errors)
+                {
+                    modelErrors.Add(modelError.ErrorMessage);
+                }
+            }
+
+            string actionName = this.ControllerContext.RouteData.Values["action"].ToString();
+            string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+
+            _logger.LogError($"AccountController > Errors occured : {String.Join(",", modelErrors)}");
+            HttpContext.Response.StatusCode = 400;
+            return Json(modelErrors);
         }
 
         [HttpGet("[action]")]
@@ -217,7 +235,7 @@ namespace LIEC_Website.Controllers
         [HttpPost("[action]")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([FromBody] RegisterViewModel model, string returnUrl = null)
+        public async Task<JsonResult> Register([FromBody] RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -232,7 +250,7 @@ namespace LIEC_Website.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    return Json(Ok(callbackUrl));
                 }
                 AddErrors(result);
             }
@@ -252,7 +270,7 @@ namespace LIEC_Website.Controllers
 
             _logger.LogError($"AccountController > Errors occured : {String.Join(",", modelErrors)}");
             HttpContext.Response.StatusCode = 400;
-            return Json(ModelState);
+            return Json(modelErrors);
         }
 
         [HttpPost("[action]")]
