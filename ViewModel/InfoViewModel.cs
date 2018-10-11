@@ -5,6 +5,7 @@ namespace LIEC_Website.ViewModel
 {
     public class InfoLiecViewModel
     {
+        public string Id { get; set; }
         public string Title { get; set; }
         public string Context { get; set; }
         public string Text { get; set; }

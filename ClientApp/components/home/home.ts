@@ -4,6 +4,7 @@ import $ from "jquery";
 import eventHub from "../eventhub/eventhub";
 
 interface InfoLiecViewModel {
+  id: string;
   title: string;
   context: string;
   text: string;
@@ -19,6 +20,7 @@ interface InfoLiecViewModel {
   twitterUrl: string;
   facebookUrl: string;
   instagramUrl: string;
+  url: string;
 }
 
 @Component({
@@ -64,7 +66,8 @@ export default class HomeComponent extends Vue {
         .then(response => response.json() as Promise<InfoLiecViewModel[]>)
         .then(datas => {
           datas.forEach(data => {
-            data.creationDate = data.creationDate.substring(0, 10);
+              data.creationDate = data.creationDate.substring(0, 10);
+              data.url = "content/" + data.id
           });
           this.infos = datas;
           $(".loader").hide();

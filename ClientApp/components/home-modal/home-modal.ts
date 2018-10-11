@@ -5,6 +5,7 @@ import eventHub from "../eventhub/eventhub";
 import { WatchOptions } from "vue/types/options";
 
 interface InfoLiecViewModel {
+    id: string;
     title: string;
     context: string;
     text: string;
@@ -22,10 +23,15 @@ interface InfoLiecViewModel {
     instagramUrl: string;
 }
 
+interface OkResult {
+    value: InfoLiecViewModel;
+}
+
 @Component
 export default class ModalComponent extends Vue {
     //contentId: string = this.$route.params.id;
     info: InfoLiecViewModel = {
+        id: "",
         title: "",
         context: "",
         text: "",
@@ -69,11 +75,11 @@ export default class ModalComponent extends Vue {
                         throw Error(response.statusText);
                     }
                 })
-                .then(response => response.json() as Promise<InfoLiecViewModel>)
+                .then(response => response.json() as Promise<OkResult>)
                 .then(data => {
                     debugger;
-                    console.log("succesfully gotten : " + data);
-                    this.openModal(data);
+                    console.log("succesfully gotten : " + data.value.id);
+                    this.openModal(data.value);
                 })
                 .catch(err => {
                     console.error("Get error : " + err);
@@ -99,6 +105,7 @@ export default class ModalComponent extends Vue {
     }
 
     openModal(infoLiec: InfoLiecViewModel) {
+        debugger;
         this.info = infoLiec;
         this.isDisplayed = "block";
         this.modalOffset = document.body.scrollTop;

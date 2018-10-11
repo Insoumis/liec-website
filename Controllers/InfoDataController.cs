@@ -93,16 +93,17 @@ namespace LIEC_Website.Controllers
         [HttpPost("[action]")]
         public async Task<JsonResult> GetContentById([FromBody] string id)
         {
-            ContentModel content = null;
+            InfoLiecViewModel info = null;
             try
             {
-                content = await MongoDbContext.Content_Get(new ObjectId(id));
+                var content = await MongoDbContext.Content_Get(new ObjectId(id));
+                info = ContentModelToInfoLiecViewmodel(content);
             }
             catch (Exception e)
             {
                 return Json(BadRequest(e));
-            }
-            return Json(Ok(content));
+            }            
+            return Json(Ok(info));
         }
 
 
@@ -230,6 +231,7 @@ namespace LIEC_Website.Controllers
         {
             var info = new InfoLiecViewModel
             {
+                Id = c.Id.ToString(),
                 Context = c.Context,
                 DarkTheme = c.GetTheme().DarkColorCode,
                 CreationDate = c.CreationDate.ToShortDateString(),
@@ -269,6 +271,7 @@ namespace LIEC_Website.Controllers
 
             var content = new ContentModel()
             {
+                Id = new ObjectId(c.Id),
                 Context = c.Context,
                 CreationDate = String.IsNullOrEmpty(c.CreationDate) ? DateTime.Now : DateTime.Parse(c.CreationDate),
                 ModificationDate = String.IsNullOrEmpty(c.ModificationDate) ? DateTime.Now : DateTime.Parse(c.ModificationDate),

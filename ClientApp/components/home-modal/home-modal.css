@@ -1,4 +1,4 @@
-.home #modalwindow {
+#modalwindow {
   height: 100%;
   width: 100%;
   background-color: #363f41;
@@ -10,7 +10,7 @@
   overflow: hidden;
 }
 
-.home #modalcross {
+#modalwindow #modalcross {
   position: absolute;
   right: 20px;
   top: 20px;
@@ -19,12 +19,12 @@
   font-size: 40px;
 }
 
-.home #modalcross:hover {
+#modalwindow #modalcross:hover {
   cursor: pointer;
   transform: rotateZ(-10deg)
 }
 
-.home .modal-container {
+#modalwindow .modal-container {
   display: flex;
   width: 90%;
   margin: 0 auto;
@@ -34,7 +34,7 @@
   height: 100vh;
 }
 
-.home .liec-modal {
+#modalwindow .liec-modal {
   width: 550px;
   height: 550px;
   background-color: #fff;
@@ -43,7 +43,7 @@
   position: relative;
 }
 
-.home .liec-modal img {
+#modalwindow .liec-modal img {
   width: 550px;
   height: 550px;
   border: 10px solid #fff;
@@ -64,7 +64,7 @@
   fill: #fff;
 }
 
-.home .liec-infos {
+#modalwindow .liec-infos {
   height: 550px;
   padding: 0px;
   color: #fff;
@@ -75,13 +75,13 @@
   max-height: 550px;
 }
 
-.home .liec-infos h2 {
+#modalwindow .liec-infos h2 {
   font-family: 'Roboto Slab', serif;
   font-size: 36px;
   font-weight: bold;
 }
 
-.home .liec-infos h3 {
+#modalwindow .liec-infos h3 {
   text-transform: uppercase;
   font-weight: 800;
   margin-bottom: 20px;
@@ -129,7 +129,7 @@
   transform: scale(0.92);
 }
 
-.home .tag {
+#modalwindow .tag {
   background-color: #363f41;
 }
 
@@ -185,22 +185,22 @@ body.modal-open {
 }
 
 @media (min-width: 279px) and (max-width: 768px) {
-  .home #modalwindow {
+  #modalwindow #modalwindow {
     width: 100%;    
     overflow-y: scroll;
     display: flex;
   }
-  .home .liec-modal {
+  #modalwindow .liec-modal {
     width: 315px;
     height: 315px;
     margin-left: 40px;    
     margin-bottom : 0px;
   }
-  .home .liec-modal img {
+  #modalwindow .liec-modal img {
     width: 310px;
     height: 310px;
   }
-  .home .modal-container {
+  #modalwindow .modal-container {
     display: flex;
     width: 90%;
     margin: auto;
@@ -216,7 +216,7 @@ body.modal-open {
     top: calc(50% - 70px);
   }
 
-  .home #modalcross {
+  #modalwindow #modalcross {
     position: absolute;
     top: 10px;
     color: #fff;
@@ -224,7 +224,7 @@ body.modal-open {
     font-size: 30px;
   }
 
-  .home .liec-infos {
+  #modalwindow .liec-infos {
     height: 550px;
     padding: 0px;
     color: #fff;
