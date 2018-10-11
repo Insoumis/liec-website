@@ -79,120 +79,123 @@
     
 }
 
-.right form, .left form{
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: flex-end;
+    .connexion .right form, .left form {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-end;
+    }
 
-}
+    .connexion .left form {
+        align-items: flex-start;
+    }
 
-.left form{
-    align-items: flex-start;
-}
+    .connexion form div {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: stretch;
+    }
 
-form div{
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: stretch;
-}
+        .connexion form div label {
+            margin: 0 20px;
+        }
 
-form div label{
-    margin: 0 20px;
-}
+        .connexion form div input {
+            width: 345px;
+            color: #D7D7D7;
+            background-color: #636363;
+            margin-bottom: 20px;
+            border: 0;
+            height: 35px;
+            padding: 0 20px;
+            transition: all .3s;
+        }
 
-form div input{
-    width: 345px;
-    color: #D7D7D7;
-    background-color: #636363; 
-    margin-bottom: 20px;
-    border: 0;
-    height: 35px;
-    padding: 0 20px;
-    transition: all .3s;
-}
+    .connexion .right form div input {
+        text-align: right;
+    }
 
-.right form div input{
-    text-align: right;
-}
+    .connexion .right:hover form div input, .right:active form div input {
+        color: #fff;
+        background-color: #F3BB6E;
+        transition: all .3s;
+    }
 
-.right:hover form div input, .right:active form div input{
-    color: #fff;
-    background-color: #F3BB6E;
-    transition: all .3s;
-}
-
-.left:hover form div input, .left:active form div input{
-    color: #fff;
-    background-color: #705242;
-    transition: all .3s;
-}
-button{
-    background: none;
-    border: none;
-    font-style: italic;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    font-size: 38px;
-    color: #fff;
-    border-bottom: 5px solid #fff;
-    margin: 0 20px;
-}
+    .connexion .left:hover form div input, .left:active form div input {
+        color: #fff;
+        background-color: #705242;
+        transition: all .3s;
+    }
+    .connexion button {
+        background: none;
+        border: none;
+        font-style: italic;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        font-size: 38px;
+        color: #fff;
+        border-bottom: 5px solid #fff;
+        margin: 0 20px;
+    }
 
 
-input[type="checkbox"]:checked, input[type="checkbox"]:not(:checked){
-    position: absolute;
-    left: -9999px;
-}
+    .connexion input[type="checkbox"]:checked, input[type="checkbox"]:not(:checked) {
+        position: absolute;
+        left: -9999px;
+    }
 
-input[type="checkbox"]:not(:checked) + label,
-input[type="checkbox"]:checked + label {
-  position: relative; /* permet de positionner les pseudo-éléments */
-  cursor: pointer;    /* affiche un curseur adapté */
-  padding-right: 15px;
-  color: #fff;
-}
+        .connexion input[type="checkbox"]:not(:checked) + label, 
+        .connexion input[type="checkbox"]:checked + label {
+            position: relative; /* permet de positionner les pseudo-éléments */
+            cursor: pointer; /* affiche un curseur adapté */
+            padding-right: 15px;
+            color: #fff;
+        }
 
 /* Aspect des checkboxes */
 /* :before sert à créer la case à cocher */
-[type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before {
-  content: '';
-  position: absolute;
-  right:-10px; top: 0px;
-  width: 20px; height: 20px; /* dim. de la case */
-  transition: all .2s; /* on prévoit une animation */
-}
+    .connexion [type="checkbox"]:not(:checked) + label:before,
+    .connexion [type="checkbox"]:checked + label:before {
+        content: '';
+        position: absolute;
+        right: -10px;
+        top: 0px;
+        width: 20px;
+        height: 20px; /* dim. de la case */
+        transition: all .2s; /* on prévoit une animation */
+    }
  
 /* Aspect général de la coche */
-[type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after {
-  content: '';
-  position: absolute;
-  width: 12px; height: 12px;
-  top: 4px; right: -6px;
-  background: #FFE0B5;
-  transition: all .2s; /* on prévoit une animation */
-}
+    .connexion [type="checkbox"]:not(:checked) + label:after,
+    .connexion [type="checkbox"]:checked + label:after {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        top: 4px;
+        right: -6px;
+        background: #FFE0B5;
+        transition: all .2s; /* on prévoit une animation */
+    }
 /* Aspect si "pas cochée" */
-[type="checkbox"]:not(:checked) + label:after {
-  opacity: 0; /* coche invisible */
-  transform: scale(0); /* mise à l'échelle à 0 */
-}
+    .connexion [type="checkbox"]:not(:checked) + label:after {
+        opacity: 0; /* coche invisible */
+        transform: scale(0); /* mise à l'échelle à 0 */
+    }
 /* Aspect si "cochée" */
-[type="checkbox"]:checked + label:after {
-  opacity: 1; /* coche opaque */
-  transform: scale(1); /* mise à l'échelle 1:1 */
-}
+    .connexion [type="checkbox"]:checked + label:after {
+        opacity: 1; /* coche opaque */
+        transform: scale(1); /* mise à l'échelle 1:1 */
+    }
 
-.right [type="checkbox"]:not(:checked) + label:before,
-.right [type="checkbox"]:checked + label:before {
-    background: #636363;
-    transition: all .2s; /* on prévoit une animation */
-}
-.right:hover [type="checkbox"]:not(:checked) + label:before,
-.right:hover [type="checkbox"]:checked + label:before,
-.right:active [type="checkbox"]:not(:checked) + label:before,
-.right:active [type="checkbox"]:checked + label:before {
-    background: #F3BB6E;
-    transition: all .2s; /* on prévoit une animation */
-}
+    .connexion .right [type="checkbox"]:not(:checked) + label:before,
+    .connexion .right [type="checkbox"]:checked + label:before {
+        background: #636363;
+        transition: all .2s; /* on prévoit une animation */
+    }
+    .connexion .right:hover [type="checkbox"]:not(:checked) + label:before,
+    .connexion .right:hover [type="checkbox"]:checked + label:before,
+    .connexion .right:active [type="checkbox"]:not(:checked) + label:before,
+    .connexion .right:active [type="checkbox"]:checked + label:before {
+        background: #F3BB6E;
+        transition: all .2s; /* on prévoit une animation */
+    }
