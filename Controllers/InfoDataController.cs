@@ -91,6 +91,22 @@ namespace LIEC_Website.Controllers
         }
 
         [HttpPost("[action]")]
+        public async Task<JsonResult> GetContentById([FromBody] string id)
+        {
+            ContentModel content = null;
+            try
+            {
+                content = await MongoDbContext.Content_Get(new ObjectId(id));
+            }
+            catch (Exception e)
+            {
+                return Json(BadRequest(e));
+            }
+            return Json(Ok(content));
+        }
+
+
+        [HttpPost("[action]")]
         public async Task<JsonResult> UploadImage()
         {
             try
