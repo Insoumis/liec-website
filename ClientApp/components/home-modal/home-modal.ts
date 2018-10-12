@@ -1,8 +1,9 @@
-﻿import Vue from "vue";
+﻿import * as Vue from "vue";
 import { Component, Watch, Prop } from "vue-property-decorator";
-import $ from "jquery";
+import * as $ from "jquery";
 import eventHub from "../eventhub/eventhub";
-import { WatchOptions } from "vue/types/options";
+//import { WatchOptions } from "vue/types/options";
+//import * as Router from 'vue-router'
 
 interface InfoLiecViewModel {
     id: string;

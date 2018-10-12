@@ -22,10 +22,6 @@ namespace LIEC_Website.Controllers
     {
         private static IHostingEnvironment _hostingEnvironment;
 
-        private static IEnumerable<InfoLiecViewModel> _info;
-
-        private static List<string> _imageSources = new List<string>();
-
         private static ILogger<InfoDataController> _logger;
 
         public InfoDataController(IHostingEnvironment hostingEnvironment, ILogger<InfoDataController> logger)
@@ -48,7 +44,7 @@ namespace LIEC_Website.Controllers
             var infos = ContentModelEnumerableToInfoLiecViewmodelEnumerable(contents);
 
             stopwatch.Stop();
-            Console.WriteLine(stopwatch.ElapsedMilliseconds);
+            _logger.LogInformation($"InfoDataController > InfoLiec : {infos.Count()} contents gotten in {stopwatch.ElapsedMilliseconds} ms");
             return infos;
         }
 
@@ -82,6 +78,50 @@ namespace LIEC_Website.Controllers
             try
             {
                 await MongoDbContext.Content_Create(content);
+            }
+            catch (Exception e)
+            {
+                return Json(BadRequest(e));
+            }
+            return Json(Ok());
+        }
+
+        [HttpPost("[action]")]
+        public async Task<JsonResult> EditContent([FromBody] InfoLiecViewModel vm)
+        {
+            var imagePath = Path.Combine(_hostingEnvironment.WebRootPath, "static/Images");
+            var content = InfoLiecViewmodelToContentModel(vm);
+            var dir = new DirectoryInfo(imagePath);
+
+            // Tags and Sources to lower
+            for (int i = 0; i < content.Tags.Length; i++)
+            {
+                content.Tags[i] = content.Tags[i].ToLower();
+            }
+
+            if (!dir.Exists)
+            {
+                dir.Create();
+            }
+
+            // Copy and delete temp image file
+            var cleanPath = content.ImagePath.Remove(0, 1);
+            var tempFilePath = Path.Combine(_hostingEnvironment.WebRootPath, cleanPath);
+            FileInfo imageFile = new FileInfo(tempFilePath);
+            var newFilePath = Path.Combine(dir.FullName, imageFile.Name);
+            imageFile.CopyTo(newFilePath);
+            content.ImagePath = newFilePath.Remove(0, _hostingEnvironment.WebRootPath.Length);
+            imageFile.Delete();
+
+            try
+            {
+                var old = await MongoDbContext.Content_Get(content.Id);
+                var diff = await MongoDbContext.Content_Update(content);
+                if (false)
+                {
+                    var oldImageFile = new FileInfo(old.ImagePath);
+                    oldImageFile.Delete();
+                }
             }
             catch (Exception e)
             {
