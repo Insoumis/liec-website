@@ -192,7 +192,7 @@ namespace LIEC_Website.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError($"InfoController > An exception occured : {e}");
+                _logger.LogError($"InfoController > UploadImage : An exception occured : {e}");
                 HttpContext.Response.StatusCode = 400;
                 return Json(e);
             }
