@@ -54,7 +54,6 @@ export default class ModalComponent extends Vue {
 
     mounted() {
         eventHub.$on("onOpenModal", this.openModal);
-        debugger;
         if (this.$route.params.id !== undefined) {
             var baseUri = "/api/InfoData/GetContentById";
             var value = this.$route.params.id;
@@ -69,7 +68,6 @@ export default class ModalComponent extends Vue {
                 body: JSON.stringify(value)
                 })
                 .then(response => {
-                    debugger;
                     if (response.ok) {
                         return response;
                     } else {
@@ -78,7 +76,6 @@ export default class ModalComponent extends Vue {
                 })
                 .then(response => response.json() as Promise<OkResult>)
                 .then(data => {
-                    debugger;
                     console.log("succesfully gotten : " + data.value.id);
                     this.openModal(data.value);
                 })

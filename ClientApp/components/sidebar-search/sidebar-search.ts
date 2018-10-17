@@ -76,7 +76,8 @@ export default class SearchComponent extends Vue {
         });
         eventHub.$emit("updateInfo", datas);
         eventHub.$emit("onCloseSearch");
-        eventHub.$emit("closeSidePanelBackground");
+          eventHub.$emit("closeSidePanelBackground");
+          eventHub.$emit("showTopBar");          
       });
   }
 }
