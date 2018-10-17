@@ -1,6 +1,6 @@
-﻿import * as Vue from "vue";
+﻿import Vue from "vue";
 import { Component, Watch, Prop } from "vue-property-decorator";
-import * as $ from "jquery";
+import $ from "jquery";
 import eventHub from "../eventhub/eventhub";
 //import { WatchOptions } from "vue/types/options";
 //import * as Router from 'vue-router'
