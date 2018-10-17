@@ -14,6 +14,7 @@ using LIEC_Website.Model;
 using MongoDB.Bson;
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LIEC_Website.Controllers
 {
@@ -87,6 +88,7 @@ namespace LIEC_Website.Controllers
         }
 
         [HttpPost("[action]")]
+        [Authorize(Roles = "Administrator")]
         public async Task<JsonResult> EditContent([FromBody] InfoLiecViewModel vm)
         {
             var imagePath = Path.Combine(_hostingEnvironment.WebRootPath, "static/Images");
@@ -125,6 +127,7 @@ namespace LIEC_Website.Controllers
             }
             catch (Exception e)
             {
+                HttpContext.Response.StatusCode = 400;
                 return Json(BadRequest(e));
             }
             return Json(Ok());

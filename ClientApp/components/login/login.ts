@@ -87,6 +87,7 @@ export default class ConnexionComponent extends Vue {
                 response.json().then(json => json as Promise<string>)
                     .then(data => {
                         debugger;
+                        this.$userIsConnected = true;
                     });
             }
 

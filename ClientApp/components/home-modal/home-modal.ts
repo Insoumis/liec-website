@@ -2,31 +2,9 @@
 import { Component, Watch, Prop } from "vue-property-decorator";
 import $ from "jquery";
 import eventHub from "../eventhub/eventhub";
+import { InfoLiecViewModel, OkResult } from "vue/types/vue";
 //import { WatchOptions } from "vue/types/options";
 //import * as Router from 'vue-router'
-
-interface InfoLiecViewModel {
-    id: string;
-    title: string;
-    context: string;
-    text: string;
-    image: string;
-    sources: string[];
-    tags: string[];
-    lightTheme: string;
-    normalTheme: string;
-    darkTheme: string;
-    creationDate: string;
-    theme: string;
-    creator: string;
-    twitterUrl: string;
-    facebookUrl: string;
-    instagramUrl: string;
-}
-
-interface OkResult {
-    value: InfoLiecViewModel;
-}
 
 @Component
 export default class ModalComponent extends Vue {
@@ -76,8 +54,9 @@ export default class ModalComponent extends Vue {
                 })
                 .then(response => response.json() as Promise<OkResult>)
                 .then(data => {
-                    console.log("succesfully gotten : " + data.value.id);
-                    this.openModal(data.value);
+                    var dataT = data.value as InfoLiecViewModel;
+                    console.log("succesfully gotten : " + dataT.id);
+                    this.openModal(dataT);
                 })
                 .catch(err => {
                     console.error("Get error : " + err);
@@ -103,7 +82,6 @@ export default class ModalComponent extends Vue {
     }
 
     openModal(infoLiec: InfoLiecViewModel) {
-        debugger;
         this.info = infoLiec;
         this.isDisplayed = "block";
         this.modalOffset = document.body.scrollTop;

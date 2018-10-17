@@ -16,6 +16,10 @@
     color : rgba(255, 224, 181, 1);
 }
 
+    .top-nav a {
+        color: rgba(255, 224, 181, 1);
+    }
+
 @media (min-width: 279px) and (max-width: 768px) {
     .navbar-header .small_label {
         margin: auto;

@@ -469,6 +469,30 @@ namespace LIEC_Website.Controllers
             return View();
         }
 
+        [HttpPost("[action]")]
+        [AllowAnonymous]
+        public async Task<JsonResult> GetUserRoles()
+        {
+            try
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    var roles = User.FindFirst(ClaimTypes.Role);
+                    return Json(Ok(roles));
+                }
+                else
+                {
+                    HttpContext.Response.StatusCode = 400;
+                    return Json(BadRequest("Not authentificated"));
+                }
+            }
+            catch (Exception e)
+            {
+                HttpContext.Response.StatusCode = 400;
+                return Json(BadRequest(e));
+            }
+        }
+
         #region Helpers
 
         private void AddErrors(IdentityResult result)

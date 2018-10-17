@@ -7,10 +7,14 @@
                     <div>De petites graines font germer de grandes idées.</div>
                 </div>
                 <!-- <img class="beans" src="content\beans-mini.png" alt="Logo"></img> -->
-                <div id="user-icon" class="col-lg-1" style="display : none;">
+
+                <div v-if="isUserConnected()" id="user-icon" class="col-lg-1" style="display : block;">
                     <router-link to="/user">
                         <span class="glyphicon glyphicon-user"></span>
                     </router-link>
+                </div>
+                <div v-else>
+                    <a href="#" v-on:click="openLogin()">S'inscrire / Se connecter</a>
                 </div>
             </div>
         </div>

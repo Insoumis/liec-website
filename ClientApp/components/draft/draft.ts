@@ -21,6 +21,10 @@ interface InfoLiecViewModel {
     instagramUrl: string;
 }
 
+interface OkResult {
+    value: object;
+}
+
 interface Image {
     url: string;
     name: string;
