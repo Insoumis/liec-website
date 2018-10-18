@@ -493,9 +493,19 @@ namespace LIEC_Website.Controllers
             }
         }
 
+        [HttpPost("[action]")]
+        [Authorize(Roles = "Administrator")]
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> GetAllUsers()
+        {
+            var result = _userManager.Users.ToList();
+            // Convert to ViewModel
+            return Json(result);
+        }
+
         #region Helpers
 
-        private void AddErrors(IdentityResult result)
+            private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
             {
