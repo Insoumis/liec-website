@@ -26,7 +26,7 @@ namespace LIEC_Website.Controllers
         [HttpGet("[action]")]
         public JsonResult Feed()
         {
-            SyndicationFeed feed = new SyndicationFeed("L'instant en commun", "Ce feed RSS comporte les derniers instants en commun", new Uri("http://Feed/Alternate/Link"), "FeedID", DateTime.Now);
+            SyndicationFeed feed = new SyndicationFeed("Les graines de l'info", "Ce feed RSS comporte les dernières graines de l'info", new Uri("http://Feed/Alternate/Link"), "FeedID", DateTime.Now);
             // Add a custom attribute.
             XmlQualifiedName xqName = new XmlQualifiedName("CustomAttribute");
             feed.AttributeExtensions.Add(xqName, "Value");
